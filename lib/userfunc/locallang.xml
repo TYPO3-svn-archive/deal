@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for &quot;Deal&quot;</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="promptCurrIPBody">Your current IP</label>
+      <label index="promptEvaluatorTYPO3version45smaller">Your are using a TYPO3 version smaller than 4.5. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptEvaluatorTYPO3version46smaller">You are using TYPO3 4.5. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version47smaller">You are using TYPO3 4.6. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version48smaller">You are using TYPO3 4.7. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version48orGreater">You are using TYPO3 greater than 4.7. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptExternalLinksBody"><![CDATA[
+        <div style="float:right;padding-left:1em;">
+          <a href="http://deal.de/en/" th
+            alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/deal/lib/icons/deal_80x80.gif"
+              width="80" 
+              height="80" 
+              title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+          <a href="http://wildt.at.die-netzmacher.de/" 
+            alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/deal/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="80" 
+              height="80" 
+              title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+        </div>
+        <h1 style="text-align:left;">
+          Helpful Links
+        </h1>
+        <h2 style="font-size: 1em;margin: 1em 0 0.4em;text-align: left;">
+          Deal
+        </h2>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://typo3.org/extension-manuals/deal/"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - online manual"
+              title="deal - online manual"
+              target="_blank">Manual (HTML) &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="../../../../typo3conf/ext/deal/doc/manual.pdf"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - PDF manual"
+              title="deal - PDF manual"
+              target="_blank">Manual (PDF) &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/en"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - the Shopping Cart"
+              title="deal - the Shopping Cart"
+              target="_blank">Homepage &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/forum/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="TYPO3-deal - Forum"
+              title="TYPO3-deal - Forum"
+              target="_blank">Forum &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/en/support"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - the Shopping Cart"
+              title="deal - the Shopping Cart"
+              target="_blank">Support &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/en/sponsoring"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - the Shopping Cart"
+              title="deal - the Shopping Cart"
+                target="_blank">Sponsoring &raquo;</a>
+          </li>
+        </ul>
+        <h2 style="font-size: 1em;margin: 1em 0 0.4em;text-align: left;">
+          Developer
+        </h2>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://wildt.at.die-netzmacher.de/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Dirk Wildt (Die Netzmacher) - the developer of Deal."
+              title="Dirk Wildt (Die Netzmacher) - the developer of Deal."
+              target="_blank">Dirk Wildt (Die Netzmacher) &raquo;</a>
+          </li>
+        </ul>
+      ]]></label>
+      <label index="promptSponsors"><![CDATA[
+        <h1 style="text-align:left;">
+          Donating and Sponsoring
+        </h1>
+        <div style="float:left;padding-right:1em;">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/dirk_wildt_30x30.gif"
+            width="30"
+            height="30"
+            title="Please support my job!" />        
+        </div>
+        <p>
+          Please donate to Deal or sponsor it!<br />
+          I need the money for improving and developing Deal.<br />
+          <br />
+          Dirk Wildt<br />
+          <a href="http://deal.de/en/sponsoring/"
+            style="background:none;border:none;float:none;text-decoration:underline;"
+            alt="Donating and Sponsoring"
+            title="Donating and Sponsoring"
+            target="_blank">
+            Donating and Sponsoring &raquo;</a>.
+        </p>
+        <p style="font-weight:bold;padding:1em 0;">
+          The Deal project is sponsored by:
+        </p>
+        <a href="http://www.made-in-nature.de/"
+          alt="made in nature, Germany, sponsors the Deal project"
+          title="made in nature, Germany, sponsors the Deal project"
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/made-in-nature.de_120x90.gif"
+            width="120"
+            height="90"
+            alt="made in nature, Germany, sponsors the Deal project" /></a>
+        <p style="padding:0 0 1em 0;">
+          You like to subsidise the Deal project?
+          <a href="http://deal.de/en/sponsoring/"
+            style="background:none;border:none;float:none;text-decoration:underline;"
+            alt="Your logo with your URL. 120 x 90 pixel."
+            title="Your logo with your URL. 120 x 90 pixel."
+            target="_blank">
+            Further information &raquo;</a>.
+        </p>
+        <a href="http://deal.de/en/sponsoring/"
+          alt="Your logo with your URL. 120 x 90 pixel."
+          title="Your logo with your URL. 120 x 90 pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-blue.gif" 
+            width="120" 
+            height="90" 
+            title="Your logo with your URL. 120 x 90 pixel." /></a>
+        &nbsp;&nbsp;
+        <a href="http://deal.de/en/sponsoring/"
+          alt="Your logo with your URL. 120 x 90 pixel."
+          title="Your logo with your URL. 120 x 90 pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif" 
+            width="120" 
+            height="90" 
+            title="Your logo with your URL. 120 x 90 pixel." /></a>
+        &nbsp;&nbsp;
+        <a href="http://deal.de/en/sponsoring/"
+          alt="Your logo with your URL. 120 x 90 pixel."
+          title="Your logo with your URL. 120 x 90 pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif" 
+            width="120" 
+            height="90" 
+            title="Your logo with your URL. 120 x 90 pixel." /></a>
+      ]]></label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="promptCurrIPBody">Deine aktuelle IP-Adresse</label>
+      <label index="promptEvaluatorIncludeCss4-6"><![CDATA[Du musst das Static Template [+Flip it!: Basis fuer TYPO3 < 4.7 einbinden.]]]></label>
+      <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version46smaller">Du verwendest TYPO3 4.5.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version47smaller">Du verwendest TYPO3 4.6.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version48smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version48orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als 4.7. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptExternalLinksBody"><![CDATA[
+        <div style="float:right;padding-left:1em;">
+          <a href="http://deal.de/en/" th
+            alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/deal/lib/icons/deal_80x80.gif"
+              width="80" 
+              height="80" 
+              title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+          <a href="http://wildt.at.die-netzmacher.de/" 
+            alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
+            target="_blank">
+            <img src="../../../../typo3conf/ext/deal/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="80" 
+              height="80" 
+              title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
+        </div>
+        <h1 style="text-align:left;">
+          Hilfreiche Links
+        </h1>
+        <h2 style="font-size: 1em;margin: 1em 0 0.4em;text-align: left;">
+          Deal
+        </h2>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://typo3.org/extension-manuals/deal/"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - Online-Handbuch"
+              title="deal - Online-Handbuch"
+              target="_blank">Handbuch (HTML) &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="../../../../typo3conf/ext/deal/doc/manual.pdf"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - PDF-Handbuch"
+              title="deal - PDF-Handbuch"
+              target="_blank">Handbuch (PDF) &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/en"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="deal - the Shopping Cart"
+              title="deal - the Shopping Cart"
+              target="_blank">Homepage &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/forum/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Deal - Forum"
+              title="Deal - Forum"
+              target="_blank">Forum &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/support/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Deal - Support"
+              title="Deal - Support"
+              target="_blank">Support &raquo;</a>
+          </li>
+          <li style="margin-bottom:.6em;">
+            <a href="http://deal.de/sponsoring/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Deal - Sponsoring"
+              title="Deal - Sponsoring"
+              target="_blank">Sponsoring &raquo;</a>
+          </li>
+        </ul>
+        <h2 style="font-size: 1em;margin: 1em 0 0.4em;text-align: left;">
+          Der Entwickler
+        </h2>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://wildt.at.die-netzmacher.de/" 
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
+              title="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
+              target="_blank">Dirk Wildt (Die Netzmacher) - der Entwickler von Deal &raquo;</a>
+          </li>
+        </ul>
+      ]]></label>
+      <label index="promptSponsors"><![CDATA[
+        <h1 style="text-align:left;">
+          Spenden und Sponsern
+        </h1>
+        <div style="float:left;padding-right:1em;">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/dirk_wildt_30x30.gif"
+            width="30"
+            height="30"
+            title="Bitte unterst&uuml;tze meine Arbeit!" />        
+        </div>
+        <p>
+          Bitte spende f&uuml;r Deal oder sponser die Extension!<br />
+          Ich brauche das Geld f&uuml;r die Verbesserung und Weiterentwicklung von Deal.<br />
+          <br />
+          Dirk Wildt<br />
+          <a href="http://deal.de/sponsoring/"
+            style="background:none;border:none;float:none;text-decoration:underline;"
+            alt="Spenden und Sponsern"
+            title="Spenden und Sponsern"
+            target="_blank">
+            Spenden und Sponsern &raquo;</a>.
+        </p>
+        <p style="font-weight:bold;padding:1em 0;">
+          Das Deal-Projekt wird gesponsert von
+        </p>
+        <a href="http://www.made-in-nature.de/"
+          alt="made in nature, Deutschland, Sponsor des Deal-Projekts"
+          title="made in nature, Deutschland, Sponsor des Deal-Projekts"
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/made-in-nature.de_120x90.gif"
+            width="120"
+            height="90"
+            title="made in nature, Deutschland, Sponsor des Deal-Projekts" /></a>
+        <p style="padding:0 0 1em 0;">
+          M&ouml;chtest Du das Deal-Projekt unterst&uuml;tzen?
+          <a href="http://deal.de/sponsoring/"
+            style="background:none;border:none;float:none;text-decoration:underline;"
+            alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+            title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+            target="_blank">
+            Mehr Infos &raquo;</a>.
+        </p>
+        <a href="http://deal.de/sponsoring/"
+          alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-blue.gif" 
+            width="120" 
+            height="90" 
+            title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
+        &nbsp;&nbsp;
+        <a href="http://deal.de/sponsoring/"
+          alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif" 
+            width="120" 
+            height="90" 
+            title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
+        &nbsp;&nbsp;
+        <a href="http://deal.de/sponsoring/"
+          alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
+          target="_blank">
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif" 
+            width="120" 
+            height="90" 
+            title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
+      ]]></label>
+    </languageKey>
+  </data>
+</T3locallang>

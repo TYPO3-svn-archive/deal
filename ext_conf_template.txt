@@ -1,0 +1,6 @@
+  # cat=language/100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
+beLanguage = English
+  # cat=language/198;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+beLanguageExternalLinks = 1
+  # cat=language/199;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+beLanguageSponsors = 1ca

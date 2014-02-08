@@ -1,0 +1,6 @@
+feed
+  * amazon-mws-v20090101-php-2013-06-10._V382184474_
+inventory
+  * amazon-mws-v20101001-php-2012-09-28._V401842021_
+products
+  * MWSProductsPHPClientLibrary-2011-10-01._V368272355_
