@@ -1,0 +1,2 @@
+See
+  * http://developer.ebay.com/DevZone/finding/HowTo/GettingStarted_PHP_NV_XML/GettingStarted_PHP_NV_XML.html
