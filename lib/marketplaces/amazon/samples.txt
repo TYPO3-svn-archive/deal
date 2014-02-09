@@ -1,0 +1,12 @@
+Each amazon mws modul has samples.
+
+See
+  * feed
+    * .../typo3conf/ext/deal/lib/marketplaces/amazon/lib/feed/src/MarketplaceWebService/Samples
+    * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/amazon/lib/feed/src/MarketplaceWebService/Samples
+  * inventory
+    * .../typo3conf/ext/deal/lib/marketplaces/amazon/lib/inventory/src/FBAInventoryServiceMWS/Samples
+    * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/amazon/lib/inventory/src/FBAInventoryServiceMWS/Samples
+  * products
+    * .../typo3conf/ext/deal/lib/marketplaces/amazon/lib/products/src/MarketplaceWebServiceProducts/Samples
+    * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/amazon/lib/products/src/MarketplaceWebServiceProducts/Samples
