@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  <sheets>
+    <sDEF>EXT:caddy/pi3/flexform_sheet_sDEF.xml</sDEF>
+    <sponsors>EXT:caddy/pi1/flexform_sheet_sponsors.xml</sponsors>
+    <help>EXT:caddy/pi1/flexform_sheet_help.xml</help>
+  </sheets>
+</T3DataStructure>

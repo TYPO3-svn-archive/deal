@@ -3,14 +3,13 @@
 error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
 
 // API request variables
-$endpoint   = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
-$version    = '1.0.0';            // API version supported by your application
-$appid      = 'MyAppID';          // Replace with your own AppID
-$globalid   = 'EBAY-US';          // Global ID of the eBay site you want to search (e.g., EBAY-DE)
-$query      = 'harry potter';     // You may want to supply your own query
-$safequery  = urlencode($query);  // Make the query URL-friendly
-$i          = '0';                // Initialize the item filter index to 0
-
+$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
+$version = '1.0.0';  // API version supported by your application
+$appid = 'MyAppID';  // Replace with your own AppID
+$globalid = 'EBAY-US';  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
+$query = 'harry potter';  // You may want to supply your own query
+$safequery = urlencode($query);  // Make the query URL-friendly
+$i = '0';  // Initialize the item filter index to 0
 
 // Create a PHP array of the item filters you want to use in your request
 $filterarray =
@@ -31,14 +30,6 @@ $filterarray =
     'paramName' => '',
     'paramValue' => ''),
   );
-
-  // 140209, dwildt, 6+
-$globalid   = 'EBAY-DE';                  // Global ID of the eBay site you want to search (e.g., EBAY-DE)
-$appid      = 'DieNetzm-c07d-4d4d-8f31-981897622059';  // Replace with your own AppID
-$query      = 'TYPO3';                    // You may want to supply your own query
-$safequery  = urlencode($query);          // Make the query URL-friendly
-$filterarray[0]['value']      = '99999';  // Display items upto 99.999 EUR
-$filterarray[0]['paramValue'] = 'EUR';
 
 // Generates an indexed URL snippet from the array of item filters
 function buildURLArray ($filterarray) {

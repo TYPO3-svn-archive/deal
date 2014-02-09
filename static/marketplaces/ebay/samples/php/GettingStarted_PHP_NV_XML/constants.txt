@@ -1,0 +1,16 @@
+plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted {
+    # cat=deal - ebay dev - getting started*//100;          type=string;     label= App ID*: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
+  appid = 
+    # cat=deal - ebay dev - getting started*//101;          type=options[EBAY-AT,EBAY-AU,EBAY-CH,EBAY-DE,EBAY-ENCA,EBAY-ES,EBAY-FR,EBAY-FRBE,EBAY-FRCA,EBAY-GB,EBAY-HK,EBAY-IE,EBAY-IN,EBAY-IT,EBAY-MOTOR,EBAY-MY,EBAY-NL,EBAY-NLBE,EBAY-PH,EBAY-PL,EBAY-SG,EBAY-US];  label= Your marketplace (Global ID): Australia: EBAY-AU. Austria: EBAY-AT. Belgium (Dutch): EBAY-NLBE. Belgium (French): EBAY-FRBE. Canada (English): EBAY-ENCA. Canada (French): EBAY-FRCA. France: EBAY-FR. Germany: EBAY-DE. Hong Kong: EBAY-HK. India: EBAY-IN. Ireland: EBAY-IE. Italy: EBAY-IT. Malaysia: EBAY-MY. Motors: EBAY-MOTOR. Netherlands: EBAY-NL. Philippines: EBAY-PH. Poland: EBAY-PL. Singapore: EBAY-SG. Spain: EBAY-ES. Switzerland: EBAY-CH. UK: EBAY-GB. United States: EBAY-US. See https://developer.ebay.com/DevZone/merchandising/docs/Concepts/SiteIDToGlobalID.html
+  globalid = EBAY-US
+    # cat=deal - ebay dev - getting started*//102;          type=options[AUD,CAD,CHF,CNY,EUR,GBP,HKD,INR,MYR,PHP,PLN,SEK,SGD,TWD,USD];  label= Currency: [Currency must correspond with the marketplace (Global ID)!] Australian Dollar: AUD. Canadian Dollar: CAD. Chinese Chinese Renminbi: CNY. Euro: EUR. Hong Kong Dollar: HKD. Indian Rupee: INR. Malaysian Ringgit: MYR. New Taiwan Dollar: TWD. Philippines Peso: PHP. Poland, Zloty: PLN. Pound Sterling: GBP. Singapore Dollar: SGD. Swedish Krona: SEK. Swiss Franc: CHF. US Dollar: USD. See https://developer.ebay.com/DevZone/finding/CallRef/Enums/currencyIdList.html
+  currency.paramValue = USD
+    # cat=deal - ebay dev - getting started*//103;          type=int+;   label= Maximum Amount: Maximum amount for the search items
+  currency.value = 100
+    # cat=deal - ebay dev - getting started*//104;          type=string;     label= Search Words: Query for the search items. Seperated by space, comma hasn't any effect. ebay concatenates search words with AND (&&).
+  query = TYPO3
+    # cat=deal - ebay dev - getting started*/others/998;    type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links:typo3-deal.de
+  externalLinks = Click me!
+    # cat=deal - ebay dev - getting started*/others/999;    type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+  sponsors = Click me!
+}

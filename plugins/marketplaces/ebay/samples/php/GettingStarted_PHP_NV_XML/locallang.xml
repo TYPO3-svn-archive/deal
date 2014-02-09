@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for plugin &quot;tx_caddy_pi3&quot;</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="caddy">Caddy</label>
+      <label index="caddyminiempty">Caddy is empty</label>
+      <label index="caddyminiemptyyou">Your caddy is empty</label>
+      <label index="item">item</label>
+      <label index="items">items</label>
+      <label index="linktocaddy">Go to the Caddy</label>
+      <label index="linktoshop">Go Shopping!</label>
+      <label index="shop">Shop</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="caddy">Warenkorb</label>
+      <label index="caddyminiempty">Der Warenkorb ist leer</label>
+      <label index="caddyminiemptyyou">Dein Warenkorb ist leer</label>
+      <label index="item">Artikel</label>
+      <label index="items">Artikel</label>
+      <label index="linktocaddy">Zum Warenkorb</label>
+      <label index="linktoshop">Zum Shop</label>
+      <label index="shop">Shop</label>
+    </languageKey>
+  </data>
+</T3locallang>

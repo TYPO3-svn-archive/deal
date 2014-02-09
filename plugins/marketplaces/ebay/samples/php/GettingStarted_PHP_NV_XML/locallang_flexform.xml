@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for plugin "tx_browser_pi3"</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="sdef">Caddy</label>
+      <label index="sdefDrs">DRS: You will get a report in the Developer Log</label>
+      <label index="sdefCaddyMode">Display mode</label>
+      <label index="sdefCaddyModeWiItems">Items and sum</label>
+      <label index="sdefCaddyModeWoItems">Sum only (default)</label>
+      <label index="sdefPidCaddy">Page with the Caddy</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="sdef">Caddy</label>
+      <label index="sdefDrs">DRS: Du bekommst einen Bericht im Developer Log</label>
+      <label index="sdefCaddyMode">Anzeigeformat</label>
+      <label index="sdefCaddyModeWiItems">Artikel und Summe</label>
+      <label index="sdefCaddyModeWoItems">Nur die Summe (Standard)</label>
+      <label index="sdefPidCaddy">Seite mit dem Warenkorb</label>
+    </languageKey>
+  </data>
+</T3locallang>

@@ -1,0 +1,16 @@
+plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted {
+
+    // appiid, currency, globalid, query
+  constanteditor =
+  constanteditor {
+    appid         = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.appid}
+    currency =
+    currency {
+      paramValue  = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.currency.paramValue}
+      value       = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.currency.value}
+    }
+    globalid      = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.globalid}
+      // paramValue, value
+    query         = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.query}
+  }
+}

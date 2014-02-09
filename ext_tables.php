@@ -86,6 +86,7 @@ switch( true )
   case( $beLanguage == 'de' ):
       // German
     t3lib_extMgm::addStaticFile($_EXTKEY, 'static/',           'Deal [1] 5x');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -99,6 +100,7 @@ switch( true )
   default:
       // English
     t3lib_extMgm::addStaticFile($_EXTKEY, 'static/',           'Deal [1]');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
