@@ -1,6 +1,6 @@
 plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted {
 
-    // appiid, currency, globalid, query
+    // appid, currency, globalid, query
   constanteditor =
   constanteditor {
     appid         = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.appid}

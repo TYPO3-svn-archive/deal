@@ -28,7 +28,7 @@
  *
  *
  *
- *   55: class tx_caddy_pi3_flexform
+ *   55: class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted_flexform
  *   88:     function main()
  *
  *              SECTION: Sheets
@@ -43,16 +43,16 @@
  */
 
 /**
- * The class tx_caddy_pi3_flexform bundles all methods for the flexform but any wizard.
+ * The class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted_flexform bundles all methods for the flexform but any wizard.
  * See Wizards in the wizard class.
  *
  * @author    Dirk Wildt http://wildt.at.die-netzmacher.de
  * @package    TYPO3
- * @subpackage    caddy
+ * @subpackage    deal
  * @version 2.0.0
  * @since   2.0.0
  */
-class tx_caddy_pi3_flexform
+class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted_flexform
 {
     // Parent object
   public $pObj = null;
@@ -62,10 +62,10 @@ class tx_caddy_pi3_flexform
     // [sdef]
     // [boolean] enable DRS
   public $sdefDrs = null;
-    // [integer] pid of the caddy
-  public $sdefPidCaddy;
-    // [string] caddy mode
-  public $sdefCaddyMode;
+    // [integer] pid of the deal
+  public $sdefPiddeal;
+    // [string] deal mode
+  public $sdefdealMode;
     // [sdef]
 
 
@@ -118,19 +118,19 @@ class tx_caddy_pi3_flexform
 //    $this->sdefDrs  = $this->zzFfValue( $sheet, $field, false );
       // sdefDrs
 
-      // sdefCaddyMode
-    $field              = 'sdefCaddyMode';
-    $this->sdefCaddyMode = $this->zzFfValue( $sheet, $field );
-    if( empty( $this->sdefCaddyMode ) )
+      // sdefdealMode
+    $field              = 'sdefdealMode';
+    $this->sdefdealMode = $this->zzFfValue( $sheet, $field );
+    if( empty( $this->sdefdealMode ) )
     {
-      $this->sdefCaddyMode = 'woItems';
+      $this->sdefdealMode = 'woItems';
     }
-      // sdefCaddyMode
+      // sdefdealMode
 
-      // sdefPidCaddy
-    $field              = 'sdefPidCaddy';
-    $this->sdefPidCaddy = $this->zzFfValue( $sheet, $field );
-      // sdefPidCaddy
+      // sdefPiddeal
+    $field              = 'sdefPiddeal';
+    $this->sdefPiddeal = $this->zzFfValue( $sheet, $field );
+      // sdefPiddeal
 
     return;
   }
@@ -183,7 +183,7 @@ class tx_caddy_pi3_flexform
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/caddy/pi1/class.tx_caddy_pi3_flexform.php']) {
-  include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/caddy/pi1/class.tx_caddy_pi3_flexform.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/deal/pi1/class.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted_flexform.php']) {
+  include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/deal/pi1/class.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted_flexform.php']);
 }
 ?>

@@ -14,6 +14,7 @@ if( ! defined( 'TYPO3_MODE' ) )
   // Configuration by the extension manager
   //    Localization support
   // Enables the Include Static Templates
+  // Plugin Configuration
   // Add pagetree icons
   // Methods for backend workflows
 
@@ -114,7 +115,25 @@ switch( true )
 }
   // Case $beLanguage
   // Enables the Include Static Templates
-  
+
+
+
+  ////////////////////////////////////////////////////////////////////////////
+  //
+  // Plugin Configuration
+
+t3lib_div::loadTCA('tt_content');
+
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][ $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted' ]  = 'layout,select_key,recursive,pages';
+//$TCA['tt_content']['types']['list']['subtypes_addlist'][ $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted' ]      = 'pi_flexform';
+t3lib_extMgm::addPlugin(array(
+  'LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGettingstarted',
+  $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted',
+  t3lib_extMgm::extRelPath( $_EXTKEY ) . 'ext_icon.gif'
+),'list_type');
+t3lib_extMgm::addPiFlexFormValue( $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/flexform.xml' ); 
+  // Plugin Configuration
+
 
 
   ////////////////////////////////////////////////////////////////////////////

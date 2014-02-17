@@ -2,13 +2,13 @@
 <T3DataStructure>
   <ROOT>
     <TCEforms>
-      <sheetTitle>LLL:EXT:caddy/pi3/locallang_flexform.xml:sdef</sheetTitle>
+      <sheetTitle>LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang_flexform.xml:sdef</sheetTitle>
     </TCEforms>
     <type>array</type>
     <el>
       <sdefPidCaddy>
         <TCEforms>
-          <label>LLL:EXT:caddy/pi3/locallang_flexform.xml:sdefPidCaddy</label>
+          <label>LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang_flexform.xml:sdefPidCaddy</label>
           <config>
             <type>group</type>
             <internal_type>db</internal_type>
@@ -23,16 +23,16 @@
       </sdefPidCaddy>
       <sdefCaddyMode>
         <TCEforms>
-          <label>LLL:EXT:caddy/pi3/locallang_flexform.xml:sdefCaddyMode</label>
+          <label>LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang_flexform.xml:sdefCaddyMode</label>
           <config>
             <type>select</type>
             <items type="array">
               <numIndex index="0" type="array">
-                <numIndex index="0">LLL:EXT:caddy/pi3/locallang_flexform.xml:sdefCaddyModeWiItems</numIndex>
+                <numIndex index="0">LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang_flexform.xml:sdefCaddyModeWiItems</numIndex>
                 <numIndex index="1">wiItems</numIndex>
               </numIndex>
               <numIndex index="1" type="array">
-                <numIndex index="0">LLL:EXT:caddy/pi3/locallang_flexform.xml:sdefCaddyModeWoItems</numIndex>
+                <numIndex index="0">LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang_flexform.xml:sdefCaddyModeWoItems</numIndex>
                 <numIndex index="1">woItems</numIndex>
               </numIndex>
             </items>
@@ -42,15 +42,6 @@
           </config>
         </TCEforms>
       </sdefCaddyMode>
-      <sdefDrs>
-        <TCEforms>
-          <label>LLL:EXT:caddy/pi1/locallang_flexform.xml:sdefDrs</label>
-          <config>
-            <type>check</type>
-            <default>0</default>
-          </config>
-        </TCEforms>
-      </sdefDrs>
     </el>
   </ROOT>
 </T3DataStructure>

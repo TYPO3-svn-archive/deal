@@ -4,8 +4,6 @@
     <langDisable>1</langDisable>
   </meta>
   <sheets>
-    <sDEF>EXT:caddy/pi3/flexform_sheet_sDEF.xml</sDEF>
-    <sponsors>EXT:caddy/pi1/flexform_sheet_sponsors.xml</sponsors>
-    <help>EXT:caddy/pi1/flexform_sheet_help.xml</help>
+    <sDEF>EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/flexform_sheet_sDEF.xml</sDEF>
   </sheets>
 </T3DataStructure>

@@ -6,24 +6,16 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="caddy">Caddy</label>
-      <label index="caddyminiempty">Caddy is empty</label>
-      <label index="caddyminiemptyyou">Your caddy is empty</label>
-      <label index="item">item</label>
-      <label index="items">items</label>
-      <label index="linktocaddy">Go to the Caddy</label>
-      <label index="linktoshop">Go Shopping!</label>
-      <label index="shop">Shop</label>
+      <label index="list_type_piMarketplacesEbaySamplesPhpGettingstarted">Deal! [DEV] ebay sample start</label>
+      <label index="promptErrorAppID"><![CDATA[Oops! The request was not successful. Make sure you are using a valid AppID for the Production environment.<br />
+        See Constant Editor -> Category: [DEAL - EBAY DEV - GETTING STARTED]]]></label>
+      <label index="promptSuccessHeader">eBay Search Results for</label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="caddy">Warenkorb</label>
-      <label index="caddyminiempty">Der Warenkorb ist leer</label>
-      <label index="caddyminiemptyyou">Dein Warenkorb ist leer</label>
-      <label index="item">Artikel</label>
-      <label index="items">Artikel</label>
-      <label index="linktocaddy">Zum Warenkorb</label>
-      <label index="linktoshop">Zum Shop</label>
-      <label index="shop">Shop</label>
+      <label index="list_type_piMarketplacesEbaySamplesPhpGettingstarted">Deal! [DEV] ebay sample start</label>
+      <label index="promptErrorAppID"><![CDATA[Hoppla! Die Anfrage wird nicht beantwortet. Stelle bitte sicher, dass Du eine gültige AppID für die Produktions-Umgebung (production environment) verwendest.<br />
+        Siehe Konstanten-Editor -> Kategorie: [DEAL - EBAY DEV - GETTING STARTED]]]></label>
+      <label index="promptSuccessHeader">eBay Suche - Ergebnis für</label>
     </languageKey>
   </data>
 </T3locallang>
