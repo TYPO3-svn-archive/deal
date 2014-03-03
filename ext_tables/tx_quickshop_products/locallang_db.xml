@@ -25,7 +25,7 @@
       <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript warning: prefixLocalAnchors is set. The fancybox won't run proper!</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript template for this plugin. Flip it! won't have any effect. You can ...</label>
       <label index="sheetFlipit_evaluate_warn_swftools">SWFTOOLS aren't installed. SWF files can't rendered automatically. You can render SWF files by your own. See more in the <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! in the TYPO3 repository" target="_blank">online manual</a>]]>.</label>
-      <label index="tcaLabel_tx_quickshop_products_div_tx_deal">Flip it!</label>
+      <label index="tcaLabel_tx_quickshop_products_div_tx_deal">Deal!</label>
       <label index="tcaLabel_tx_deal_evaluate">Plugin Check</label>
       <label index="tcaLabel_tx_deal_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_deal_fancybox">Fancybox</label>
@@ -70,7 +70,7 @@
       <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript-Warnung: prefixLocalAnchors werden verwendet. Die Fancybox wird nicht richtig funktionieren.</label>
       <label index="sheetFlipit_evaluate_warn_swftools">Die SWFTOOLS sind nicht installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden. Du kannst diese selbst erstellen. Siehe mehr im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
-      <label index="tcaLabel_tx_quickshop_products_div_tx_deal">Flip it!</label>
+      <label index="tcaLabel_tx_quickshop_products_div_tx_deal">Deal!</label>
       <label index="tcaLabel_tx_deal_evaluate">Plugin-Check</label>
       <label index="tcaLabel_tx_deal_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_deal_fancybox">Fancybox</label>

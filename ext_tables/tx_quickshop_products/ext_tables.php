@@ -25,7 +25,7 @@ if( ! defined( 'TYPO3_MODE' ) )
   // TCA for tx_quickshop_products
 
   // constants
-$int_div_position = 1;    // Position of the deal div(s)/tabs(s)
+$int_div_position = 6;    // ..., 5. div[Images], 6. div[deal], 7. div[controlling], ...
 
   // TCA load
 t3lib_div::loadTCA( 'tx_quickshop_products' );
@@ -49,28 +49,28 @@ $TCA['tx_quickshop_products']['ctrl']['tx_deal'] = array (
   // TCA columns
 $TCA['tx_quickshop_products']['columns']['tx_deal_layout'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout_item_00',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout_item_00',
         'layout_00',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout_item_01',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout_item_01',
         'layout_01',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout_item_02',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout_item_02',
         'layout_02',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout_item_03',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout_item_03',
         'layout_03',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_layout_item_ts',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_layout_item_ts',
         'ts',
       ),
     ),
@@ -79,20 +79,20 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_layout'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_quality'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_quality',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_quality',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_quality_item_high',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_quality_item_high',
         'high',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_quality_item_low',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_quality_item_low',
         'low',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_quality_item_ts',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_quality_item_ts',
         'ts',
       ),
     ),
@@ -101,7 +101,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_quality'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_pagelist'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_pagelist',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_pagelist',
   'config'  => array (
     'type'      => 'input',
     'size'      => '40',
@@ -112,20 +112,20 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_pagelist'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_updateswfxml'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_updateswfxml',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_updateswfxml',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_disabled',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_disabled',
         'disabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_enabled',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_enabled',
         'enabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_ts',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_updateswfxml_item_ts',
         'ts',
       ),
     ),
@@ -134,7 +134,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_updateswfxml'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_swf_files'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_swf_files',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_swf_files',
   'config' => array(
     'type'          => 'group',
     'internal_type' => 'file',
@@ -149,7 +149,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_swf_files'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_xml_file'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_xml_file',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_xml_file',
   'config' => array(
     'type'          => 'group',
     'internal_type' => 'file',
@@ -164,37 +164,37 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_xml_file'] = array (
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_fancybox'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_fancybox',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_fancybox',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_disabled',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_disabled',
         'disabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_enabled',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_enabled',
         'enabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_ts',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_fancybox_item_ts',
         'ts',
       ),
     ),
     'default' => 'ts',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_evaluate'] = array (
-  'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_evaluate',
-  'config'  => array (
-    'type'      => 'user',
-    'userFunc'  => 'tx_deal_flexform->evaluate',
-  ),
-);
+//$TCA['tx_quickshop_products']['columns']['tx_deal_evaluate'] = array (
+//  'exclude' => 0,
+//  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_evaluate',
+//  'config'  => array (
+//    'type'      => 'user',
+//    'userFunc'  => 'tx_deal_flexform->evaluate',
+//  ),
+//);
 $TCA['tx_quickshop_products']['columns']['tx_deal_externalLinks'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_externalLinks',
+  'label'   => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_externalLinks',
   'config'  => array (
     'type'      => 'user',
     'userFunc'  => 'tx_deal_userfunc->promptExternalLinks',
@@ -220,23 +220,23 @@ $TCA['tx_quickshop_products']['interface']['showRecordFieldList'] = $showRecordF
 
   // TCA palettes
 $TCA['tx_quickshop_products']['palettes']['tx_deal_fancybox']['showitem'] =
-  'tx_deal_fancybox;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_fancybox';
+  'tx_deal_fancybox;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_fancybox';
 $TCA['tx_quickshop_products']['palettes']['tx_deal_fancybox']['canNotCollapse'] = 1;
 
 $TCA['tx_quickshop_products']['palettes']['tx_deal_files']['showitem'] =
-  'tx_deal_updateswfxml;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_updateswfxml, --linebreak--,' .
-  'tx_deal_xml_file;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_xml_file, --linebreak--,' .
-  'tx_deal_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_swf_files';
+  'tx_deal_updateswfxml;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_updateswfxml, --linebreak--,' .
+  'tx_deal_xml_file;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_xml_file, --linebreak--,' .
+  'tx_deal_swf_files;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_swf_files';
 $TCA['tx_quickshop_products']['palettes']['tx_deal_files']['canNotCollapse'] = 1;
 
 $TCA['tx_quickshop_products']['palettes']['tx_deal_quality']['showitem'] =
-  'tx_deal_quality;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_quality,' .
-  'tx_deal_pagelist;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_deal_pagelist';
+  'tx_deal_quality;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_quality,' .
+  'tx_deal_pagelist;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_deal_pagelist';
 $TCA['tx_quickshop_products']['palettes']['tx_deal_quality']['canNotCollapse'] = 1;
   // TCA palettes
 
   // TCA types
-$str_showitem = $TCA['tx_quickshop_products']['types']['uploads']['showitem'];
+$str_showitem = $TCA['tx_quickshop_products']['types']['0']['showitem'];
 $arr_showitem = explode( '--div--;', $str_showitem );
 $arr_new_showitem = array( );
 foreach( $arr_showitem as $key => $value )
@@ -248,11 +248,11 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' .
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_quickshop_products_div_tx_deal, ' .
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:tcaLabel_tx_quickshop_products_div_tx_deal, ' .
           'tx_deal_layout,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_deal_quality;tx_deal_quality,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_deal_files;tx_deal_files,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_deal_fancybox;tx_deal_fancybox,' .
+          '--palette--;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:palette_tx_deal_quality;tx_deal_quality,' .
+          '--palette--;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:palette_tx_deal_files;tx_deal_files,' .
+          '--palette--;LLL:EXT:deal/ext_tables/tx_quickshop_products/locallang_db.xml:palette_tx_deal_fancybox;tx_deal_fancybox,' .
           'tx_deal_evaluate,' .
           'tx_deal_externalLinks,';
       $arr_new_showitem[$key + 1] = $value;
@@ -264,7 +264,7 @@ foreach( $arr_showitem as $key => $value )
   }
 }
 $str_showitem = implode( '--div--;', $arr_new_showitem );
-$TCA['tx_quickshop_products']['types']['uploads']['showitem'] = $str_showitem;
+$TCA['tx_quickshop_products']['types']['0']['showitem'] = $str_showitem;
 unset( $int_div_position );
   // TCA types
 

@@ -168,7 +168,11 @@ require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_deal_userfun
   // Methods for backend workflows
 
 
+  ///////////////////////////////////////////////////////////
+  //
   // TCA for tx_quickshop_products
-require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_caddy_userfunc.php');
+
+require_once(t3lib_extMgm::extPath($_EXTKEY).'ext_tables/tx_quickshop_products/ext_tables.php');
+  // TCA for tx_quickshop_products
 
 ?>
