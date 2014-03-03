@@ -1,6 +1,42 @@
-  # cat=language/100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
+  # cat=be language//100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
 beLanguage = English
-  # cat=language/198;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+  # cat=be language//198;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 beLanguageExternalLinks = 1
-  # cat=language/199;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+  # cat=be language//199;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
 beLanguageSponsors = 1ca
+
+  # cat=drs//100;            type=boolean; label= Logging:Enable the prompting to the Modul > Admin Tools > Log.
+drsAdmintoolsLogEnabled = 0
+  # cat=drs//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+drsExternalLinks = 1
+  # cat=drs//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+drsSponsors = 1ca
+
+  # cat=manufacturer//100;            type=string; label= Company:Name of your company
+manufacturerCompany = my company ltd.
+  # cat=manufacturer//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+manufacturerExternalLinks = 1
+  # cat=manufacturer//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+manufacturerSponsors = 1ca
+
+  # cat=amazon//100;            type=boolean; label= Enabled
+amazonEnabled = 0
+  # cat=amazon//200;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
+amazon = English
+  # cat=amazon//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+amazonExternalLinks = 1
+  # cat=amazon//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+amazonSponsors = 1ca
+
+  # cat=ebay//100;          type=boolean;     label= Enabled: 
+ebayEnabled = 0
+  # cat=ebay//200;          type=string;     label= App ID*: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
+ebayAppid = 
+  # cat=ebay//201;          type=options[EBAY-AT,EBAY-AU,EBAY-CH,EBAY-DE,EBAY-ENCA,EBAY-ES,EBAY-FR,EBAY-FRBE,EBAY-FRCA,EBAY-GB,EBAY-HK,EBAY-IE,EBAY-IN,EBAY-IT,EBAY-MOTOR,EBAY-MY,EBAY-NL,EBAY-NLBE,EBAY-PH,EBAY-PL,EBAY-SG,EBAY-US];  label= Your marketplace (Global ID): Australia: EBAY-AU. Austria: EBAY-AT. Belgium (Dutch): EBAY-NLBE. Belgium (French): EBAY-FRBE. Canada (English): EBAY-ENCA. Canada (French): EBAY-FRCA. France: EBAY-FR. Germany: EBAY-DE. Hong Kong: EBAY-HK. India: EBAY-IN. Ireland: EBAY-IE. Italy: EBAY-IT. Malaysia: EBAY-MY. Motors: EBAY-MOTOR. Netherlands: EBAY-NL. Philippines: EBAY-PH. Poland: EBAY-PL. Singapore: EBAY-SG. Spain: EBAY-ES. Switzerland: EBAY-CH. UK: EBAY-GB. United States: EBAY-US. See https://developer.ebay.com/DevZone/merchandising/docs/Concepts/SiteIDToGlobalID.html
+ebayGlobalid = EBAY-US
+  # cat=ebay//202;          type=options[AUD,CAD,CHF,CNY,EUR,GBP,HKD,INR,MYR,PHP,PLN,SEK,SGD,TWD,USD];  label= Currency: [Currency must correspond with the marketplace (Global ID)!] Australian Dollar: AUD. Canadian Dollar: CAD. Chinese Chinese Renminbi: CNY. Euro: EUR. Hong Kong Dollar: HKD. Indian Rupee: INR. Malaysian Ringgit: MYR. New Taiwan Dollar: TWD. Philippines Peso: PHP. Poland, Zloty: PLN. Pound Sterling: GBP. Singapore Dollar: SGD. Swedish Krona: SEK. Swiss Franc: CHF. US Dollar: USD. See https://developer.ebay.com/DevZone/finding/CallRef/Enums/currencyIdList.html
+ebayCurrencyParamvalue = USD
+  # cat=ebay//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+ebayExternalLinks = 1
+  # cat=ebay//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+ebaySponsors = 1ca

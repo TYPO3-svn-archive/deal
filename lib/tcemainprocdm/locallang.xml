@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for plugin &quot;tx_browser_pi1&quot;</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="amazonEnabledFalse">amazon is disabled. You can enable it by the Extension Manager.</label>
+      <label index="ebayEnabledFalse">ebay is disabled. You can enable it by the Extension Manager.</label>
+      <label index="promptDealPhrase">Deal! TYPO3 for amazon and ebay</label>
+      <label index="promptDetailsToSyslog">See details at Modul > Admin Tools > Log. You have to enable prompts by the extension manager. See [DRS] > Logging.</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="amazonEnabledFalse">amazon ist deaktiviert. Du kannst es mit dem Extension Manager aktivieren.</label>
+      <label index="ebayEnabledFalse">ebay ist deaktiviert. Du kannst es mit dem Extension Manager aktivieren.</label>
+      <label index="promptDealPhrase">Deal! TYPO3 für amazon und ebay</label>
+      <label index="promptDetailsToSyslog">Einzelheiten findest Du im Modul > Adminwerkzeuge > Protokoll. Du musst die Meldungen mit dem Extension Manager aktivieren. Siehe [DRS] > Logging.</label>
+    </languageKey>
+  </data>
+</T3locallang>

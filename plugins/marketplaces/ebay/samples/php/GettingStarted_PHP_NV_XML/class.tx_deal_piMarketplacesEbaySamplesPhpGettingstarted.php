@@ -36,12 +36,12 @@ require_once( PATH_tslib . 'class.tslib_pibase.php' );
  */
 class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
 
-  public $prefixId = 'tx_deal_piMarketplacesEbaySamplesPhpGettingstarted';
+  public $prefixId      = 'tx_deal_piMarketplacesEbaySamplesPhpGettingstarted';
   public $scriptRelPath = 'plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/class.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.php';
-  public $extKey = 'deal';
-  public $local_cObj = null;
-  public $conf = null;
-  public $arr_extConf = null;
+  public $extKey        = 'deal';
+  public $local_cObj    = null;
+  public $conf          = null;
+  public $arr_extConf   = null;
 
   /**
    * main( ) : the main method of the PlugIn
@@ -79,8 +79,9 @@ class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
    */
   private function ebaySampleStart() {
 
-    error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
-// API request variables
+    // 140217, dwildt, 1-
+    //error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
+    // API request variables
     $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
     $version = '1.0.0';            // API version supported by your application
     $appid = 'MyAppID';          // Replace with your own AppID
@@ -88,7 +89,7 @@ class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
     $query = 'harry potter';     // You may want to supply your own query
     $safequery = urlencode($query);  // Make the query URL-friendly
     $i = '0';                // Initialize the item filter index to 0
-// Create a PHP array of the item filters you want to use in your request
+    // Create a PHP array of the item filters you want to use in your request
     $filterarray =
             array(
                 array(
@@ -139,11 +140,11 @@ class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
       return "$urlfilter";
     }
 
-// End of buildURLArray function
-// Build the indexed item filter URL snippet
+    // End of buildURLArray function
+    // Build the indexed item filter URL snippet
     buildURLArray($filterarray);
 
-// Construct the findItemsByKeywords HTTP GET call 
+    // Construct the findItemsByKeywords HTTP GET call 
     $apicall = "$endpoint?";
     $apicall .= "OPERATION-NAME=findItemsByKeywords";
     $apicall .= "&SERVICE-VERSION=$version";
@@ -153,10 +154,10 @@ class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
     $apicall .= "&paginationInput.entriesPerPage=3";
     $apicall .= "$urlfilter";
 
-// Load the call and capture the document returned by eBay API
+    // Load the call and capture the document returned by eBay API
     $resp = simplexml_load_file($apicall);
 
-// Check to see if the request was successful, else print an error
+    // Check to see if the request was successful, else print an error
     if ($resp->ack == "Success") {
       $results = '';
       // If the response was loaded, parse it and build links  
@@ -169,7 +170,7 @@ class tx_deal_piMarketplacesEbaySamplesPhpGettingstarted extends tslib_pibase {
         $results .= "<tr><td><img src=\"$pic\"></td><td><a href=\"$link\">$title</a></td></tr>";
       }
     }
-// If the response does not indicate 'Success,' print an error
+    // If the response does not indicate 'Success,' print an error
     else {
       $results = '<h3>
         ' . $this->pi_getLL('promptErrorAppID') . '

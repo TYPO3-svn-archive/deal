@@ -9,7 +9,14 @@ PHP
   * ebay doesn't have any PHP sample for products but for finding.
   * See
     * online
-      * http://developer.ebay.com/DevZone/finding/HowTo/GettingStarted_PHP_NV_XML/GettingStarted_PHP_NV_XML.html
+      * URL
+        * http://developer.ebay.com/DevZone/finding/HowTo/GettingStarted_PHP_NV_XML/GettingStarted_PHP_NV_XML.html
+      * XML
+        * http://developer.ebay.com/DevZone/finding/HowTo/GettingStarted_PHP_XML_XML/GettingStarted_PHP_XML_XML.html
     * your host
-      * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/GettingStarted_PHP_NV_XML.html
-      * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/Sample_GettingStarted_PHP_NV_XML.php
+      * URL
+        * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/GettingStarted_PHP_NV_XML.html
+        * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/Sample_GettingStarted_PHP_NV_XML.php
+      * XML
+        * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/GettingStarted_PHP_XML_XML.html
+        * http://your-server.com/typo3conf/ext/deal/lib/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/Sample_GettingStarted_PHP_XML_XML.php

@@ -17,7 +17,7 @@ if( ! defined( 'TYPO3_MODE' ) )
   // Plugin Configuration
   // Add pagetree icons
   // Methods for backend workflows
-
+  // TCA for tx_quickshop_products
 
 
   ////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ $version = $version + ( ( int ) $bugfix ) * 1;
 $typo3Version = $version;
   // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
 
-if( $typo3Version < 3000000 ) 
+if( $typo3Version < 3000000 )
 {
   $prompt = '<h1>ERROR</h1>
     <h2>Unproper TYPO3 version</h2>
@@ -53,7 +53,7 @@ if( $typo3Version < 3000000 )
   // Set TYPO3 version
 
 
-    
+
 
   ////////////////////////////////////////////////////////////////////////////
   //
@@ -82,12 +82,12 @@ switch( $beLanguage )
   // Enables the Include Static Templates
 
   // Case $beLanguage
-switch( true ) 
+switch( true )
 {
   case( $beLanguage == 'de' ):
       // German
     t3lib_extMgm::addStaticFile($_EXTKEY, 'static/',           'Deal [1] 5x');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -101,7 +101,7 @@ switch( true )
   default:
       // English
     t3lib_extMgm::addStaticFile($_EXTKEY, 'static/',           'Deal [1]');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -127,11 +127,11 @@ t3lib_div::loadTCA('tt_content');
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][ $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted' ]  = 'layout,select_key,recursive,pages';
 //$TCA['tt_content']['types']['list']['subtypes_addlist'][ $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted' ]      = 'pi_flexform';
 t3lib_extMgm::addPlugin(array(
-  'LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGettingstarted',
+  'LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGettingstarted',
   $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted',
   t3lib_extMgm::extRelPath( $_EXTKEY ) . 'ext_icon.gif'
 ),'list_type');
-t3lib_extMgm::addPiFlexFormValue( $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/flexform.xml' ); 
+t3lib_extMgm::addPiFlexFormValue( $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/flexform.xml' );
   // Plugin Configuration
 
 
@@ -168,5 +168,7 @@ require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_deal_userfun
   // Methods for backend workflows
 
 
+  // TCA for tx_quickshop_products
+require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_caddy_userfunc.php');
 
 ?>
