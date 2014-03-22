@@ -5,7 +5,7 @@ beLanguageExternalLinks = 1
   # cat=be language//199;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
 beLanguageSponsors = 1ca
 
-  # cat=drs//100;            type=boolean; label= Logging:Enable the prompting to the Modul > Admin Tools > Log.
+  # cat=drs//100;            type=boolean; label= Logging:Enable the prompting to the Modul > Admin Tools > Log. SECURITY RISK! Private data like token will prompt to the log table.
 drsAdmintoolsLogEnabled = 0
   # cat=drs//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 drsExternalLinks = 1
@@ -28,15 +28,32 @@ amazonExternalLinks = 1
   # cat=amazon//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
 amazonSponsors = 1ca
 
-  # cat=ebay//100;          type=boolean;     label= Enabled: 
-ebayEnabled = 0
-  # cat=ebay//200;          type=string;     label= App ID*: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
-ebayAppid = 
-  # cat=ebay//201;          type=options[EBAY-AT,EBAY-AU,EBAY-CH,EBAY-DE,EBAY-ENCA,EBAY-ES,EBAY-FR,EBAY-FRBE,EBAY-FRCA,EBAY-GB,EBAY-HK,EBAY-IE,EBAY-IN,EBAY-IT,EBAY-MOTOR,EBAY-MY,EBAY-NL,EBAY-NLBE,EBAY-PH,EBAY-PL,EBAY-SG,EBAY-US];  label= Your marketplace (Global ID): Australia: EBAY-AU. Austria: EBAY-AT. Belgium (Dutch): EBAY-NLBE. Belgium (French): EBAY-FRBE. Canada (English): EBAY-ENCA. Canada (French): EBAY-FRCA. France: EBAY-FR. Germany: EBAY-DE. Hong Kong: EBAY-HK. India: EBAY-IN. Ireland: EBAY-IE. Italy: EBAY-IT. Malaysia: EBAY-MY. Motors: EBAY-MOTOR. Netherlands: EBAY-NL. Philippines: EBAY-PH. Poland: EBAY-PL. Singapore: EBAY-SG. Spain: EBAY-ES. Switzerland: EBAY-CH. UK: EBAY-GB. United States: EBAY-US. See https://developer.ebay.com/DevZone/merchandising/docs/Concepts/SiteIDToGlobalID.html
-ebayGlobalid = EBAY-US
-  # cat=ebay//202;          type=options[AUD,CAD,CHF,CNY,EUR,GBP,HKD,INR,MYR,PHP,PLN,SEK,SGD,TWD,USD];  label= Currency: [Currency must correspond with the marketplace (Global ID)!] Australian Dollar: AUD. Canadian Dollar: CAD. Chinese Chinese Renminbi: CNY. Euro: EUR. Hong Kong Dollar: HKD. Indian Rupee: INR. Malaysian Ringgit: MYR. New Taiwan Dollar: TWD. Philippines Peso: PHP. Poland, Zloty: PLN. Pound Sterling: GBP. Singapore Dollar: SGD. Swedish Krona: SEK. Swiss Franc: CHF. US Dollar: USD. See https://developer.ebay.com/DevZone/finding/CallRef/Enums/currencyIdList.html
-ebayCurrencyParamvalue = USD
+  # cat=ebay//100;          type=options[,production,sandbox];     label= Environment: If any environment is selected, ebay is disabled. Each environment needs the keys below. BE AWARE: Production environment can effect costs on your ebay account!
+ebayEnvironment =
+  # cat=ebay//200;          type=string;     label= Sandbox Token: Your token for the sandbox environment. It is obligated, if you like to use the sandbox. See your ebay account on https://developer.ebay.com/DevZone/account/default.aspx. See "Generate Token" on https://developer.ebay.com/DevZone/account/tokens/default.aspx. If you don't have a developer account, please register on https://developer.ebay.com/base/membership/signin/
+ebaySandboxToken =
+  # cat=ebay//300;          type=string;     label= Production Token: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
+ebayProductionToken =
+  # cat=ebay//900;          type=string;     label= App ID*: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
+ebayAppid =
+  # cat=ebay//901;          type=string;     type=string;     label= Auth Token*: [obligated!] Your Application ID. See: https://developer.ebay.com/DevZone/account/default.aspx. If you don't have a developer account, please register at: https://developer.ebay.com/base/membership/signin/
+authToken =
+  # cat=ebay//902;          type=options[Australia - EBAY-AU/EUR (15),Austria - EBAY-AT/EUR (16),Belgium (Dutch) - EBAY-NLBE/EUR (123),Belgium (French) - EBAY-FRBE/EUR (23),Canada (English) - EBAY-ENCA/CAD (2),Canada (English) - EBAY-ENCA/USD (2),Canada (French) - EBAY-FRCA/USD (210),France - EBAY-FR/EUR (71),Germany - EBAY-DE/EUR (77),Hong Kong - EBAY-HK/HKD (201),India - EBAY-IN/INR (203),Ireland - EBAY-IE/EUR (205),Italy - EBAY-IT/EUR (101),Malaysia - EBAY-MY/MYR (207),Motors - EBAY-MOTOR/USD (100),Netherlands - EBAY-NL/EUR (146),Philippines - EBAY-PH/PHP (211),Poland - EBAY-PL/PLN (212),Singapore - EBAY-SG/SGD (216),Spain - EBAY-ES/EUR (186),Switzerland - EBAY-CH/CHF (193),UK - EBAY-GB/GBP (3),United States - EBAY-US/USD (0)];  label= Your marketplace: Country - Global ID/Currency (Site ID). See: https://developer.ebay.com/DevZone/merchandising/docs/Concepts/SiteIDToGlobalID.html
+ebayMarketplace = United States - EBAY-US/USD (0)
+  # cat=ebay//903;          type=options[de_AT,de_CH,de_DE,en_AU,en_CA,en_GB,en_IE,en_IN,en_SG,en_US,es_ES,fr_BE,fr_CA,fr_FR,it_IT,nl_BE,nl_NL,zh_CN,zh_HK];  label= Error language: Australia (en_AU), Austria (de_AT), Belgium (Dutch) (nl_BE), Belgium (French) (fr_BE), Canada (en_CA), Canada (French) (fr_CA), China (zh_CN), France (fr_FR), Germany (de_DE), Hong Kong (zh_HK), India (en_IN), Ireland (en_IE), Italy (it_IT), Netherlands (nl_NL), Singapore (en_SG), Spain (es_ES), Switzerland (de_CH), United Kingdom (en_GB), United States (en_US)
+ebayErrorLanguage = en_GB
   # cat=ebay//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+
+
 ebayExternalLinks = 1
   # cat=ebay//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
 ebaySponsors = 1ca
+
+  # cat=paypal//100;          type=string;     label= Production e-mail-adress: The e-mail-adress of your paypal account. It is needed, if you ... See https://www.paypal.com/
+paypalProductionEmail =
+  # cat=paypal//200;          type=string;     label= Sandbox e-mail-adress: The e-mail-adress of your sandbox paypal account. It is needed, if you ... See https://www.sandbox.paypal.com/
+paypalSandboxEmail =
+  # cat=paypal//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+paypalExternalLinks = 1
+  # cat=paypal//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+paypalSponsors = 1ca

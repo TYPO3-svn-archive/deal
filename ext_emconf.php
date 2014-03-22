@@ -6,7 +6,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'category' => 'be',
 	'shy' => 0,
 	'version' => '0.0.2',
-	'dependencies' => '',
+	'dependencies' => 'cps_tcatree',
 	'conflicts' => '',
 	'priority' => '',
 	'loadOrder' => '',
@@ -24,6 +24,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
+			'cps_tcatree' => '',
 			'typo3' => '4.5.0-6.1.99',
 		),
 		'conflicts' => array(

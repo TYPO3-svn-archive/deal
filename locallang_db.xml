@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>database</type>
+    <description>Language labels for database tables/fields belonging to extension 'quick_shop'</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="tx_deal_ebaycategories">Deal! ebay category</label>
+      <label index="tx_deal_ebaycategories.title">Category</label>
+      <label index="tx_deal_ebaycategories.uid_parent">Superior Category</label>
+      <label index="tx_deal_ebayshippingservicecode">Deal! ebay shipping service</label>
+      <label index="tx_deal_ebayshippingservicecode.title">Shipping service</label>
+      <label index="tx_deal_ebayshippingservicecode.code">ebay code</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="tx_deal_ebaycategories">Deal! ebay Kategorie</label>
+      <label index="tx_deal_ebaycategories.title">Kategorie</label>
+      <label index="tx_deal_ebaycategories.uid_parent">Übergeordnete Kategorie</label>
+      <label index="tx_deal_ebayshippingservicecode">Deal! ebay Versand Service</label>
+      <label index="tx_deal_ebayshippingservicecode.title">Versand Service</label>
+      <label index="tx_deal_ebayshippingservicecode.code">ebay Code</label>
+    </languageKey>
+  </data>
+</T3locallang>
