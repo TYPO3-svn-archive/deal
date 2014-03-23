@@ -87,6 +87,10 @@ class tx_deal_ebayApi
   private $ebayEnvironment = null;
   // [String] ebay mode: off || live || test
   private $ebayMode = null;
+  // [String] ebay mode: off || live || test
+  private $ebayUrlSignin = null;
+  private $ebayUrlSigninProduction = 'https://signin.ebay.com/';
+  private $ebayUrlSigninSandbox = 'https://signin.sandbox.ebay.com/';
 
   /*   * *********************************************
    *
@@ -97,13 +101,15 @@ class tx_deal_ebayApi
   /**
    * main( )
    *
-   * @return	void
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
    * @access public
    * @version   0.0.3
    * @since     0.0.3
    */
   public function main()
   {
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
+
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log($prompt, -1);
 
@@ -114,16 +120,10 @@ class tx_deal_ebayApi
       return;
     }
 
-    if (!$this->action())
-    {
-      $this->logEbayEnvironment();
-      $this->setEbayItemStatus();
-      return;
-    }
+    $status = $this->action();
 
     $this->logEbayEnvironment();
-    $this->setEbayItemStatus();
-    return;
+    return $status;
   }
 
   /*   * *********************************************
@@ -144,7 +144,7 @@ class tx_deal_ebayApi
   {
 
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1, 2, 1);
+    $this->log($prompt, -1);
 
     if (!$this->itemRequirements())
     {
@@ -162,41 +162,67 @@ class tx_deal_ebayApi
       case($this->ebayAction == 'donothing'):
         $success = $this->actionDonothing();
         break;
-      case($this->ebayAction == 'end'):
-        $success = $this->actionEnd();
+      case($this->ebayAction == 'disable'):
+        $success = $this->actionDisable();
         break;
-      case($this->ebayAction == 'offer'):
-        $success = $this->actionOffer();
-        break;
-      case($this->ebayAction == 'offeragain'):
-        $success = $this->actionOfferagain();
+      case($this->ebayAction == 'enableupdate'):
+        $success = $this->actionEnableUpdate();
         break;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: ' . $this->ebayAction;
         die($prompt);
     }
 
-    return $success;
+    if ($success)
+    {
+      $status = $this->setEbayItemStatus();
+    }
+
+    return $status;
   }
 
   /**
    * actionDelete( )
    *
-   * @return	void
+   * @return	boolean   In every case false
    * @access private
    * @version   0.0.3
    * @since     0.0.3
    */
   private function actionDelete()
   {
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorDeleteItem');
-    $this->log($prompt, 4);
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpDeleteItem01');
-    $this->log($prompt, 1);
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpDeleteItem02');
-    $this->log($prompt, 1);
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
 
-    return true;
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
+
+    $dontPrompt = true;
+    $status = $this->setEbayItemStatus($dontPrompt);
+
+    switch ($status)
+    {
+      case( 'isNotOnEbay'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteWarnStatusIsNotOnEbay');
+        $this->log($prompt, 3);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteInfoStatusIsNotOnEbay');
+        $this->log($prompt, 0);
+        break;
+      case( 'isOnEbayEnabled'):
+      case( 'isOnEbayDisabled'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteWarnStatusIsOnEbay');
+        $this->log($prompt, 3);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteInfoStatusIsOnEbay01');
+        $prompt = str_replace('%URL%', $this->ebayUrlSignin, $prompt);
+        $this->log($prompt, 0);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteInfoStatusIsOnEbay02');
+        $this->log($prompt, 0);
+        break;
+      default:
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
+        die($prompt);
+    }
+
+    return false;
   }
 
   /**
@@ -214,83 +240,208 @@ class tx_deal_ebayApi
   }
 
   /**
-   * actionEnd( )
+   * actionDisable( )
    *
-   * @return	void
+   * @return	boolean $success  :
    * @access private
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function actionEnd()
+  private function actionDisable()
   {
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log($prompt, -1);
 
-    $success = $this->itemFixedPriceEnd();
-    return $success;
-  }
-
-  /**
-   * actionOffer( )
-   *
-   * @return	void
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function actionOffer()
-  {
     $success = false;
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
 
-    if (!$this->itemFixedPriceVerify())
+    $dontPrompt = true;
+    $status = $this->setEbayItemStatus($dontPrompt);
+
+    if ($this->ebayMode == 'test')
     {
-      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemVerfifyFailed');
-      $this->log($prompt, 3);
+      $this->logEbayMode();
       return false;
     }
 
-    switch ($this->fixedPriceItem->getAction())
+    switch ($status)
     {
-      case('add'): // No error occurs
-        $success = $this->itemFixedPriceAdd();
+      case( 'isNotOnEbay'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableInfoStatusIsNotOnEbay');
+        $this->log($prompt, 1);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableHelpStatusIsNotOnEbay');
+        $this->log($prompt, 0);
         break;
-      case('update'): // Listing breaches the Duplicate listings policy.
-        $success = $this->itemFixedPriceUpdate();
+      case( 'isOnEbayEnabled'):
+        $status = $this->fixedPriceItem->endFixedPriceItem();
+        if ($status == 'isOnEbayDisabled')
+        {
+          $success = true;
+        }
         break;
-      case('error'):
+      case( 'isOnEbayDisabled'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableInfoStatusIsOnEbayDisabled');
+        $this->log($prompt, 3);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableHelpStatusIsOnEbayDisabled');
+        $this->log($prompt, 0);
+        break;
       default:
-        $success = false;
-        break;
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
+        die($prompt);
     }
 
     return $success;
   }
 
   /**
-   * actionOfferagain( )
+   * actionEnableUpdate( )
    *
-   * @return	void
+   * @return	boolean $success  :
    * @access private
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function actionOfferagain()
+  private function actionEnableUpdate()
   {
-    $success = false;
-
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log($prompt, -1);
 
-    if (!$this->itemFixedPriceVerify())
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
+
+    $dontPrompt = true;
+    $status = $this->setEbayItemStatus($dontPrompt);
+
+    switch ($status)
+    {
+      case( 'isNotOnEbay'):
+        $success = $this->actionEnableUpdateIsNotOnEbay();
+        break;
+      case( 'isOnEbayDisabled'):
+        $success = $this->actionEnableUpdateIsOnEbayDisabled();
+        break;
+      case( 'isOnEbayEnabled'):
+        $success = $this->actionEnableUpdateIsOnEbayEnabled();
+        break;
+      default:
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
+        die($prompt);
+    }
+
+    return $success;
+  }
+
+  /**
+   * actionEnableUpdateIsNotOnEbay( )
+   *
+   * @return	boolean $sucess :
+   * @access private
+   * @version   0.0.3
+   * @since     0.0.3
+   */
+  private function actionEnableUpdateIsNotOnEbay()
+  {
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+
+    if (!$this->fixedPriceItem->verifyItem())
     {
       $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemVerfifyFailed');
       $this->log($prompt, 3);
       return false;
     }
 
-    $success = $this->itemFixedPriceAddAgain();
+    if ($this->ebayMode == 'test')
+    {
+      $this->logEbayMode();
+      return false;
+    }
 
+    $success = $this->fixedPriceItem->addFixedPriceItem();
     return $success;
+  }
+
+  /**
+   * actionEnableUpdateIsOnEbayDisabled( )
+   *
+   * @return	boolean $sucess :
+   * @access private
+   * @version   0.0.3
+   * @since     0.0.3
+   */
+  private function actionEnableUpdateIsOnEbayDisabled()
+  {
+    $success = false;
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+
+    if (!$this->fixedPriceItem->verifyItem())
+    {
+      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemVerfifyFailed');
+      $this->log($prompt, 3);
+      return false;
+    }
+
+    if ($this->ebayMode == 'test')
+    {
+      $this->logEbayMode();
+      return false;
+    }
+
+    $success = $this->fixedPriceItem->relistFixedPriceItem();
+    return $success;
+  }
+
+  /**
+   * actionEnableUpdateIsOnEbayEnabled( )
+   *
+   * @return	boolean $sucess :
+   * @access private
+   * @version   0.0.3
+   * @since     0.0.3
+   */
+  private function actionEnableUpdateIsOnEbayEnabled()
+  {
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+
+    $isExecuted = false;
+
+//    if (!$this->fixedPriceItem->verifyReviseFixedPriceItem())
+//    {
+////      return false;
+//    }
+
+    if ($this->ebayMode == 'test')
+    {
+      $this->logEbayMode();
+      $this->feesPromptCantEvaluated();
+      return false;
+    }
+
+    $isExecuted = $this->fixedPriceItem->reviseFixedPriceItem();
+    return $isExecuted;
+  }
+
+  /**
+   * feesPromptCantEvaluated( )  :
+   *
+   * @return	void
+   * @access private
+   * @version  0.0.3
+   * @since    0.0.3
+   */
+  private function feesPromptCantEvaluated()
+  {
+    $prompt = null;
+
+    $strTitle = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableTitle');
+    $prompt = $strTitle . PHP_EOL
+            . '--------------------------------------------------------------------------------------------- ' . PHP_EOL
+            . $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTablePromptCantEvaluated') . PHP_EOL
+            . '--------------------------------------------------------------------------------------------- ' . PHP_EOL
+    ;
+    $this->log($prompt, 0);
   }
 
   /*   * *********************************************
@@ -387,123 +538,6 @@ class tx_deal_ebayApi
    *
    * ******************************************** */
 
-//  /**
-//   * item( )
-//   *
-//   * @return	void
-//   * @access private
-//   * @version   0.0.3
-//   * @since     0.0.3
-//   */
-//  private function item()
-//  {
-//
-//    $prompt = __METHOD__ . ' #' . __LINE__;
-//    $this->log($prompt, -1, 2, 1);
-//
-//    if (!$this->itemRequirements())
-//    {
-//      $this->logEbayEnvironment();
-//      return false;
-//    }
-//
-//    $success = false;
-//    $this->itemFixedPriceInit();
-//
-//    if (!$this->itemFixedPriceVerify())
-//    {
-//      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemVerfifyFailed');
-//      $this->log($prompt, 3);
-//      return false;
-//    }
-//
-//    switch ($this->fixedPriceItem->getAction())
-//    {
-//      case('add'): // No error occurs
-//        $success = $this->itemFixedPriceAdd();
-//        break;
-//      case('update'): // Listing breaches the Duplicate listings policy.
-//        $success = $this->itemFixedPriceUpdate();
-//        break;
-//      case('error'):
-//      default:
-//        $success = false;
-//        break;
-//    }
-//
-//    $this->logEbayEnvironment();
-//    return $success;
-//  }
-
-  /**
-   * itemFixedPriceAdd( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceAdd()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    if ($this->ebayMode == 'test')
-    {
-      $this->logEbayMode();
-      return true;
-    }
-
-    $isExecuted = $this->fixedPriceItem->addFixedPriceItem();
-    return $isExecuted;
-  }
-
-  /**
-   * itemFixedPriceAddAgain( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceAddAgain()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    if ($this->ebayMode == 'test')
-    {
-      $this->logEbayMode();
-      return true;
-    }
-
-    $isExecuted = $this->fixedPriceItem->relistFixedPriceItem();
-    return $isExecuted;
-  }
-
-  /**
-   * itemFixedPriceEnd( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceEnd()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    if ($this->ebayMode == 'test')
-    {
-      $this->logEbayMode();
-      return true;
-    }
-
-    $isExecuted = $this->fixedPriceItem->endFixedPriceItem();
-    return $isExecuted;
-  }
-
   /**
    * itemFixedPriceInit( )
    *
@@ -517,70 +551,6 @@ class tx_deal_ebayApi
     require_once(t3lib_extMgm::extPath($this->extKey) . 'lib/marketplaces/ebay/api/class.tx_deal_ebayApi_fixedPriceItem.php');
     $this->fixedPriceItem = new tx_deal_ebayApi_fixedPriceItem( );
     $this->fixedPriceItem->setVarPobj($this);
-  }
-
-  /**
-   * itemFixedPriceUpdate( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceUpdate()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    $isExecuted = false;
-
-    if (!$this->itemFixedPriceUpdateVerify())
-    {
-      return false;
-    }
-
-    if ($this->ebayMode == 'test')
-    {
-      $this->logEbayMode();
-      return true;
-    }
-
-    $isExecuted = $this->fixedPriceItem->reviseFixedPriceItem();
-    return $isExecuted;
-  }
-
-  /**
-   * itemFixedPriceUpdateVerify( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceUpdateVerify()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    $isVerified = $this->fixedPriceItem->verifyAddFixedPriceItem('update');
-    return $isVerified;
-  }
-
-  /**
-   * itemFixedPriceVerify( )
-   *
-   * @return	boolean
-   * @access private
-   * @version   0.0.3
-   * @since     0.0.3
-   */
-  private function itemFixedPriceVerify()
-  {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    $isVerified = $this->fixedPriceItem->verifyItem();
-    return $isVerified;
   }
 
   /**
@@ -620,13 +590,15 @@ class tx_deal_ebayApi
     switch (true)
     {
       case($this->ebayAction == 'donothing'):
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayActionDonothingWarn');
-        $this->log($prompt, 3);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDonothingInfo');
+        $this->log($prompt, 1);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDonothingHelp');
+        $this->log($prompt, 0);
         $ebayAction = false;
         break;
       case($this->ebayAction == 'delete'):
-      case($this->ebayAction == 'end'):
-      case($this->ebayAction == 'offer'):
+      case($this->ebayAction == 'disable'):
+      case($this->ebayAction == 'enableupdate'):
       case($this->ebayAction == 'offeragain'):
         $ebayAction = true;
         break;
@@ -829,19 +801,23 @@ class tx_deal_ebayApi
   /**
    * setEbayItemStatus( )
    *
-   * @return	void
+   * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
+   * @return	string    $status     : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
    * @access private
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function setEbayItemStatus()
+  private function setEbayItemStatus($dontPrompt = false)
   {
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
+
     if (!is_object($this->fixedPriceItem))
     {
       $this->itemFixedPriceInit();
     }
-    $isExecuted = $this->fixedPriceItem->setEbayItemStatus();
-    return $isExecuted;
+
+    $status = $this->fixedPriceItem->setEbayItemStatus($dontPrompt);
+    return $status;
   }
 
   /**
@@ -948,60 +924,6 @@ class tx_deal_ebayApi
     $this->confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['deal']);
   }
 
-//  /**
-//   * initVarsDatamap( )
-//   *
-//   * @return	void
-//   * @access private
-//   * @version   0.0.3
-//   * @since     0.0.3
-//   */
-//  private function initVarsDatamap()
-//  {
-//    $this->initVarsDatamapTable();
-//    $this->initVarsDatamapUid();
-//    $this->initVarsDatamapRecord();
-//  }
-//
-//  /**
-//   * initVarsDatamapRecord( )
-//   *
-//   * @return	void
-//   * @access private
-//   * @version   0.0.3
-//   * @since     0.0.3
-//   */
-//  private function initVarsDatamapRecord()
-//  {
-//    $this->dmRecord = $this->pObj->getDatamapRecord();
-//  }
-//
-//  /**
-//   * initVarsDatamapTable( )
-//   *
-//   * @return	void
-//   * @access private
-//   * @version   0.0.3
-//   * @since     0.0.3
-//   */
-//  private function initVarsDatamapTable()
-//  {
-//    $this->dmTable = $this->pObj->getDatamapTable();
-//  }
-//
-//  /**
-//   * initVarsDatamapUid( )
-//   *
-//   * @return	void
-//   * @access private
-//   * @version   0.0.3
-//   * @since     0.0.3
-//   */
-//  private function initVarsDatamapUid()
-//  {
-//    $this->dmUid = $this->pObj->getDatamapRecordUid();
-//  }
-
   /**
    * initVarsEbay( )
    *
@@ -1015,6 +937,7 @@ class tx_deal_ebayApi
     $this->initVarsEbayEnvironment();
     $this->initVarsEbayMode();
     $this->initVarsEbayAction();
+    $this->initVarsEbayUrlSignin();
   }
 
   /**
@@ -1035,14 +958,14 @@ class tx_deal_ebayApi
     {
       case($this->ebayAction == 'delete'):
       case($this->ebayAction == 'donothing'):
-      case($this->ebayAction == 'end'):
-      case($this->ebayAction == 'offer'):
+      case($this->ebayAction == 'disable'):
+      case($this->ebayAction == 'enableupdate'):
       case($this->ebayAction == 'offeragain'):
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay action: ' . $this->ebayAction;
         $this->log($prompt, -1);
         break;
       default:
-        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: ' . $this->ebayAction;
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: "' . $this->ebayAction . '"';
         die($prompt);
     }
   }
@@ -1086,6 +1009,28 @@ class tx_deal_ebayApi
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: ' . $this->ebayMode;
         die($prompt);
+    }
+  }
+
+  /**
+   * initVarsEbayUrlSignin( ) :
+   *
+   * @return	void
+   * @access private
+   * @version  0.0.3
+   * @since    0.0.3
+   */
+  private function initVarsEbayUrlSignin()
+  {
+    switch ($this->ebayEnvironment)
+    {
+      case('sandbox'):
+        $this->ebayUrlSignin = $this->ebayUrlSigninSandbox;
+        break;
+      case('production'):
+      default:
+        $this->ebayUrlSignin = $this->ebayUrlSigninProduction;
+        break;
     }
   }
 

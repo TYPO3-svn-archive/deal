@@ -6,7 +6,17 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="ebayActionDonothingWarn">Warning: You haven't selected any action, nothing will happen. Please select [Deal! ebay] > Mode and action > Action</label>
+      <label index="actionDeleteInfoStatusIsNotOnEbay">Please change your current configuration. See [Deal! ebay] > Action > action: [Cleanup].</label>
+      <label index="actionDeleteWarnStatusIsNotOnEbay">You can't cleanup an item on ebay, which isn't on ebay.</label>
+      <label index="actionDeleteInfoStatusIsOnEbay01">If you like to cleanup your item, please login on ebay: %URL%. Delete the item supported by the user interface.</label>
+      <label index="actionDeleteInfoStatusIsOnEbay02">Please change your current configuration. See [Deal! ebay] > Action > action: [Cleanup].</label>
+      <label index="actionDeleteWarnStatusIsOnEbay">Sorry, ebay doesn't allow to delete an item by TYPO3 Deal!</label>
+      <label index="actionDisableHelpStatusIsNotOnEbay">Please select another action. See [Deal! ebay] > Action > Action.</label>
+      <label index="actionDisableInfoStatusIsNotOnEbay">The item can't disabled, because the item isn't on ebay available.</label>
+      <label index="actionDisableHelpStatusIsOnEbayDisabled">Please select another action. See [Deal! ebay] > Action > Action.</label>
+      <label index="actionDisableInfoStatusIsOnEbayDisabled">The item is already disabled and can't disabeld again.</label>
+      <label index="actionDonothingHelp">See [Deal! ebay] > Action > Action</label>
+      <label index="actionDonothingInfo">You haven't selected any action, your item won't enabled/updated.</label>
       <label index="ebayAddSuccess">Upload was successful. Link to your item on ebay: %url%</label>
       <label index="ebayAddSuccessShort">Upload was successful!</label>
       <label index="ebayApiEndpointEmpty">Fatal error: endpoint for the ebay API is empty.</label>
@@ -16,27 +26,30 @@
         Your items are on <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>
       <label index="ebayEnvironmentSandbox">Sandbox (ebay environment). Test it without any fees :) Your items are on http://www.sandbox.ebay.de/. Disable sandbox: Extension Manager > Deal! > ebay > Admin Tools > Environment.</label>
       <label index="ebayErrorAuctionAlreadyClosed">The offer can't closed again, it is already closed.</label>
-      <label index="ebayErrorDeleteItem">Sorry, ebay doesn't allow to delete an item by TYPO3 Deal!</label>
       <label index="ebayErrorRelistNotPossible">The item can not offered again. Probably the offer is still exist. Maybe the item does not exist.</label>
       <label index="ebayErrorReviseEndedListings">You ae not allowed to edit items, which aren't offered.</label>
+      <label index="ebayFeesTablePromptCantEvaluated">Can't evaluated in this mode.</label>
       <label index="ebayFeesTableNoFees">Transaction is without any fee.</label>
       <label index="ebayFeesTableNoWarranty">Without any warranty! And without any further costs like any commission.</label>
       <label index="ebayFeesTableNoWarrantyShort">Without any warranty!</label>
       <label index="ebayFeesTableSum">Sum</label>
       <label index="ebayFeesTableTitle">ebay fees</label>
-      <label index="ebayHelpAuctionAlreadyClosed">Please change your current configuration. See [Deal! ebay] > Mode and action > action: [End the offer].</label>
-      <label index="ebayHelpDeleteItem01">If you like to delete the item, please login on ebay. Delete the item supported by the ebay interface.</label>
-      <label index="ebayHelpDeleteItem02">Please change your current configuration. See [Deal! ebay] > Mode and action > action: [Delete the item].</label>
-      <label index="ebayHelpRelistNotPossible">If you like to edit the item, please offer it. See [Deal! ebay] > Mode and action > action: [Offer the item].</label>
-      <label index="ebayHelpReviseEndedListings">Please offer the item again, if you like to edit it. See [Deal! ebay] > Mode and action > action: [Offer the item again].</label>
+      <label index="ebayHelpAuctionAlreadyClosed">Please change your current configuration. See [Deal! ebay] > Action > action: [Disable].</label>
+      <label index="ebayHelpRelistNotPossible">Enable the item, if you like to update it. See [Deal! ebay] > Action > action: [Enable/update].</label>
+      <label index="ebayHelpReviseEndedListings">Please offer the item again, if you like to edit it. See [Deal! ebay] > Action > action: [Offer/update again].</label>
+      <label index="ebayItemError">Fatal error: The status of your item on ebay can't evaluated.</label>
       <label index="ebayItemIsOnEbayEnabled"><![CDATA[Your item is on ebay%ebayEnvironment% enabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>Item on ebay</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
       <label index="ebayItemIsOnEbayDisabled"><![CDATA[Your item is on ebay%ebayEnvironment% disabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>Item on ebay</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
       <label index="ebayItemIsNotOnEbay">Your item isn't on ebay available.</label>
       <label index="ebayItemVerfifyFailed">The evaluation of he ebay configuration failed. The item and the chagings aren't uploaded to the ebay shop.</label>
       <label index="ebayItemWarnNoUpdate">Warning: Your item won't updated on ebay.</label>
-      <label index="ebayModeTest">The ebay modus of the current item is 'Test'. Your item won't updated on ebay.  Change mode: see tab [Deal! ebay] > Mode.</label>
+      <label index="ebayModeTest">The ebay modus of the current item is 'Test'. Your item won't updated on ebay.  Change it? [Deal! ebay] > Action > Mode.</label>
       <label index="ebayPaypalEmailEmpty">There isn't any Paypal e-mail-adress. Paymill won't used as payment method.</label>
       <label index="ebayShippingcostsEmpty">No shipping type is selected. Please enable a shipping type: see tab [Deal! ebay] > Shipping.</label>
+      <label index="ebayStatusError">Fatal error: ebay status is undefined '%status%'.</label>
+      <label index="ebayStatusIsNotOnEbay">Item isn't on ebay.</label>
+      <label index="ebayStatusIsOnEbayDisabled">Item is on ebay disabled. See %URL%</label>
+      <label index="ebayStatusIsOnEbayEnabled">Item is on ebay enabled/updated. See %URL%</label>
       <label index="ebaySubCategories">Forbidden: The selected ebay category has subcategories. Please select an ebay category without any subcategory.</label>
       <label index="ebayUpdateSuccess">Update was successful. Link to your item on ebay: %url%</label>
       <label index="ebayUpdateSuccessShort">Update was successful!</label>
@@ -50,7 +63,17 @@
       <label index="promptsByTYPO3">Prompts by TYPO3</label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="ebayActionDonothingWarn">Warnung: Du hast keine Aktion ausgewählt, nichts wird geändert. Bitte wähle [Deal! ebay] > Modus und Aktion > Aktion</label>
+      <label index="actionDeleteInfoStatusIsNotOnEbay">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Aktion > Aktion: [Löschen].</label>
+      <label index="actionDeleteWarnStatusIsNotOnEbay">Du kannst auf ebay keinen Artikel löschen, den es auf ebay nicht gibt.</label>
+      <label index="actionDeleteInfoStatusIsOnEbay01">Wenn Du den Artikel löschen willst, logge Dich bei ebay ein: %URL%. Lösche den Artikel mit dem User-Interface.</label>
+      <label index="actionDeleteInfoStatusIsOnEbay02">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Aktion > Aktion: [Löschen].</label>
+      <label index="actionDeleteWarnStatusIsOnEbay">Sorry, ebay erlaubt es nicht, einen Artikel mit Hilfe von TYPO3 Deal! zu löschen.</label>
+      <label index="actionDisableHelpStatusIsNotOnEbay">Bitte wähle eine andere Aktion aus. Siehe [Deal! ebay] > Aktion > Aktion.</label>
+      <label index="actionDisableInfoStatusIsNotOnEbay">Der Artikel ist im ebay-Shop nicht vorhanden. Er kann nicht deaktiviert werden.</label>
+      <label index="actionDisableHelpStatusIsOnEbayDisabled">Bitte wähle eine andere Aktion aus. Siehe [Deal! ebay] > Aktion > Aktion.</label>
+      <label index="actionDisableInfoStatusIsOnEbayDisabled">Der Artikel kann nicht erneut deaktiviert werden, er ist bereits deaktiviert.</label>
+      <label index="actionDonothingHelp">Siehe [Deal! ebay] > Aktion > Aktion.</label>
+      <label index="actionDonothingInfo">Du hast keine Aktion ausgewählt, Dein Artikel wird nicht aktiviert/aktualisiert.</label>
       <label index="ebayAddSuccess">Hochladen war erfolgreich. Link zu Deinem Artikel auf ebay: %url%</label>
       <label index="ebayAddSuccessShort">Hochladen war erfolgreich!</label>
       <label index="ebayApiEndpointEmpty">System-Fehler: Endpoint für die ebay API ist leer.</label>
@@ -60,27 +83,30 @@
         Deine Artikel findest Du hier <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>
       <label index="ebayEnvironmentSandbox">Sandbox: ebay testen ohne Gebühren :) Sandbox ausschalten: Adminwerkzeuge > Erweiterungsmanager > Deal! > ebay > Environment.</label>
       <label index="ebayErrorAuctionAlreadyClosed">Das Angebot kann nicht erneut beendet werden, da es bereits beendet ist.</label>
-      <label index="ebayErrorDeleteItem">Sorry, ebay erlaubt es nicht, einen Artikel mit Hilfe von TYPO3 Deal! zu löschen.</label>
       <label index="ebayErrorRelistNotPossible">Der Artikel kann nicht erneut angeboten werden. Entweder wird er bereits angeboten oder es gibt ihn nicht mehr.</label>
       <label index="ebayErrorReviseEndedListings">Artikel, die nicht angeboten werden, können nicht bearbeitet werden.</label>
+      <label index="ebayFeesTablePromptCantEvaluated">Können in diesem Modus vorab nicht ermittelt werden.</label>
       <label index="ebayFeesTableNoFees">Änderungen sind kostenlos.</label>
       <label index="ebayFeesTableNoWarranty">Ohne Gewähr! Und ohne weitere Kosten wie etwa Verkaufsgebühren.</label>
       <label index="ebayFeesTableNoWarrantyShort">Ohne Gewähr!</label>
       <label index="ebayFeesTableSum">Betrag</label>
       <label index="ebayFeesTableTitle">ebay Gebühren</label>
-      <label index="ebayHelpAuctionAlreadyClosed">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Modus und Aktion > Aktion: [Angebot beenden].</label>
-      <label index="ebayHelpDeleteItem01">Wenn Du den Artikel löschen willst, logge Dich bei ebay ein. Lösche den Artikel mit dem User-Interface von ebay.</label>
-      <label index="ebayHelpDeleteItem02">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Modus und Aktion > Aktion: [Artikel löschen].</label>
-      <label index="ebayHelpRelistNotPossible">Biete den Artikel an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Modus und Aktion > Aktion: [Artikel anbieten].</label>
-      <label index="ebayHelpReviseEndedListings">Biete den Artikel bitte erneut an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Modus und Aktion > Aktion: [Artikel erneut anbieten].</label>
+      <label index="ebayHelpAuctionAlreadyClosed">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Aktion > Aktion: [Deaktivieren].</label>
+      <label index="ebayHelpRelistNotPossible">Aktiviere den Artikel, um ihn zu aktualisieren. Siehe [Deal! ebay] > Aktion > Aktion: [Aktivieren/Aktualisieren].</label>
+      <label index="ebayHelpReviseEndedListings">Biete den Artikel bitte erneut an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Aktion > Aktion: [Artikel erneut anbieten].</label>
+      <label index="ebayItemError">System-Fehler: Der Status Deines Artikels auf ebay kann nicht festgestellt werden.</label>
       <label index="ebayItemIsOnEbayEnabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
-      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% nicht aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
+      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% deaktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
       <label index="ebayItemIsNotOnEbay">Dein Artikel ist auf ebay nicht vorhanden.</label>
       <label index="ebayItemVerfifyFailed">Die Überprüfung der Einstellungen für ebay ist fehlgeschlagen. Der Artikel und die Änderungen werden in den ebay-Shop nicht hochgeladen.</label>
       <label index="ebayItemWarnNoUpdate">Warnung: Dein Artikel auf ebay wird nicht aktualisiert.</label>
-      <label index="ebayModeTest">Der ebay-Modus des aktuellen Artikels ist 'Test'. Dein Artikel auf ebay wird nicht aktualisiert. Einstellung ändern: Reiter [Deal! ebay] > Modus.</label>
+      <label index="ebayModeTest">Der ebay-Modus des aktuellen Artikels ist 'Test'. Dein Artikel auf ebay wird nicht aktualisiert. Ändern: [Deal! ebay] > Aktion > Modus.</label>
       <label index="ebayPaypalEmailEmpty">Es gibt keine Paymill E-Mail-Adresse. Paymill wird als Zahlungsmethode nicht verwendet.</label>
       <label index="ebayShippingcostsEmpty">Du hast keine Versandart ausgewählt. Bitte wähle eine Versandart aus: Reiter [Deal! ebay] > Versand.</label>
+      <label index="ebayStatusError">System-Fehler: ebay-Status ist nicht definiert '%status%'.</label>
+      <label index="ebayStatusIsNotOnEbay">Artikel ist nicht im ebay-Shop.</label>
+      <label index="ebayStatusIsOnEbayDisabled">Artikel ist im ebay-Shop deaktiviert. Siehe %URL%</label>
+      <label index="ebayStatusIsOnEbayEnabled">Artikel ist im ebay-Shop aktiviert/aktualisiert. Siehe %URL%</label>
       <label index="ebaySubCategories">Nicht erlaubt: Die gewählte ebay-Kategorie hat Unterkategorien. Bitte wähle eine ebay-Kategorie ohne Unterkategorien.</label>
       <label index="ebayUpdateSuccess">Update war erfolgreich. Link zu Deinem Artikel auf ebay: %url%</label>
       <label index="ebayUpdateSuccessShort">Update war erfolgreich!</label>

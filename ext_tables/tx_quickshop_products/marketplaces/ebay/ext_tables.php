@@ -84,20 +84,20 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayaction'] = array(
         'donothing',
       ),
       array(
-        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_offer',
-        'offer',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_enableupdate',
+        'enableupdate',
       ),
-      array(
-        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_offeragain',
-        'offeragain',
-      ),
+//      array(
+//        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_offeragain',
+//        'offeragain',
+//      ),
       array(
         'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_delete',
         'delete',
       ),
       array(
-        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_end',
-        'end',
+        'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_disable',
+        'disable',
       ),
     ),
     'default' => 'donothing'

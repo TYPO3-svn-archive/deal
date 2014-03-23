@@ -50,7 +50,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   /**
    * addFixedPriceItem( ) :
    *
-   * @return	boolean
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/AddFixedPriceItem.html#samplebasic
    * @access public
    * @version  0.0.3
@@ -58,22 +58,23 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    */
   public function addFixedPriceItem()
   {
-// 140217, dwildt, 1-
-//error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
 
     $this->init($this->pObj);
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
 
     if (!$this->requirements())
     {
       return false;
     }
 
-    $action = 'add';
     $xmlAction = 'AddFixedPriceItem';
     $xmlRequest = $this->xmlRequestAddItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
 
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
+    if (!$this->evalResponse($xmlRequest, $xmlResponse, $xmlAction))
     {
       return false;
     }
@@ -83,8 +84,8 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
       $this->feesPrompt($xmlResponse);
     }
 
-    $this->getItem($action);
-    return true;
+    $status = $this->getItem();
+    return $status;
   }
 
   /*   * ********************************************
@@ -97,6 +98,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    * endFixedPriceItem( ) :
    *
    * @return	boolean
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/EndFixedPriceItem.html
    * @access public
    * @version  0.0.3
@@ -104,50 +106,48 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    */
   public function endFixedPriceItem()
   {
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
+
     $this->init($this->pObj);
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
 
     if (!$this->requirements())
     {
       return false;
     }
 
-    $action = 'end';
     $xmlAction = 'EndFixedPriceItem';
     $xmlRequest = $this->xmlRequestEndItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
 
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
-    {
-      return false;
-    }
+    $status = $this->evalResponse($xmlRequest, $xmlResponse, $xmlAction);
 
-    $this->getItem($action);
-    return true;
+    //$status = $this->getItem($action);
+    return $status;
   }
 
   /**
    * getItem( ) :
    *
-   * @param   string    $acion : add, update
-   * @return	protected
+   * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/GetItem.html#GetItem
    * @access protected
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function getItem($action = 'add')
+  protected function getItem($dontPrompt = false)
   {
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
     $this->init($this->pObj);
 
     $xmlAction = 'GetItem';
     $xmlRequest = $this->xmlRequestGetItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
-    {
-      return false;
-    }
-
-    return true;
+    $status = $this->evalResponse($xmlRequest, $xmlResponse, $xmlAction, $dontPrompt);
+    return $status;
   }
 
   /*   * ********************************************
@@ -159,7 +159,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   /**
    * relistFixedPriceItem( ) :
    *
-   * @return	boolean
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/AddFixedPriceItem.html#samplebasic
    * @access public
    * @version  0.0.3
@@ -167,20 +167,23 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    */
   public function relistFixedPriceItem()
   {
+    $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
 
     $this->init($this->pObj);
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
 
     if (!$this->requirements())
     {
       return false;
     }
 
-    $action = 'addAgain';
     $xmlAction = 'RelistFixedPriceItem';
     $xmlRequest = $this->xmlRequestRelistItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
 
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
+    if (!$this->evalResponse($xmlRequest, $xmlResponse, $xmlAction))
     {
       $this->feesPrompt($xmlResponse);
       return false;
@@ -191,8 +194,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
       $this->feesPrompt($xmlResponse);
     }
 
-    $this->getItem($action);
-    return true;
+    return $status;
   }
 
   /*   * ********************************************
@@ -201,11 +203,10 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    *
    * ******************************************** */
 
-
   /**
    * reviseFixedPriceItem( ) :
    *
-   * @return	boolean
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/ReviseItem.html#ReviseItem
    * @access public
    * @version  0.0.3
@@ -213,25 +214,22 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    */
   public function reviseFixedPriceItem()
   {
-    $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
-
-    $action = 'update';
     $xmlAction = 'ReviseFixedPriceItem';
-// 140217, dwildt, 1-
-//error_reporting(E_ALL);  // Turn on all errors, warnings and notices for easier debugging
 
     $this->init($this->pObj);
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
 
     if (!$this->requirements())
     {
       return false;
     }
 
-    $xmlRequest = $this->xmlRequestAddItem($xmlAction);
+    $xmlRequest = $this->xmlRequestReviseItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
 
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
+    if (!$this->evalResponse($xmlRequest, $xmlResponse, $xmlAction))
     {
       return false;
     }
@@ -241,7 +239,9 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
       $this->feesPrompt($xmlResponse);
     }
 
-    $this->getItem($action);
+//    $status = $this->getItem();
+//    $prompt = __METHOD__ . ' #' . __LINE__ . ' status: ' . $status;
+//    $this->log($prompt, 3);
     return true;
   }
 
@@ -293,7 +293,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  public function verifyAddFixedPriceItem($action = null)
+  public function verifyAddFixedPriceItem()
   {
 
     $this->init($this->pObj);
@@ -309,7 +309,44 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
     $xmlAction = 'VerifyAddFixedPriceItem';
     $xmlRequest = $this->xmlRequestAddItem($xmlAction);
     $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
-    if (!$this->evalResponse($xmlRequest, $xmlResponse, $action, $xmlAction))
+    if (!$this->evalResponse($xmlRequest, $xmlResponse, $xmlAction))
+    {
+      return false;
+    }
+
+    if ($this->getEbayMode() == 'test')
+    {
+      $this->feesPrompt($xmlResponse);
+    }
+    return true;
+  }
+
+  /**
+   * verifyReviseFixedPriceItem( ) :
+   *
+   * @return	boolean
+   * @link http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/VerifyAddFixedPriceItem.html
+   * @access public
+   * @version  0.0.3
+   * @since    0.0.3
+   */
+  public function verifyReviseFixedPriceItem()
+  {
+
+    $this->init($this->pObj);
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+
+    if (!$this->requirements())
+    {
+      return false;
+    }
+
+    $xmlAction = 'VerifyAddFixedPriceItem';
+    $xmlRequest = $this->xmlRequestReviseItem($xmlAction);
+    $xmlResponse = $this->xmlResponse($xmlRequest, $xmlAction);
+    if (!$this->evalResponse($xmlRequest, $xmlResponse, $xmlAction))
     {
       return false;
     }
@@ -332,7 +369,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   public function verifyItem()
   {
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, 3);
+    $this->log($prompt, -1);
 
     $ebayItemId = $this->pObj->getDatamapRecord('tx_deal_ebayitemid');
 //    if (!empty($ebayItemId))
@@ -340,6 +377,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
 //      $this->ebayItemId = $ebayItemId;
 //      return true;
 //    }
+    unset($ebayItemId);
 
     return $this->verifyAddFixedPriceItem();
   }
@@ -412,6 +450,24 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
     $xmlRequest = '<?xml version="1.0" encoding="utf-8"?>
 <' . $method . ' xmlns="urn:ebay:apis:eBLBaseComponents">
 ' . $this->getRequestContentRelistItem() . '
+</' . $method . '>';
+    return $xmlRequest;
+  }
+
+  /**
+   * xmlRequestReviseItem( )  : Create the XML request to be POSTed
+   *
+   * @param   string      $method     : AddFixedPriceItemRequest, VerifyAddFixedPriceItemRequest
+   * @return	string      $xmlRequest :
+   * @access private
+   * @version  0.0.3
+   * @since    0.0.3
+   */
+  private function xmlRequestReviseItem($method)
+  {
+    $xmlRequest = '<?xml version="1.0" encoding="utf-8"?>
+<' . $method . ' xmlns="urn:ebay:apis:eBLBaseComponents">
+' . $this->getRequestContentReviseItem() . '
 </' . $method . '>';
     return $xmlRequest;
   }
