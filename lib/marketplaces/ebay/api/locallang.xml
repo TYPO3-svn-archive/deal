@@ -21,7 +21,17 @@
       <label index="ebayAddSuccessShort">Upload was successful!</label>
       <label index="ebayApiEndpointEmpty">Fatal error: endpoint for the ebay API is empty.</label>
       <label index="ebayApiTokenEmpty">Fatal error: token for the ebay API is empty.</label>
-      <label index="ebayCategoriesNotOne">Forbidden: The item isn't linked with no or more than one category. Please link the item with one category exactly.</label>
+      <label index="ebayCategoriesAreEmptyError">Fatal Error: ebay category table is empty.</label>
+      <label index="ebayCategoriesAreEmptyHelp"><![CDATA[You have selected the marketplace [%marketplace%] by the extension manager.
+          But the ebay categories for this marketplace aren't part of the database.
+          Deal! tried to use the categories for the marketplace [US - EBAY-US/USD (0)], but failed.
+          Please take care for the needed categories.
+          * Obligate: import the categories for the US marketplace. Install and enable the extension deal_ebay_000_us.
+          * Optional: import the categories for the German marketplace. Install and enable the extension deal_ebay_077_germany.
+          * Or create the category table for your marketplace.
+          * See details in the manual.
+      ]]></label>
+      <label index="ebayCategoriesNotOne">Forbidden: The item isn't linked with no category or more than one category. Please link the item with one category exactly.</label>
       <label index="ebayEnvironmentSandbox"><![CDATA[Sandbox (ebay environment). Test it without any fees :)
         Your items are on <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>
       <label index="ebayEnvironmentSandbox">Sandbox (ebay environment). Test it without any fees :) Your items are on http://www.sandbox.ebay.de/. Disable sandbox: Extension Manager > Deal! > ebay > Admin Tools > Environment.</label>
@@ -46,6 +56,16 @@
       <label index="ebayModeTest">The ebay modus of the current item is 'Test'. Your item won't updated on ebay.  Change it? [Deal! ebay] > Action > Mode.</label>
       <label index="ebayPaypalEmailEmpty">There isn't any Paypal e-mail-adress. Paymill won't used as payment method.</label>
       <label index="ebayShippingcostsEmpty">No shipping type is selected. Please enable a shipping type: see tab [Deal! ebay] > Shipping.</label>
+      <label index="ebayShippingservicecodeAreEmptyError">Fatal Error: ebay table with shipping service code is empty.</label>
+      <label index="ebayShippingservicecodeAreEmptyHelp"><![CDATA[You have selected the marketplace [%marketplace%] by the extension manager.
+          But the ebay shipping service codes for this marketplace aren't part of the database.
+          Deal! tried to use the shipping service codes for the marketplace [US - EBAY-US/USD (0)], but failed.
+          Please take care for the needed shipping service codes.
+          * Obligate: import the shipping service codes for the US marketplace. Install and enable the extension deal_ebay_000_us.
+          * Optional: import the shipping service codes for the German marketplace. Install and enable the extension deal_ebay_077_germany.
+          * Or create the shipping service codes table for your marketplace.
+          * See details in the manual.
+      ]]></label>
       <label index="ebayStatusError">Fatal error: ebay status is undefined '%status%'.</label>
       <label index="ebayStatusIsNotOnEbay">Item isn't on ebay.</label>
       <label index="ebayStatusIsOnEbayDisabled">Item is on ebay disabled. See %URL%</label>
@@ -57,7 +77,7 @@
       <label index="headerFilterCategories">Categories</label>
       <label index="headerFilterDimensions">Dimensions</label>
       <label index="headerFilterMaterial">Material</label>
-      <label index="headerPaymentMethodsDescription">Ppayment methods note</label>
+      <label index="headerPaymentMethodsDescription">Payment methods note</label>
       <label index="promptDetailsToSyslog">See details at Modul > Admin Tools > Log. You have to enable prompts. See extension manager > Deal! > [DRS] > Logging.</label>
       <label index="promptsByEbay">Prompts by ebay</label>
       <label index="promptsByTYPO3">Prompts by TYPO3</label>
@@ -78,6 +98,16 @@
       <label index="ebayAddSuccessShort">Hochladen war erfolgreich!</label>
       <label index="ebayApiEndpointEmpty">System-Fehler: Endpoint für die ebay API ist leer.</label>
       <label index="ebayApiTokenEmpty">System-Fehler: Token für die ebay API ist leer.</label>
+      <label index="ebayCategoriesAreEmptyError">Schwerer Fehler: ebay-Kategorie-Tabelle ist leer.</label>
+      <label index="ebayCategoriesAreEmptyHelp"><![CDATA[Du hast im Extension Manager den Marktplatz [%marketplace%] ausgewählt.
+          Aber die ebay-Kategorien für diesen Marktplatz sind nicht in der Datenbank.
+          Deal! hat versucht die Kategorien für den Marktplatz [US - EBAY-US/USD (0)] zu laden - vergeblich.
+          Kümmere Dich bitte um die fehlenden Kategorien.
+          * Erforderlich: Importiere die Kategorien für den US-Marktplatz. Installiere und aktiviere die Erweiterung deal_ebay_000_us.
+          * Wahlweise: Importiere die Kategorien für den Deutschen Marktplatz. Installiere und aktiviere die Erweiterung deal_ebay_077_germany.
+          * Oder erstelle eine Tabelle für Deinen Marktplatz.
+          * Details findest Du im Handbuch.
+      ]]></label>
       <label index="ebayCategoriesNotOne">Nicht erlaubt: Der Artikel ist keiner oder mehr als einer ebay-Kategorie zugeordnet. Bitte wähle genau eine Kategorie aus.</label>
       <label index="ebayEnvironmentSandbox"><![CDATA[Sandkasten (ebay Umgebung sandbox). Ausprobieren, ohne zahlen zu müssen :)
         Deine Artikel findest Du hier <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>

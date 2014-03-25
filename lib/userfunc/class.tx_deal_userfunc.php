@@ -28,8 +28,8 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    deal
-* @version  2.0.0
-* @since    2.0.0
+* @version  0.1.0
+* @since    0.0.1
 */
 
 
@@ -48,7 +48,7 @@
  */
 class tx_deal_userfunc
 {
-  
+
  /**
   * Extension key
   *
@@ -62,21 +62,21 @@ class tx_deal_userfunc
   * @var array
   */
   private $arr_extConf = null;
-  
+
  /**
   * Max width of div tags
   *
   * @var string
   */
   private $maxWidth = "600px";
-  
+
  /**
   * Version of TYPO3 (sample: 4.7.7 -> 4007007)
   *
   * @var string
   */
   public $typo3Version = null;
-  
+
 
 
 
@@ -101,7 +101,7 @@ class tx_deal_userfunc
   public function extMgmVersion( $_EXTKEY )
   {
     $arrReturn = null;
-    
+
     if( ! t3lib_extMgm::isLoaded( $_EXTKEY ) )
     {
       $arrReturn['int'] = 0;
@@ -119,19 +119,47 @@ class tx_deal_userfunc
     $intVersion = $intVersion + ( ( int ) $sub ) * 1000;
     $intVersion = $intVersion + ( ( int ) $bugfix ) * 1;
       // Set version as integer (sample: 4.7.7 -> 4007007)
-    
+
     $arrReturn['int'] = $intVersion;
     $arrReturn['str'] = $strVersion;
     return $arrReturn;
   }
- 
-  
-  
+
+
+
   /***********************************************
    *
    * Prompts
    *
-   **********************************************/    
+   **********************************************/
+
+  /**
+   * promptAmazonContract(): Displays the quick start message.
+   *
+   * @return  string    message wrapped in HTML
+   * @access  public
+   * @version 0.1.0
+   * @since   0.1.0
+   */
+  public function promptAmazonContract()
+  {
+//.message-notice
+//.message-information
+//.message-ok
+//.message-warning
+//.message-error
+
+      $prompt = null;
+
+      $prompt = $prompt . '
+<div class="typo3-message message-information">
+  <div class="message-body" style="max-width:600px;">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/userfunc/locallang.xml:promptAmazonContract') . '
+  </div>
+</div>';
+
+    return $prompt;
+  }
 
   /**
    * promptCurrIP( ): Displays the IP of the current backend user
@@ -154,14 +182,14 @@ class tx_deal_userfunc
 
     return $prompt;
   }
-  
+
   /**
    * promptEvaluatorTYPO3version(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
    * @access  public
-   * @version 2.0.0
-   * @since   2.0.0
+   * @version 0.0.1
+   * @since   0.0.1
    */
   public function promptEvaluatorTYPO3version()
   {
@@ -174,7 +202,7 @@ class tx_deal_userfunc
     $prompt = null;
 
     $this->set_TYPO3Version( );
-    
+
     switch( true )
     {
       case( $this->typo3Version < 4005000 ):
@@ -249,19 +277,17 @@ class tx_deal_userfunc
           ';
         break;
     }
-        
+
     return $prompt;
   }
 
-  
-  
   /**
    * promptExternalLinks(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
    * @access  public
-   * @version 2.0.0
-   * @since   2.0.0
+   * @version 0.0.1
+   * @since   0.0.1
    */
   public function promptExternalLinks()
   {
@@ -280,14 +306,14 @@ class tx_deal_userfunc
 
     return $prompt;
   }
-  
+
   /**
    * promptSponsors( ): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
    * @access  public
-   * @version 2.0.0
-   * @since   2.0.0
+   * @version 0.0.1
+   * @since   0.0.1
    */
   public function promptSponsors()
   {
@@ -306,22 +332,22 @@ class tx_deal_userfunc
 
     return $prompt;
   }
-   
-  
-  
+
+
+
   /***********************************************
    *
    * TYPO3
    *
-   **********************************************/    
+   **********************************************/
 
  /**
    * set_TYPO3Version( ):
    *
    * @return  void
    * @access  private
-   * @version 2.0.0
-   * @since 2.0.0
+   * @version 0.0.1
+   * @since 0.0.1
    */
   private function set_TYPO3Version( )
   {
@@ -331,7 +357,7 @@ class tx_deal_userfunc
       return;
     }
       // RETURN : typo3Version is set
-    
+
       // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
     list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
     $version = ( ( int ) $main ) * 1000000;

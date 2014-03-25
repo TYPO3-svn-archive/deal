@@ -51,6 +51,7 @@ if ($typo3Version < 3000000)
   die($prompt);
 }
 // Set TYPO3 version
+//
 ////////////////////////////////////////////////////////////////////////////
 //
 // Configuration by the extension manager
@@ -77,9 +78,8 @@ switch (true)
 {
   case( $beLanguage == 'de' ):
     // German
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/', 'Deal [1] 5x');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GetCategories/', 'Deal [dev] [1] Samples - ebay - Get Categories');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay Kategorien');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 Artikel');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -92,9 +92,8 @@ switch (true)
     break;
   default:
     // English
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/', 'Deal [1]');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GetCategories/', 'Deal [dev] [1] Samples - ebay - Get Categories');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/', 'Deal [dev] [1] Samples - ebay - Getting Started');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay categories');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 items');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -108,31 +107,32 @@ switch (true)
 }
 // Case $beLanguage
 // Enables the Include Static Templates
+//
 ////////////////////////////////////////////////////////////////////////////
 //
 // Plugin Configuration
-
 t3lib_div::loadTCA('tt_content');
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted'] = 'layout,select_key,recursive,pages';
 //$TCA['tt_content']['types']['list']['subtypes_addlist'][ $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted' ]      = 'pi_flexform';
 // Plugin ebay samples get categories
 t3lib_extMgm::addPlugin(array(
-  'LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GetCategories/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGetCategories',
+  'LLL:EXT:deal/plugins/marketplaces/ebay/dev/GetCategories/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGetCategories',
   $_EXTKEY . '_piMarketplacesEbaySamplesPhpGetCategories',
   t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icon.gif'
         ), 'list_type');
-t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_piMarketplacesEbaySamplesPhpGetCategories', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/samples/php/GetCategories/flexform.xml');
+t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_piMarketplacesEbaySamplesPhpGetCategories', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/dev/GetCategories/flexform.xml');
 // Plugin ebay samples get categories
 // Plugin ebay samples getting started
 t3lib_extMgm::addPlugin(array(
-  'LLL:EXT:deal/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGettingstarted',
+  'LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang.xml:list_type_piMarketplacesEbaySamplesPhpGettingstarted',
   $_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted',
   t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icon.gif'
         ), 'list_type');
-t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/flexform.xml');
+t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_piMarketplacesEbaySamplesPhpGettingstarted', 'FILE:EXT:' . $_EXTKEY . '/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/flexform.xml');
 // Plugin ebay samples getting started
 // Plugin Configuration
+//
 ////////////////////////////////////////////////////////////////////////////
 //
 // Add pagetree icons
@@ -157,6 +157,7 @@ t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-deal', '../typo3conf/ext/
 //require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/flexform/class.tx_deal_flexform.php');
 require_once(t3lib_extMgm::extPath($_EXTKEY) . 'lib/userfunc/class.tx_deal_userfunc.php');
 // Methods for backend workflows
+//
 ///////////////////////////////////////////////////////////
 //
 // TCA for tx_deal_ebaycategories
@@ -180,6 +181,57 @@ $TCA['tx_deal_ebaycategories'] = array(
   ),
 );
 // Categories
+//
+///////////////////////////////////////////////////////////
+//
+// TCA for tx_deal_ebaycategories_000
+
+$TCA['tx_deal_ebaycategories_000'] = array(
+  'ctrl' => array(
+    'title' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_000',
+    'label' => 'title',
+    'tstamp' => 'tstamp',
+    'crdate' => 'crdate',
+    'cruser_id' => 'cruser_id',
+    'default_sortby' => 'ORDER BY title',
+    'delete' => 'deleted',
+    'enablecolumns' => array(
+      'disabled' => 'hidden',
+    ),
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'searchFields' => 'title',
+    'rootLevel' => 1,
+    'treeParentField' => 'uid_parent',
+  ),
+);
+// Categories
+//
+///////////////////////////////////////////////////////////
+//
+// TCA for tx_deal_ebaycategories_077
+
+$TCA['tx_deal_ebaycategories_077'] = array(
+  'ctrl' => array(
+    'title' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_077',
+    'label' => 'title',
+    'tstamp' => 'tstamp',
+    'crdate' => 'crdate',
+    'cruser_id' => 'cruser_id',
+    'default_sortby' => 'ORDER BY title',
+    'delete' => 'deleted',
+    'enablecolumns' => array(
+      'disabled' => 'hidden',
+    ),
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'searchFields' => 'title',
+    'rootLevel' => 1,
+    'treeParentField' => 'uid_parent',
+  ),
+);
+// Categories
+//
 ///////////////////////////////////////////////////////////
 //
 // TCA for tx_deal_ebayshippingservicecode
@@ -201,6 +253,59 @@ $TCA['tx_deal_ebayshippingservicecode'] = array(
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
     'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title,key',
+    'rootLevel' => 1,
+  ),
+);
+// Categories
+//
+///////////////////////////////////////////////////////////
+//
+// TCA for tx_deal_ebayshippingservicecode_000
+
+$TCA['tx_deal_ebayshippingservicecode_000'] = array(
+  'ctrl' => array(
+    'title' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_000',
+    'label' => 'title',
+    'label_alt' => 'code',
+    'label_alt_force' => true,
+    'tstamp' => 'tstamp',
+    'crdate' => 'crdate',
+    'cruser_id' => 'cruser_id',
+    'default_sortby' => 'ORDER BY title',
+    'delete' => 'deleted',
+    'enablecolumns' => array(
+      'disabled' => 'hidden',
+    ),
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'searchFields' => 'title,key',
+    'rootLevel' => 1,
+  ),
+);
+// Categories
+//
+///////////////////////////////////////////////////////////
+//
+// TCA for tx_deal_ebayshippingservicecode_077
+
+$TCA['tx_deal_ebayshippingservicecode_077'] = array(
+  'ctrl' => array(
+    'title' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_077',
+    'label' => 'title',
+    'label_alt' => 'code',
+    'label_alt_force' => true,
+    'tstamp' => 'tstamp',
+    'crdate' => 'crdate',
+    'cruser_id' => 'cruser_id',
+    'default_sortby' => 'ORDER BY title',
+    'delete' => 'deleted',
+    'enablecolumns' => array(
+      'disabled' => 'hidden',
+    ),
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'searchFields' => 'title,key',
+    'rootLevel' => 1,
   ),
 );
 // Categories

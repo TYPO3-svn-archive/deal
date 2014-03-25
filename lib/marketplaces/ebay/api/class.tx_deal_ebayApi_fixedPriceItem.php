@@ -26,7 +26,7 @@
 require_once(t3lib_extMgm::extPath('deal') . 'lib/marketplaces/ebay/api/class.tx_deal_ebayApiBase.php' );
 
 /**
- * plugin 'ebay sample start' for the 'deal' extension.
+ * plugin 'ebay 3 items' for the 'deal' extension.
  *
  * @author	Dirk Wildt <http://wildt.at.die-netzmacher.de>
  * @package	TYPO3

@@ -1,0 +1,12 @@
+plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories {
+
+    // appid, authToken, currency, globalid
+  constanteditor =
+  constanteditor {
+    authToken       = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.authToken}
+    categoryParent  = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.categoryParent}
+    levelLimit      = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.levelLimit}
+    pid             = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.pid}
+    siteid          = {$plugin.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.siteid}
+  }
+}

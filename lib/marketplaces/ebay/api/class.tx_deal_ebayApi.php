@@ -85,6 +85,8 @@ class tx_deal_ebayApi
   private $ebayAction = null;
   // [String] ebay environment: sandbox || production
   private $ebayEnvironment = null;
+  // [String] ebay marketplace
+  private $ebayMarketplace = null;
   // [String] ebay mode: off || live || test
   private $ebayMode = null;
   // [String] ebay mode: off || live || test
@@ -568,6 +570,16 @@ class tx_deal_ebayApi
       return false;
     }
 
+    if ($this->itemRequirementsEbayCategoriesAreEmpty())
+    {
+      return false;
+    }
+
+    if ($this->itemRequirementsEbayShippingservicecodeAreEmpty())
+    {
+      return false;
+    }
+
     if (!$this->itemRequirementsEbayCategoryId())
     {
       return false;
@@ -609,6 +621,78 @@ class tx_deal_ebayApi
     }
 
     return $ebayAction;
+  }
+
+  /**
+   * itemRequirementsEbayCategoriesAreEmpty( ) :
+   *
+   * @return	boolean   true in case of subcategories, false in case of no subcategory
+   * @access private
+   * @version   0.1.0
+   * @since     0.0.3
+   */
+  private function itemRequirementsEbayCategoriesAreEmpty()
+  {
+    // #i0009, 140324, dwildt, 2+
+    global $TCA;
+    $table = $this->getDatamapTable();
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+    $select_fields = "count(uid) AS 'count'";
+    // #i0009, 140324, dwildt, ~
+    $from_table = $TCA[$table]['columns']['tx_deal_ebaycategoryid']['config']['foreign_table'];
+    $where_clause = null;
+    $groupBy = null;
+    $orderBy = null;
+    $limit = 1;
+
+    $query = $GLOBALS['TYPO3_DB']->SELECTquery
+            (
+            $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
+    );
+    //var_dump(__METHOD__, __LINE__, $query);
+    // Set the query
+    // Execute the query
+    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery
+            (
+            $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
+    );
+    // Execute the query
+    // RETURN : ERROR
+    $error = $GLOBALS['TYPO3_DB']->sql_error();
+    if (!empty($error))
+    {
+      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
+      $this->log($prompt, 4, 2, 1);
+      $prompt = 'query: ' . $query;
+      $this->log($prompt, 0, 2, 1);
+      $prompt = 'prompt: ' . $error;
+      $this->log($prompt, 4, 2, 1);
+
+      return;
+    }
+    // RETURN : ERROR
+    // Fetch first row only
+    $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+    // Free the SQL result
+    $GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+    //var_dump(__METHOD__, __LINE__, (int) $row['count']);
+    $count =  (int) $row['count'];
+    if ($count >= 1)
+    {
+      return false;
+    }
+
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayCategoriesAreEmptyError');
+    $this->log($prompt, 4);
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayCategoriesAreEmptyHelp');
+    $prompt = str_replace('%marketplace%', $this->ebayMarketplace, $prompt);
+    $this->log($prompt, 0);
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemWarnNoUpdate');
+    $this->log($prompt, 3);
+    return true;
   }
 
   /**
@@ -676,18 +760,22 @@ class tx_deal_ebayApi
    * itemRequirementsEbayCategoryIdSubCategories( ) : Checks weather the given category has subcategories or not.
    *
    * @param integer     $uid  :
-   * @return	boolean   true in case of subcategories, false in case og no subcategory
+   * @return	boolean   true in case of subcategories, false in case of no subcategory
    * @access private
-   * @version   0.0.3
+   * @version   0.1.0
    * @since     0.0.3
    */
   private function itemRequirementsEbayCategoryIdSubCategories($uid)
   {
+    // #i0009, 140324, dwildt, 2+
+    global $TCA;
+    $table = $this->getDatamapTable();
+
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log($prompt, -1);
-
     $select_fields = '*';
-    $from_table = 'tx_deal_ebaycategories';
+    // #i0009, 140324, dwildt, ~
+    $from_table = $TCA[$table]['columns']['tx_deal_ebaycategoryid']['config']['foreign_table'];
     $where_clause = 'uid_parent = ' . $uid;
     $groupBy = null;
     $orderBy = null;
@@ -709,7 +797,7 @@ class tx_deal_ebayApi
     $error = $GLOBALS['TYPO3_DB']->sql_error();
     if (!empty($error))
     {
-      $prompt = 'ERROR: Unproper SQL query';
+      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
       $this->log($prompt, 4, 2, 1);
       $prompt = 'query: ' . $query;
       $this->log($prompt, 0, 2, 1);
@@ -732,6 +820,78 @@ class tx_deal_ebayApi
 
     $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebaySubCategories');
     $this->log($prompt, 4);
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemWarnNoUpdate');
+    $this->log($prompt, 3);
+    return true;
+  }
+
+  /**
+   * itemRequirementsEbayShippingservicecodeAreEmpty( ) :
+   *
+   * @return	boolean   true in case of subcategories, false in case of no subcategory
+   * @access private
+   * @version   0.1.0
+   * @since     0.0.3
+   */
+  private function itemRequirementsEbayShippingservicecodeAreEmpty()
+  {
+    // #i0009, 140324, dwildt, 2+
+    global $TCA;
+    $table = $this->getDatamapTable();
+
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+    $select_fields = "count(uid) AS 'count'";
+    // #i0009, 140324, dwildt, ~
+    $from_table = $TCA[$table]['columns']['tx_deal_ebayshippingservicecode']['config']['foreign_table'];
+    $where_clause = null;
+    $groupBy = null;
+    $orderBy = null;
+    $limit = 1;
+
+    $query = $GLOBALS['TYPO3_DB']->SELECTquery
+            (
+            $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
+    );
+    //var_dump(__METHOD__, __LINE__, $query);
+    // Set the query
+    // Execute the query
+    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery
+            (
+            $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
+    );
+    // Execute the query
+    // RETURN : ERROR
+    $error = $GLOBALS['TYPO3_DB']->sql_error();
+    if (!empty($error))
+    {
+      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
+      $this->log($prompt, 4, 2, 1);
+      $prompt = 'query: ' . $query;
+      $this->log($prompt, 0, 2, 1);
+      $prompt = 'prompt: ' . $error;
+      $this->log($prompt, 4, 2, 1);
+
+      return;
+    }
+    // RETURN : ERROR
+    // Fetch first row only
+    $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+    // Free the SQL result
+    $GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+    //var_dump(__METHOD__, __LINE__, (int) $row['count']);
+    $count =  (int) $row['count'];
+    if ($count >= 1)
+    {
+      return false;
+    }
+
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayShippingservicecodeAreEmptyError');
+    $this->log($prompt, 4);
+    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayShippingservicecodeAreEmptyHelp');
+    $prompt = str_replace('%marketplace%', $this->ebayMarketplace, $prompt);
+    $this->log($prompt, 0);
     $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemWarnNoUpdate');
     $this->log($prompt, 3);
     return true;
@@ -935,6 +1095,7 @@ class tx_deal_ebayApi
   private function initVarsEbay()
   {
     $this->initVarsEbayEnvironment();
+    $this->initVarsEbayMarketplace();
     $this->initVarsEbayMode();
     $this->initVarsEbayAction();
     $this->initVarsEbayUrlSignin();
@@ -982,6 +1143,20 @@ class tx_deal_ebayApi
   {
     $tcaConf = $this->getTcaConf();
     $this->ebayEnvironment = $tcaConf['environment']['key'];
+  }
+
+  /**
+   * initVarsEbayMarketplace( ) :
+   *
+   * @return	void
+   * @access private
+   * @version  0.0.3
+   * @since    0.0.3
+   */
+  private function initVarsEbayMarketplace()
+  {
+    $tcaConf = $this->getTcaConf();
+    $this->ebayMarketplace = $tcaConf['marketplace'];
   }
 
   /**

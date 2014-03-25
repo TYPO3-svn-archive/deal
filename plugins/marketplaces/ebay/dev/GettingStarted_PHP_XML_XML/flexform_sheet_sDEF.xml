@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+  <ROOT>
+    <TCEforms>
+      <sheetTitle>LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang_flexform.xml:sdef</sheetTitle>
+    </TCEforms>
+    <type>array</type>
+    <el>
+      <sdefPidCaddy>
+        <TCEforms>
+          <label>LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang_flexform.xml:sdefPidCaddy</label>
+          <config>
+            <type>group</type>
+            <internal_type>db</internal_type>
+            <allowed>
+              pages
+            </allowed>
+            <minitems>0</minitems>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </sdefPidCaddy>
+      <sdefCaddyMode>
+        <TCEforms>
+          <label>LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang_flexform.xml:sdefCaddyMode</label>
+          <config>
+            <type>select</type>
+            <items type="array">
+              <numIndex index="0" type="array">
+                <numIndex index="0">LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang_flexform.xml:sdefCaddyModeWiItems</numIndex>
+                <numIndex index="1">wiItems</numIndex>
+              </numIndex>
+              <numIndex index="1" type="array">
+                <numIndex index="0">LLL:EXT:deal/plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/locallang_flexform.xml:sdefCaddyModeWoItems</numIndex>
+                <numIndex index="1">woItems</numIndex>
+              </numIndex>
+            </items>
+            <default>woItems</default>
+            <maxitems>1</maxitems>
+            <size>1</size>
+          </config>
+        </TCEforms>
+      </sdefCaddyMode>
+    </el>
+  </ROOT>
+</T3DataStructure>

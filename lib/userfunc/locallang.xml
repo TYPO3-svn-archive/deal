@@ -6,6 +6,24 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
+      <label index="promptAmazonContract"><![CDATA[
+        <h1 style="text-align:left;">
+          I'm looking forward for a contract
+        </h1>
+        <p>
+          I would like to develop the interface for amazon. But I need a contract.
+          If you are interested, please send me an e-mail.
+        </p>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://wildt.at.die-netzmacher.de/"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Dirk Wildt (Die Netzmacher) - the developer of Deal."
+              title="Dirk Wildt (Die Netzmacher) - the developer of Deal."
+              target="_blank">Dirk Wildt (Die Netzmacher) &raquo;</a>
+          </li>
+        </ul>
+      ]]></label>
       <label index="promptCurrIPBody">Your current IP</label>
       <label index="promptEvaluatorTYPO3version45smaller">Your are using a TYPO3 version smaller than 4.5. Flip it! isn't tested in this version. Try it!</label>
       <label index="promptEvaluatorTYPO3version46smaller">You are using TYPO3 4.5. This is perfect!</label>
@@ -19,16 +37,16 @@
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
             <img src="../../../../typo3conf/ext/deal/lib/icons/deal_80x80.gif"
-              width="80" 
-              height="80" 
+              width="80"
+              height="80"
               title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
-          <a href="http://wildt.at.die-netzmacher.de/" 
+          <a href="http://wildt.at.die-netzmacher.de/"
             alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
             <img src="../../../../typo3conf/ext/deal/lib/icons/die-netzmacher-logo-quadrat.png"
-              width="80" 
-              height="80" 
+              width="80"
+              height="80"
               title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
         </div>
         <h1 style="text-align:left;">
@@ -60,7 +78,7 @@
               target="_blank">Homepage &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/forum/" 
+            <a href="http://deal.de/forum/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="TYPO3-deal - Forum"
               title="TYPO3-deal - Forum"
@@ -86,7 +104,7 @@
         </h2>
         <ul style="list-style:outside;margin-left:2em;">
           <li style="margin-bottom:.6em;">
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Dirk Wildt (Die Netzmacher) - the developer of Deal."
               title="Dirk Wildt (Die Netzmacher) - the developer of Deal."
@@ -102,7 +120,7 @@
           <img src="../../../../typo3conf/ext/deal/lib/icons/dirk_wildt_30x30.gif"
             width="30"
             height="30"
-            title="Please support my job!" />        
+            title="Please support my job!" />
         </div>
         <p>
           Please donate to Deal or sponsor it!<br />
@@ -140,31 +158,49 @@
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-blue.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-blue.gif"
+            width="120"
+            height="90"
             title="Your logo with your URL. 120 x 90 pixel." /></a>
         &nbsp;&nbsp;
         <a href="http://deal.de/en/sponsoring/"
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif"
+            width="120"
+            height="90"
             title="Your logo with your URL. 120 x 90 pixel." /></a>
         &nbsp;&nbsp;
         <a href="http://deal.de/en/sponsoring/"
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_default-grey.gif"
+            width="120"
+            height="90"
             title="Your logo with your URL. 120 x 90 pixel." /></a>
       ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
+      <label index="promptAmazonContract"><![CDATA[
+        <h1 style="text-align:left;">
+          Ich brauche einen Auftrag
+        </h1>
+        <p>
+          Ich würde gerne die Schnittstelle für Amazon entwickeln. Dafür benötige ich aber einen Auftrag.
+          Wenn Du interessiert bist, sende mir eine E-Mail.
+        </p>
+        <ul style="list-style:outside;margin-left:2em;">
+          <li style="margin-bottom:.6em;">
+            <a href="http://wildt.at.die-netzmacher.de/"
+              style="background:none;border:none;float:none;text-decoration:underline;"
+              alt="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
+              title="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
+              target="_blank">Dirk Wildt (Die Netzmacher) - der Entwickler von Deal &raquo;</a>
+          </li>
+        </ul>
+      ]]></label>
       <label index="promptCurrIPBody">Deine aktuelle IP-Adresse</label>
       <label index="promptEvaluatorIncludeCss4-6"><![CDATA[Du musst das Static Template [+Flip it!: Basis fuer TYPO3 < 4.7 einbinden.]]]></label>
       <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
@@ -179,16 +215,16 @@
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
             <img src="../../../../typo3conf/ext/deal/lib/icons/deal_80x80.gif"
-              width="80" 
-              height="80" 
+              width="80"
+              height="80"
               title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
-          <a href="http://wildt.at.die-netzmacher.de/" 
+          <a href="http://wildt.at.die-netzmacher.de/"
             alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
             <img src="../../../../typo3conf/ext/deal/lib/icons/die-netzmacher-logo-quadrat.png"
-              width="80" 
-              height="80" 
+              width="80"
+              height="80"
               title="Deal is powered by Dirk Wildt (die-netzmacher.de)" /></a>
         </div>
         <h1 style="text-align:left;">
@@ -220,21 +256,21 @@
               target="_blank">Homepage &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/forum/" 
+            <a href="http://deal.de/forum/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Forum"
               title="Deal - Forum"
               target="_blank">Forum &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/support/" 
+            <a href="http://deal.de/support/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Support"
               title="Deal - Support"
               target="_blank">Support &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/sponsoring/" 
+            <a href="http://deal.de/sponsoring/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Sponsoring"
               title="Deal - Sponsoring"
@@ -246,7 +282,7 @@
         </h2>
         <ul style="list-style:outside;margin-left:2em;">
           <li style="margin-bottom:.6em;">
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
               title="Dirk Wildt (Die Netzmacher) - der Entwickler von Deal."
@@ -262,7 +298,7 @@
           <img src="../../../../typo3conf/ext/deal/lib/icons/dirk_wildt_30x30.gif"
             width="30"
             height="30"
-            title="Bitte unterst&uuml;tze meine Arbeit!" />        
+            title="Bitte unterst&uuml;tze meine Arbeit!" />
         </div>
         <p>
           Bitte spende f&uuml;r Deal oder sponser die Extension!<br />
@@ -300,27 +336,27 @@
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-blue.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-blue.gif"
+            width="120"
+            height="90"
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
         &nbsp;&nbsp;
         <a href="http://deal.de/sponsoring/"
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif"
+            width="120"
+            height="90"
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
         &nbsp;&nbsp;
         <a href="http://deal.de/sponsoring/"
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
-          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif" 
-            width="120" 
-            height="90" 
+          <img src="../../../../typo3conf/ext/deal/lib/icons/your-logo_de-grey.gif"
+            width="120"
+            height="90"
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
       ]]></label>
     </languageKey>

@@ -24,7 +24,7 @@
  * ************************************************************* */
 
 /**
- * plugin 'ebay sample start' for the 'deal' extension.
+ * plugin 'ebay 3 items' for the 'deal' extension.
  *
  * @author	Dirk Wildt <http://wildt.at.die-netzmacher.de>
  * @package	TYPO3
@@ -585,7 +585,7 @@ class tx_deal_ebayApiBase
    */
   private function evalResponseSetFieldEbayResponse($xmlResponse, $status, $dontPrompt = false)
   {
-    $key = 'tx_deal_ebayresponse';
+    $key = 'tx_deal_ebaylog';
     $this->log($status, -1);
     switch ($status)
     {
@@ -685,7 +685,7 @@ class tx_deal_ebayApiBase
     if ($this->getEbayMode() != 'test')
     {
       $strWoWarrantyShort = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoWarrantyShort');
-      $key = 'tx_deal_ebayresponse';
+      $key = 'tx_deal_ebaylog';
       $value = date('y-m-d H:i: ') . $strTitle . ': ' . sprintf('%01.2f', $sum) . ' ' . $currency . ' (' . $strWoWarrantyShort . ')';
       $this->setDatamapRecordFieldPrepend($key, $value);
     }
@@ -838,7 +838,6 @@ class tx_deal_ebayApiBase
   ' . $ProductListingDetails . '
   <Quantity>' . $Quantity . '</Quantity>
   ' . $ReturnPolicy . '
-  <Site>' . $SiteCodeType . '</Site>
   <ShippingDetails>
     <ShippingType>Flat</ShippingType>
     <ShippingServiceOptions>
@@ -848,6 +847,7 @@ class tx_deal_ebayApiBase
       <ShippingServiceCost>' . $ShippingServiceCosts . '</ShippingServiceCost>
     </ShippingServiceOptions>
   </ShippingDetails>
+  <Site>' . $SiteCodeType . '</Site>
   <SKU>' . $SKU . '</SKU>
   <StartPrice currencyID="' . $currencyID . '">' . $StartPrice . '</StartPrice>
   <Title>' . $Title . '</Title>
@@ -1264,7 +1264,14 @@ class tx_deal_ebayApiBase
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log($prompt, -1);
 
-    $uid = $this->pObj->getDatamapRecord('tx_deal_ebayshippingservicecode');
+      // #i0009, 140324, dwildt, 2+
+    global $TCA;
+    $table = $this->pObj->getDatamapTable();
+
+      // #i0009, 140324, dwildt, 1-
+    //$uid = $this->pObj->getDatamapRecord('tx_deal_ebayshippingservicecode');
+      // #i0009, 140324, dwildt, 1+
+    $uid = $this->pObj->getDatamapRecord(tx_deal_ebayshippingservicecode);
 
     if (empty($uid))
     {
@@ -1274,7 +1281,10 @@ class tx_deal_ebayApiBase
     }
 
     $select_fields = 'code';
-    $from_table = 'tx_deal_ebayshippingservicecode';
+      // #i0009, 140324, dwildt, 1-
+    //$from_table = 'tx_deal_ebayshippingservicecode';
+      // #i0009, 140324, dwildt, 1+
+    $from_table = $TCA[$table]['columns']['tx_deal_ebayshippingservicecode']['config']['foreign_table'];
     $where_clause = 'uid = ' . $uid;
     $groupBy = null;
     $orderBy = null;
@@ -1296,7 +1306,7 @@ class tx_deal_ebayApiBase
     $error = $GLOBALS['TYPO3_DB']->sql_error();
     if (!empty($error))
     {
-      $prompt = 'ERROR: Unproper SQL query';
+      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
       $this->log($prompt, 4, 2, 1);
       $prompt = 'query: ' . $query;
       $this->log($prompt, 0, 2, 1);
@@ -1769,7 +1779,7 @@ class tx_deal_ebayApiBase
     $this->ebayMarketplace = $this->ebayApiConfFromTCA['marketplace'];
     if (empty($this->ebayMarketplace))
     {
-      $this->ebayMarketplace = 'United States - EBAY-US/USD (0)';
+      $this->ebayMarketplace = 'US - EBAY-US/USD (0)';
     }
 
     list( $country, $ebayCode ) = explode(' - ', $this->ebayMarketplace);
@@ -2086,7 +2096,7 @@ class tx_deal_ebayApiBase
     $error = $GLOBALS['TYPO3_DB']->sql_error();
     if (!empty($error))
     {
-      $prompt = 'ERROR: Unproper SQL query';
+      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
       $this->log($prompt, 4, 2, 1);
       $prompt = 'query: ' . $query;
       $this->log($prompt, 0, 2, 1);

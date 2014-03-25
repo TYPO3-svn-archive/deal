@@ -21,8 +21,8 @@ if( ! defined ( 'TYPO3_MODE' ) )
   // Plugins: Extending TypoScript from static template uid=43 to set up userdefined tag
 
 $cached = false;
-t3lib_extMgm::addPItoST43( $_EXTKEY, 'plugins/marketplaces/ebay/samples/php/GetCategories/class.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.php', '_piMarketplacesEbaySamplesPhpGetCategories', 'list_type', $cached );
-t3lib_extMgm::addPItoST43( $_EXTKEY, 'plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_XML_XML/class.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.php', '_piMarketplacesEbaySamplesPhpGettingstarted', 'list_type', $cached );
+t3lib_extMgm::addPItoST43( $_EXTKEY, 'plugins/marketplaces/ebay/dev/GetCategories/class.tx_deal_piMarketplacesEbaySamplesPhpGetCategories.php', '_piMarketplacesEbaySamplesPhpGetCategories', 'list_type', $cached );
+t3lib_extMgm::addPItoST43( $_EXTKEY, 'plugins/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/class.tx_deal_piMarketplacesEbaySamplesPhpGettingstarted.php', '_piMarketplacesEbaySamplesPhpGettingstarted', 'list_type', $cached );
   // Plugins: Extending TypoScript from static template uid=43 to set up userdefined tag
 
 

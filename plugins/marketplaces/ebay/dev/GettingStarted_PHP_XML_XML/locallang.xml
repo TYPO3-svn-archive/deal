@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+  <meta type="array">
+    <type>module</type>
+    <description>Language labels for plugin &quot;tx_caddy_pi3&quot;</description>
+  </meta>
+  <data type="array">
+    <languageKey index="default" type="array">
+      <label index="list_type_piMarketplacesEbaySamplesPhpGettingstarted">Deal! [DEV] ebay 3 items</label>
+      <label index="promptErrorAppID"><![CDATA[Oops! The request was not successful. Make sure you are using a valid AppID for the Production environment.<br />
+        See Constant Editor -> Category: [DEAL - DEV - EBAY 3 ITEMS]]]></label>
+      <label index="promptErrorHeader">Error</label>
+      <label index="promptManualError"><![CDATA[
+        <h2>
+          Functionality
+        </h2>
+        <ul>
+          <li>
+            These plugin displays 3 items from the ebay shop.
+          </li>
+          <li>
+            It is a quick and easy way to check, if you can use the ebay shop within TYPO3 in principle.
+          </li>
+        </ul>
+        <h2>
+          Properties
+        </h2>
+        <ul>
+          <li>
+            Search word for the items (like TYPO3)
+          </li>
+          <li>
+            Maximum amount for the items price
+          </li>
+          <li>
+            ebay shop (like EBAY-DE or EBAY-US)
+          </li>
+          <li>
+            currency (like EUR or USD)
+          </li>
+        </ul>
+        <h2>
+          TypoScript Constant Editor
+        </h2>
+        <ul>
+          <li>
+            You configure the properties supported by TypoScript.
+          </li>
+          <li>
+            See Constant Editor -> Category: [DEAL - DEV - EBAY 3 ITEMS]
+          </li>
+        </ul>
+        <h2>
+          Requirements
+        </h2>
+        <ul>
+          <li>
+            You need your application ID from ebay.
+          </li>
+        </ul>
+        <ol>
+          <li>
+            <a href="https://developer.ebay.com/base/membership/signin/" target="_blank">
+              Signin at the ebay Developer Program</a>
+          </li>
+          <li>
+            <a href="https://developer.ebay.com/DevZone/account/default.aspx" target="_blank">
+              Get your Application ID (my acount)</a>
+          </li>
+        </ol>
+      ]]></label>
+      <label index="promptManualSuccess"><![CDATA[
+        <h2>
+          TypoScript Constant Editor
+        </h2>
+        <ul>
+          <li>
+            You configure the properties supported by TypoScript.
+          </li>
+          <li>
+            See Constant Editor -> Category: [DEAL - DEV - EBAY 3 ITEMS]
+          </li>
+        </ul>
+      ]]></label>
+      <label index="promptSuccessHeader">Deal! [DEV] ebay 3 items for search with:</label>
+    </languageKey>
+    <languageKey index="de" type="array">
+      <label index="list_type_piMarketplacesEbaySamplesPhpGettingstarted">Deal! [DEV] ebay 3 items</label>
+      <label index="promptErrorAppID"><![CDATA[Hoppla! Die Anfrage wird nicht beantwortet. Stelle bitte sicher, dass Du eine gültige AppID für die Produktions-Umgebung (production environment) verwendest.<br />
+        Siehe Konstanten-Editor -> Kategorie: [DEAL - DEV - EBAY 3 ITEMS]]]></label>
+      <label index="promptErrorHeader">Fehler</label>
+      <label index="promptManualError"><![CDATA[
+        <h2>
+          Funktionsweise
+        </h2>
+        <ul>
+          <li>
+            Dieses Plugin zeigt 3 Artikel aus einem ebay-Shop an.
+          </li>
+          <li>
+            Es ist eine schnelle und einfache Möglichkeit zu prüfen, ob Du den ebay-Shop in TYPO3 grundsätzlich benutzen kannst.
+          </li>
+        </ul>
+        <h2>
+          Eigenschaften
+        </h2>
+        <ul>
+          <li>
+            Suchbegriff für die Artikel (etwa TYPO3)
+          </li>
+          <li>
+            Höchstbetrag für die Artikel (etwa TYPO3)
+          </li>
+          <li>
+            ebay-Shop (etwa EBAY-DE oder EBAY-US)
+          </li>
+          <li>
+            Währung (etwa EUR oder USD)
+          </li>
+        </ul>
+        <h2>
+          TypoScript Konstanten-Editor
+        </h2>
+        <ul>
+          <li>
+            Du konfigurierst das Plugin mit TypoScript.
+          </li>
+          <li>
+            Siehe Konstanten-Editor -> Kategorie: [DEAL - DEV - EBAY 3 ITEMS]
+          </li>
+        </ul>
+        <h2>
+          Voraussetzungen
+        </h2>
+        <ul>
+          <li>
+            Du benötigst Deine Application ID von ebay.
+          </li>
+        </ul>
+        <ol>
+          <li>
+            <a href="https://developer.ebay.com/base/membership/signin/" target="_blank">
+              Beim ebay-Developer-Programm anmelden</a>
+          </li>
+          <li>
+            <a href="https://developer.ebay.com/DevZone/account/default.aspx" target="_blank">
+              Deine Application ID holen (mein Konto)</a>
+          </li>
+        </ol>
+      ]]></label>
+      <label index="promptManualSuccess"><![CDATA[
+        <h2>
+          TypoScript Konstanten-Editor
+        </h2>
+        <ul>
+          <li>
+            Du konfigurierst das Plugin mit TypoScript.
+          </li>
+          <li>
+            Siehe Konstanten-Editor -> Kategorie: [DEAL - DEV - EBAY 3 ITEMS]
+          </li>
+        </ul>
+      ]]></label>
+      <label index="promptSuccessHeader">Deal! [DEV] ebay 3 Artikel für Suche mit:</label>
+    </languageKey>
+  </data>
+</T3locallang>

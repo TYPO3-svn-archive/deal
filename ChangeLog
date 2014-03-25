@@ -1,6 +1,28 @@
-0.0.3
-  2014-03-03
+0.1.0
+  2014-03-25
+  Manual
+  * #i0011: Initial manual
   Development
+  * #i0010: Extension Manager
+            * Category Directory
+  * #i0009: ext_tables_static+adt.sql
+            * tx_deal_ebaycategories_000 (US)
+            * tx_deal_ebaycategories_077 (Germany)
+  Improvements
+  * #i0008: Plugin Deal! [DEV] ebay 3 items
+  Cleanup
+  * #i0007: Move
+            * plugins/marketplaces/ebay/samples/php/ -> plugins/marketplaces/ebay/dev/
+            * static/marketplaces/ebay/samples/php/ -> static/marketplaces/ebay/dev/
+  * #i0006: Remove
+            * lib/marketplaces/ebay/samples/
+            * plugins/marketplaces/ebay/samples/php/GettingStarted_PHP_NV_XML/
+
+0.0.3
+  2014-03-22
+  Development
+  * #i0005: ebay addItem - remove
+  * #i0004: ebay addFixedPriceItem ready to use
   * #i0003: ebay addItem - step 1/2: framework
 
 0.0.2

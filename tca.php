@@ -60,6 +60,114 @@ $TCA['tx_deal_ebaycategories'] = array(
 );
 // tx_deal_ebaycategories
 
+// tx_deal_ebaycategories_000
+$TCA['tx_deal_ebaycategories_000'] = array(
+  'ctrl' => $TCA['tx_deal_ebaycategories_000']['ctrl'],
+  'interface' => array(
+    'showRecordFieldList' => 'hidden,title,uid_parent'
+  ),
+  'feInterface' => $TCA['tx_deal_ebaycategories_000']['feInterface'],
+  'columns' => array(
+    'hidden' => array(
+      'exclude' => 1,
+      'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+      'config' => array(
+        'type' => 'check',
+        'default' => '0'
+      )
+    ),
+    'title' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_000.title',
+      'config' => array(
+        'type' => 'input',
+        'size' => '30',
+        'eval' => 'required',
+      )
+    ),
+    'uid_parent' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_000.uid_parent',
+      'config' => array(
+        'type' => 'select',
+        'size' => 1,
+        'minitems' => 0,
+        'maxitems' => 2,
+        'trueMaxItems' => 1,
+        'foreign_table' => 'tx_deal_ebaycategories_000',
+//        'foreign_table_where' => 'AND tx_deal_ebaycategories_000.pid=###CURRENT_PID### ORDER BY tx_deal_ebaycategories_000.title',
+        'form_type' => 'user',
+        'userFunc' => 'tx_cpstcatree->getTree',
+        'treeView' => 1,
+        'expandable' => 1,
+        'expandFirst' => 0,
+        'expandAll' => 0,
+      ),
+    ),
+  ),
+  'types' => array(
+    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent')
+  ),
+  'palettes' => array(
+    '1' => array('showitem' => ''),
+  )
+);
+// tx_deal_ebaycategories_000
+
+// tx_deal_ebaycategories_077
+$TCA['tx_deal_ebaycategories_077'] = array(
+  'ctrl' => $TCA['tx_deal_ebaycategories_077']['ctrl'],
+  'interface' => array(
+    'showRecordFieldList' => 'hidden,title,uid_parent'
+  ),
+  'feInterface' => $TCA['tx_deal_ebaycategories_077']['feInterface'],
+  'columns' => array(
+    'hidden' => array(
+      'exclude' => 1,
+      'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+      'config' => array(
+        'type' => 'check',
+        'default' => '0'
+      )
+    ),
+    'title' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_077.title',
+      'config' => array(
+        'type' => 'input',
+        'size' => '30',
+        'eval' => 'required',
+      )
+    ),
+    'uid_parent' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebaycategories_077.uid_parent',
+      'config' => array(
+        'type' => 'select',
+        'size' => 1,
+        'minitems' => 0,
+        'maxitems' => 2,
+        'trueMaxItems' => 1,
+        'foreign_table' => 'tx_deal_ebaycategories_077',
+//        'foreign_table_where' => 'AND tx_deal_ebaycategories_077.pid=###CURRENT_PID### ORDER BY tx_deal_ebaycategories_077.title',
+        'form_type' => 'user',
+        'userFunc' => 'tx_cpstcatree->getTree',
+        'treeView' => 1,
+        'expandable' => 1,
+        'expandFirst' => 0,
+        'expandAll' => 0,
+      ),
+    ),
+  ),
+  'types' => array(
+    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent')
+  ),
+  'palettes' => array(
+    '1' => array('showitem' => ''),
+  )
+);
+// tx_deal_ebaycategories_077
+
 // tx_deal_ebayshippingservicecode
 $TCA['tx_deal_ebayshippingservicecode'] = array(
   'ctrl' => $TCA['tx_deal_ebayshippingservicecode']['ctrl'],
@@ -103,4 +211,92 @@ $TCA['tx_deal_ebayshippingservicecode'] = array(
   )
 );
 // tx_deal_ebayshippingservicecode
+
+// tx_deal_ebayshippingservicecode_000
+$TCA['tx_deal_ebayshippingservicecode_000'] = array(
+  'ctrl' => $TCA['tx_deal_ebayshippingservicecode_000']['ctrl'],
+  'interface' => array(
+    'showRecordFieldList' => 'hidden,title,code'
+  ),
+  'feInterface' => $TCA['tx_deal_ebayshippingservicecode_000']['feInterface'],
+  'columns' => array(
+    'hidden' => array(
+      'exclude' => 1,
+      'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+      'config' => array(
+        'type' => 'check',
+        'default' => '0'
+      )
+    ),
+    'title' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_000.title',
+      'config' => array(
+        'type' => 'input',
+        'size' => '60',
+        'eval' => 'required',
+      )
+    ),
+    'code' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_000.code',
+      'config' => array(
+        'type' => 'input',
+        'size' => '30',
+        'eval' => 'required',
+      ),
+    ),
+  ),
+  'types' => array(
+    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code')
+  ),
+  'palettes' => array(
+    '1' => array('showitem' => ''),
+  )
+);
+// tx_deal_ebayshippingservicecode_000
+
+// tx_deal_ebayshippingservicecode_077
+$TCA['tx_deal_ebayshippingservicecode_077'] = array(
+  'ctrl' => $TCA['tx_deal_ebayshippingservicecode_077']['ctrl'],
+  'interface' => array(
+    'showRecordFieldList' => 'hidden,title,code'
+  ),
+  'feInterface' => $TCA['tx_deal_ebayshippingservicecode_077']['feInterface'],
+  'columns' => array(
+    'hidden' => array(
+      'exclude' => 1,
+      'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+      'config' => array(
+        'type' => 'check',
+        'default' => '0'
+      )
+    ),
+    'title' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_077.title',
+      'config' => array(
+        'type' => 'input',
+        'size' => '60',
+        'eval' => 'required',
+      )
+    ),
+    'code' => array(
+      'exclude' => 0,
+      'label' => 'LLL:EXT:deal/locallang_db.xml:tx_deal_ebayshippingservicecode_077.code',
+      'config' => array(
+        'type' => 'input',
+        'size' => '30',
+        'eval' => 'required',
+      ),
+    ),
+  ),
+  'types' => array(
+    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code')
+  ),
+  'palettes' => array(
+    '1' => array('showitem' => ''),
+  )
+);
+// tx_deal_ebayshippingservicecode_077
 ?>
