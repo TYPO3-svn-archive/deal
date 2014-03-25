@@ -1306,7 +1306,7 @@ class tx_deal_ebayApiBase
     $error = $GLOBALS['TYPO3_DB']->sql_error();
     if (!empty($error))
     {
-      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
+      $prompt = 'ERROR: Unproper SQL query at ' . __METHOD__ . ' (#' . __LINE__ . ')';
       $this->log($prompt, 4, 2, 1);
       $prompt = 'query: ' . $query;
       $this->log($prompt, 0, 2, 1);
@@ -2096,7 +2096,7 @@ class tx_deal_ebayApiBase
     $error = $GLOBALS['TYPO3_DB']->sql_error();
     if (!empty($error))
     {
-      $prompt = 'ERROR: Unproper SQL query at' . __METHOD__ . ' (#' . __LINE__ . ')';
+      $prompt = 'ERROR: Unproper SQL query at ' . __METHOD__ . ' (#' . __LINE__ . ')';
       $this->log($prompt, 4, 2, 1);
       $prompt = 'query: ' . $query;
       $this->log($prompt, 0, 2, 1);
