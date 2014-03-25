@@ -93,10 +93,10 @@ $TCA['tx_quickshop_products']['ctrl']['tx_deal'] = array(
       'marketplace' => $confArr['ebayMarketplace'],
       'paypal' => array(
         'production' => array(
-          'email' => $confArr['paypalEmail']  // optional
+          'email' => $confArr['paypalProductionEmail']  // optional
         ),
         'sandbox' => array(
-          'email' => $confArr['paypalEmail']  // optional
+          'email' => $confArr['paypalSandboxEmail']  // optional
         )
       ),
     ),
