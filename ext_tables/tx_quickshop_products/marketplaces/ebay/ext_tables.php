@@ -110,10 +110,10 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayaction'] = array(
   'config' => array(
     'type' => 'select',
     'items' => array(
-      array(
-        '',
-        'donothing',
-      ),
+//      array(
+//        '',
+//        'donothing',
+//      ),
       array(
         'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction_item_enableupdate',
         'enableupdate',
@@ -131,7 +131,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayaction'] = array(
         'disable',
       ),
     ),
-    'default' => 'donothing'
+    'default' => 'enableupdate'
   ),
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_ebaycategoryid'] = array(
