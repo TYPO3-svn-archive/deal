@@ -103,7 +103,7 @@ class tx_deal_ebayApi
   /**
    * main( )
    *
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access public
    * @version   0.0.3
    * @since     0.0.3
@@ -188,7 +188,7 @@ class tx_deal_ebayApi
    *
    * @return	boolean   In every case false
    * @access private
-   * @version   0.0.3
+   * @version   0.1.2
    * @since     0.0.3
    */
   private function actionDelete()
@@ -219,6 +219,13 @@ class tx_deal_ebayApi
         $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteInfoStatusIsOnEbay02');
         $this->log($prompt, 0);
         break;
+      // #i0014, 141002, dwildt, 6+
+      case( 'isWoStatus'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteWarnStatusIsWoStatus');
+        $this->log($prompt, 3);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDeleteInfoStatusIsWoStatus');
+        $this->log($prompt, 0);
+        break;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
         die($prompt);
@@ -246,7 +253,7 @@ class tx_deal_ebayApi
    *
    * @return	boolean $success  :
    * @access private
-   * @version   0.0.3
+   * @version   0.1.2
    * @since     0.0.3
    */
   private function actionDisable()
@@ -287,6 +294,13 @@ class tx_deal_ebayApi
         $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableHelpStatusIsOnEbayDisabled');
         $this->log($prompt, 0);
         break;
+      // #i0014, 141002, dwildt, 6+
+      case( 'isWoStatus'):
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableInfoStatusIsWoStatus');
+        $this->log($prompt, 1);
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:actionDisableHelpStatusIsWoStatus');
+        $this->log($prompt, 0);
+        break;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
         die($prompt);
@@ -300,7 +314,7 @@ class tx_deal_ebayApi
    *
    * @return	boolean $success  :
    * @access private
-   * @version   0.0.3
+   * @version   0.1.2
    * @since     0.0.3
    */
   private function actionEnableUpdate()
@@ -323,6 +337,10 @@ class tx_deal_ebayApi
         break;
       case( 'isOnEbayEnabled'):
         $success = $this->actionEnableUpdateIsOnEbayEnabled();
+        break;
+      // #i0014, 141002, dwildt, 3+
+      case( 'isWoStatus'):
+        $success = $this->actionEnableUpdateIsWoStatus();
         break;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
@@ -423,6 +441,37 @@ class tx_deal_ebayApi
 
     $isExecuted = $this->fixedPriceItem->reviseFixedPriceItem();
     return $isExecuted;
+  }
+
+  /**
+   * actionEnableUpdateIsWoStatus( )
+   *
+   * @return	boolean $sucess :
+   * @access private
+   * @internal: #i0014
+   * @version   0.1.2
+   * @since     0.1.2
+   */
+  private function actionEnableUpdateIsWoStatus()
+  {
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log($prompt, -1);
+
+    if (!$this->fixedPriceItem->verifyItem())
+    {
+      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemVerfifyFailed');
+      $this->log($prompt, 3);
+      return false;
+    }
+
+    if ($this->ebayMode == 'test')
+    {
+      $this->logEbayMode();
+      return false;
+    }
+
+    $success = $this->fixedPriceItem->addFixedPriceItem();
+    return $success;
   }
 
   /**
@@ -962,7 +1011,7 @@ class tx_deal_ebayApi
    * setEbayItemStatus( )
    *
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
-   * @return	string    $status     : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status     : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access private
    * @version   0.0.3
    * @since     0.0.3

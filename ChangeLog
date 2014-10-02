@@ -1,3 +1,12 @@
+0.1.2
+  2014-10-02
+  Improvements
+  * #i0013: Extension Manager Labeling
+  Bugfix
+  * #i0014: tx_deal_ebayApiBase::setEbayItemStatus (#1994): ebay status is undefined: ""
+            * reason: if an item isn't available any longer, ebay doesn't return any status
+            * add news status: isWoStatus
+
 0.1.1
   2014-03-25
   Improvements

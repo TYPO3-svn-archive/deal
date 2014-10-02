@@ -50,7 +50,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   /**
    * addFixedPriceItem( ) :
    *
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/AddFixedPriceItem.html#samplebasic
    * @access public
    * @version  0.0.3
@@ -98,7 +98,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    * endFixedPriceItem( ) :
    *
    * @return	boolean
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/EndFixedPriceItem.html
    * @access public
    * @version  0.0.3
@@ -132,7 +132,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
    * getItem( ) :
    *
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/GetItem.html#GetItem
    * @access protected
    * @version  0.0.3
@@ -159,7 +159,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   /**
    * relistFixedPriceItem( ) :
    *
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/AddFixedPriceItem.html#samplebasic
    * @access public
    * @version  0.0.3
@@ -206,7 +206,7 @@ class tx_deal_ebayApi_fixedPriceItem extends tx_deal_ebayApiBase
   /**
    * reviseFixedPriceItem( ) :
    *
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @link http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/ReviseItem.html#ReviseItem
    * @access public
    * @version  0.0.3

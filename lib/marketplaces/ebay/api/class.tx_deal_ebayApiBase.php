@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage	tx_deal
  * @internal    #i0003
- * @version     0.0.3
+ * @version     0.1.2
  * @since       0.0.3
  */
 class tx_deal_ebayApiBase
@@ -73,23 +73,23 @@ class tx_deal_ebayApiBase
    * @param   object    $xmlResponse  :
    * @param   string    $xmlAction    : addFixedPriceItem, getItem
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
-   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled'
+   * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @access protected
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function evalResponse($xmlRequest, $xmlResponse, $xmlAction = null, $dontPrompt = false)
+  protected function evalResponse( $xmlRequest, $xmlResponse, $xmlAction = null, $dontPrompt = false )
   {
     $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
-    if ($this->evalResponsePromptError($xmlRequest, $xmlResponse, $xmlAction))
+    if ( $this->evalResponsePromptError( $xmlRequest, $xmlResponse, $xmlAction ) )
     {
       return false;
     }
 
-    $status = $this->evalResponsePromptSuccess($xmlRequest, $xmlResponse, $xmlAction, $dontPrompt);
+    $status = $this->evalResponsePromptSuccess( $xmlRequest, $xmlResponse, $xmlAction, $dontPrompt );
     return $status;
   }
 
@@ -103,12 +103,12 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptError($xmlRequest, $xmlResponse, $xmlAction)
+  private function evalResponsePromptError( $xmlRequest, $xmlResponse, $xmlAction )
   {
-    switch (true)
+    switch ( true )
     {
-      case ( $this->evalResponsePromptErrorBody($xmlRequest, $xmlResponse, $xmlAction)):
-      case ( $this->evalResponsePromptErrorErrors($xmlRequest, $xmlResponse, $xmlAction)):
+      case ( $this->evalResponsePromptErrorBody( $xmlRequest, $xmlResponse, $xmlAction )):
+      case ( $this->evalResponsePromptErrorErrors( $xmlRequest, $xmlResponse, $xmlAction )):
         return true;
     }
 
@@ -126,26 +126,26 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptErrorBody($xmlRequest, $xmlResponse, $xmlAction)
+  private function evalResponsePromptErrorBody( $xmlRequest, $xmlResponse, $xmlAction )
   {
-    if (!$xmlResponse->Body)
+    if ( !$xmlResponse->Body )
     {
       $prompt = 'xmlResponse->Body is empty or isn\'t set.';
-      $this->log($prompt, -1);
+      $this->log( $prompt, -1 );
       return false;
     }
 
     $prompt = 'Environment: ' . $this->ebayEnvironment;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $prompt = 'Request: ' . $xmlAction;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
-    $this->log($prompt, 4); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    $this->log( $prompt, 4 ); // Workaround: 4, because XML code won't prompt to -1 (log only)
 
     $prompt = 'xmlResponse: ' . $xmlResponse->Body;
-    $this->log($prompt, 4);
+    $this->log( $prompt, 4 );
 
     return true;
   }
@@ -161,26 +161,26 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptErrorErrors($xmlRequest, $xmlResponse, $xmlAction)
+  private function evalResponsePromptErrorErrors( $xmlRequest, $xmlResponse, $xmlAction )
   {
 //    if( !is_object($xmlResponse->errors))
 //    {
 //      $prompt = 'xmlResponse->errors isn\'t an object.';
-    if (!$xmlResponse->Errors)
+    if ( !$xmlResponse->Errors )
     {
       $prompt = 'xmlResponse->Errors is empty or isn\'t set.';
-      $this->log($prompt, -1);
+      $this->log( $prompt, -1 );
       return false;
     }
 
     $ShortMessage = $xmlResponse->Errors->ShortMessage;
     $LongMessage = $xmlResponse->Errors->LongMessage;
-    $this->ebayErrorCode = (int) $xmlResponse->Errors->ErrorCode;
+    $this->ebayErrorCode = ( int ) $xmlResponse->Errors->ErrorCode;
     $SeverityCode = $xmlResponse->Errors->SeverityCode;
     $ErrorClassification = $xmlResponse->Errors->ErrorClassification;
     $Version = $xmlResponse->Version;
 
-    switch ($this->ebayErrorCode)
+    switch ( $this->ebayErrorCode )
     {
       case(196): // Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
         $this->evalResponsePromptErrorErrors00000196();
@@ -190,13 +190,13 @@ class tx_deal_ebayApiBase
         return true;
       case(1047): // The auction has already been closed.
         $followTheWorkflow = $this->evalResponsePromptErrorErrors00001047();
-        if (!$followTheWorkflow)
+        if ( !$followTheWorkflow )
         {
           return true;
         }
         break;
       case(21919067): // Listing breaches the Duplicate listings policy.
-        $this->evalResponsePromptErrorErrors21919067($xmlRequest, $xmlResponse, $xmlAction);
+        $this->evalResponsePromptErrorErrors21919067( $xmlRequest, $xmlResponse, $xmlAction );
         return false;
       default:
         // follow the workflow
@@ -204,25 +204,25 @@ class tx_deal_ebayApiBase
     }
 
     $prompt = 'Environment: ' . $this->ebayEnvironment;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $prompt = 'Request: ' . $xmlAction;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $prompt = 'ebay API endpoint: ' . $this->ebayApiEndpointXml;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
     $prompt = 'ebay API token: ' . $this->ebayApiToken;
-    $this->log($prompt, -1);
-    $prompt = 'TCA configuration: ' . var_export($this->ebayApiConfFromTCA, true);
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
+    $prompt = 'TCA configuration: ' . var_export( $this->ebayApiConfFromTCA, true );
+    $this->log( $prompt, -1 );
     $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
-    $this->log($prompt, 4); // Workaround: 4, because XML code won't prompt to -1 (log only)
-    $prompt = 'xmlResponse: ' . PHP_EOL . var_export($xmlResponse, true);
-    $this->log($prompt, -1);
+    $this->log( $prompt, 4 ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    $prompt = 'xmlResponse: ' . PHP_EOL . var_export( $xmlResponse, true );
+    $this->log( $prompt, -1 );
 
-    $promptsByEbay = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptsByEbay');
-    $promptsByTYPO3 = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptsByTYPO3');
-    $promptDetailsToSyslog = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptDetailsToSyslog');
+    $promptsByEbay = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptsByEbay' );
+    $promptsByTYPO3 = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptsByTYPO3' );
+    $promptDetailsToSyslog = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:promptDetailsToSyslog' );
 
     $prompt = $promptsByEbay . ': ' . PHP_EOL
             . '* ' . $ShortMessage . PHP_EOL
@@ -233,14 +233,14 @@ class tx_deal_ebayApiBase
             . '* Environment: ' . $this->ebayEnvironment . PHP_EOL
             . '* ' . $promptDetailsToSyslog
     ;
-    $this->log($prompt, 4);
+    $this->log( $prompt, 4 );
 
-    $xml = str_replace('><', '>' . PHP_EOL . '<', $xmlRequest);
-    $this->log($xml, -1);
+    $xml = str_replace( '><', '>' . PHP_EOL . '<', $xmlRequest );
+    $this->log( $xml, -1 );
 
     $xml = $xmlResponse->asXML();
-    $xml = str_replace('><', '>' . PHP_EOL . '<', $xml);
-    $this->log($xml, -1);
+    $xml = str_replace( '><', '>' . PHP_EOL . '<', $xml );
+    $this->log( $xml, -1 );
 
     return true;
   }
@@ -255,10 +255,10 @@ class tx_deal_ebayApiBase
    */
   private function evalResponsePromptErrorErrors00000196()
   {
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorRelistNotPossible');
-    $this->log($prompt, 4);
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpRelistNotPossible');
-    $this->log($prompt, 1);
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorRelistNotPossible' );
+    $this->log( $prompt, 4 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpRelistNotPossible' );
+    $this->log( $prompt, 1 );
   }
 
   /**
@@ -271,10 +271,10 @@ class tx_deal_ebayApiBase
    */
   private function evalResponsePromptErrorErrors00000291()
   {
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorReviseEndedListings');
-    $this->log($prompt, 4);
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpReviseEndedListings');
-    $this->log($prompt, 1);
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorReviseEndedListings' );
+    $this->log( $prompt, 4 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpReviseEndedListings' );
+    $this->log( $prompt, 1 );
   }
 
   /**
@@ -296,10 +296,10 @@ class tx_deal_ebayApiBase
 //
     $followTheWorkflow = false;
 
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorAuctionAlreadyClosed');
-    $this->log($prompt, 3);
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpAuctionAlreadyClosed');
-    $this->log($prompt, 1);
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorAuctionAlreadyClosed' );
+    $this->log( $prompt, 3 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpAuctionAlreadyClosed' );
+    $this->log( $prompt, 1 );
     return $followTheWorkflow;
   }
 
@@ -314,7 +314,7 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptErrorErrors21919067($xmlRequest, $xmlResponse, $xmlAction)
+  private function evalResponsePromptErrorErrors21919067( $xmlRequest, $xmlResponse, $xmlAction )
   {
 //    switch (true)
 //    {
@@ -325,30 +325,30 @@ class tx_deal_ebayApiBase
 //        // Follow the workflow
 //        break;
 //    }
-    foreach ($xmlResponse->Errors->ErrorParameters as $ErrorParameter)
+    foreach ( $xmlResponse->Errors->ErrorParameters as $ErrorParameter )
     {
-      switch ($ErrorParameter['ParamID'])
+      switch ( $ErrorParameter[ 'ParamID' ] )
       {
         case '0': // 0: title of the item
           // follow the workflow
           break;
         case '1': // 1: ebay item id
-          $this->ebayItemId = (string) $ErrorParameter->Value;
+          $this->ebayItemId = ( string ) $ErrorParameter->Value;
           $boolPrompt = true;
-          $this->setDatamapRecordFieldUpdate('tx_deal_ebayitemid', $this->ebayItemId, $boolPrompt);
+          $this->setDatamapRecordFieldUpdate( 'tx_deal_ebayitemid', $this->ebayItemId, $boolPrompt );
           break;
       }
     }
 
     $prompt = 'xmlAction: ' . $xmlAction;
-    $this->log($prompt, 3);
+    $this->log( $prompt, 3 );
     $prompt = 'xmlResponse short message: ' . $xmlResponse->Errors->ShortMessage;
-    $this->log($prompt, 3);
+    $this->log( $prompt, 3 );
     $prompt = 'xmlResponse ebay item id: ' . $this->ebayItemId;
-    $this->log($prompt, 3);
+    $this->log( $prompt, 3 );
 //    $xml = str_replace('><', '>' . PHP_EOL . '<', $xmlRequest);
 //    $this->log($xml, 3);
-    unset($xmlRequest);
+    unset( $xmlRequest );
   }
 
   /**
@@ -358,29 +358,29 @@ class tx_deal_ebayApiBase
    * @param   object    $xmlResponse  :
    * @param   object    $xmlAction    :
    * @param   boolean   $dontPrompt   : do not prompt to the backend form (optional)
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access private
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptSuccess($xmlRequest, $xmlResponse, $xmlAction, $dontPrompt = false)
+  private function evalResponsePromptSuccess( $xmlRequest, $xmlResponse, $xmlAction, $dontPrompt = false )
   {
     $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
     $prompt = 'Environment: ' . $this->ebayEnvironment;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $prompt = 'Request: ' . $xmlAction;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
-    $xml = 'xmlRequest (success): ' . str_replace('><', '>' . PHP_EOL . '<', $xmlRequest);
-    $this->log($xml, -1);
+    $xml = 'xmlRequest (success): ' . str_replace( '><', '>' . PHP_EOL . '<', $xmlRequest );
+    $this->log( $xml, -1 );
 
     $xml = 'xmlResponse (success): ' . $xmlResponse->asXML();
-    $xml = str_replace('><', '>' . PHP_EOL . '<', $xml);
-    $this->log($xml, -1);
+    $xml = str_replace( '><', '>' . PHP_EOL . '<', $xml );
+    $this->log( $xml, -1 );
 
     //var_dump(__METHOD__, __LINE__, $xmlAction);
-    switch (true)
+    switch ( true )
     {
 //      case( $action == 'setEbayItemStatus'):
 //        $status = $this->evalResponseSetFieldEbayItemStatus($xmlResponse);
@@ -388,20 +388,20 @@ class tx_deal_ebayApiBase
       case( $xmlAction == 'AddFixedPriceItem'):
       case( $xmlAction == 'RelistFixedPriceItem'):
       case( $xmlAction == 'ReviseFixedPriceItem'):
-        $status = $this->evalResponsePromptSuccessAddFixedPriceItem($xmlResponse);
+        $status = $this->evalResponsePromptSuccessAddFixedPriceItem( $xmlResponse );
         break;
       case( $xmlAction == 'EndFixedPriceItem'):
-        $status = $this->evalResponsePromptSuccessEndFixedPriceItem($xmlResponse);
+        $status = $this->evalResponsePromptSuccessEndFixedPriceItem( $xmlResponse );
         break;
       case( $xmlAction == 'GetItem'):
-        $status = $this->evalResponsePromptSuccessGetItem($xmlResponse, $dontPrompt);
+        $status = $this->evalResponsePromptSuccessGetItem( $xmlResponse, $dontPrompt );
         break;
       case( $xmlAction == 'VerifyAddFixedPriceItem'):
         // follow the workflow
         break;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): xmlAction is undefined "' . $xmlAction . '"';
-        die($prompt);
+        die( $prompt );
     }
 
     return $status;
@@ -416,22 +416,22 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptSuccessAddFixedPriceItem($xmlResponse)
+  private function evalResponsePromptSuccessAddFixedPriceItem( $xmlResponse )
   {
-    $ItemID = (string) $xmlResponse->ItemID;
+    $ItemID = ( string ) $xmlResponse->ItemID;
     //var_dump(__METHOD__, __LINE__, $xmlResponse);
-    if (!empty($ItemID))
+    if ( !empty( $ItemID ) )
     {
       $this->ebayItemId = $ItemID;
       //var_dump(__METHOD__, __LINE__, $this->ebayItemId);
       $boolPrompt = false;
-      $this->setDatamapRecordFieldUpdate('tx_deal_ebayitemid', $this->ebayItemId, $boolPrompt);
+      $this->setDatamapRecordFieldUpdate( 'tx_deal_ebayitemid', $this->ebayItemId, $boolPrompt );
       $status = 'isOnEbayEnabled';
       return $status;
     }
 
     $prompt = __METHOD__ . ' (#' . __LINE__ . '): Fatal error: ItemID is empty!';
-    die($prompt);
+    die( $prompt );
   }
 
   /**
@@ -443,7 +443,7 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptSuccessEndFixedPriceItem($xmlResponse)
+  private function evalResponsePromptSuccessEndFixedPriceItem( $xmlResponse )
   {
     $status = 'isOnEbayDisabled';
     return $status;
@@ -454,18 +454,18 @@ class tx_deal_ebayApiBase
    *
    * @param   object    $xmlResponse  :
    * @param   boolean   $dontPrompt   : do not prompt to the backend form (optional)
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isNotOnEbay
    * @access private
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponsePromptSuccessGetItem($xmlResponse, $dontPrompt = false)
+  private function evalResponsePromptSuccessGetItem( $xmlResponse, $dontPrompt = false )
   {
     $status = null;
 
-    $status = $this->evalResponseGetEbayStatus($xmlResponse);
-    $this->evalResponseSetFieldEbayItemStatus($xmlResponse, $status);
-    $this->evalResponseSetFieldEbayResponse($xmlResponse, $status, $dontPrompt);
+    $status = $this->evalResponseGetEbayStatus( $xmlResponse );
+    $this->evalResponseSetFieldEbayItemStatus( $xmlResponse, $status );
+    $this->evalResponseSetFieldEbayResponse( $xmlResponse, $status, $dontPrompt );
 
     return $status;
   }
@@ -474,39 +474,39 @@ class tx_deal_ebayApiBase
    * evalResponseSetFieldEbayItemStatus( )  :
    *
    * @param   object    $xmlResponse  :
-   * @param   string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @param   string    $status : isWoStatus, isOnEbayEnabled, isOnEbayDisabled
    * @return	void
    * @access private
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponseSetFieldEbayItemStatus($xmlResponse, $status)
+  private function evalResponseSetFieldEbayItemStatus( $xmlResponse, $status )
   {
     $response = array(
-      'EndTime' => (string) $xmlResponse->Item->ListingDetails->EndTime,
-      'EndingReason' => (string) $xmlResponse->Item->ListingDetails->EndingReason,
-      'Quantity' => (integer) $xmlResponse->Item->Quantity,
-      'QuantitySold' => (integer) $xmlResponse->Item->SellingStatus->QuantitySold,
-      'ViewItemURL' => (string) $xmlResponse->Item->ListingDetails->ViewItemURL
+      'EndTime' => ( string ) $xmlResponse->Item->ListingDetails->EndTime,
+      'EndingReason' => ( string ) $xmlResponse->Item->ListingDetails->EndingReason,
+      'Quantity' => ( integer ) $xmlResponse->Item->Quantity,
+      'QuantitySold' => ( integer ) $xmlResponse->Item->SellingStatus->QuantitySold,
+      'ViewItemURL' => ( string ) $xmlResponse->Item->ListingDetails->ViewItemURL
     );
 
-    switch ($status)
+    switch ( $status )
     {
       case('isOnEbayDisabled'):  // endtime is in the past
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsOnEbayDisabled');
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsOnEbayDisabled' );
         break;
       case('isOnEbayEnabled'):  // endtime is in the future
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsOnEbayEnabled');
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsOnEbayEnabled' );
         break;
       default:
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemError');
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemError' );
         $prompt = 'Ebay status is "' . $status . '" at ' . __METHOD__ . ' (#' . __LINE__ . ')';
-        $this->log($prompt, 3);
+        $this->log( $prompt, 3 );
         break;
     }
 
     $ebayEnvironment = $this->ebayEnvironment;
-    if ($ebayEnvironment == 'sandbox')
+    if ( $ebayEnvironment == 'sandbox' )
     {
       $ebayEnvironment = ' (' . $ebayEnvironment . ')';
     }
@@ -514,58 +514,58 @@ class tx_deal_ebayApiBase
     {
       $ebayEnvironment = null;
     }
-    $value = str_replace('%ebayEnvironment%', $ebayEnvironment, $value);
-    $value = str_replace('%Quantity%', $response['Quantity'], $value);
-    $value = str_replace('%QuantitySold%', $response['QuantitySold'], $value);
-    $value = str_replace('%ViewItemURL%', $response['ViewItemURL'], $value);
+    $value = str_replace( '%ebayEnvironment%', $ebayEnvironment, $value );
+    $value = str_replace( '%Quantity%', $response[ 'Quantity' ], $value );
+    $value = str_replace( '%QuantitySold%', $response[ 'QuantitySold' ], $value );
+    $value = str_replace( '%ViewItemURL%', $response[ 'ViewItemURL' ], $value );
 
     $key = 'tx_deal_ebayitemstatus';
     $boolPrompt = false;
-    $this->setDatamapRecordFieldUpdate($key, $value, $boolPrompt);
+    $this->setDatamapRecordFieldUpdate( $key, $value, $boolPrompt );
   }
 
   /**
    * evalResponseGetEbayStatus( )  :
    *
    * @param   object    $xmlResponse  :
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access private
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponseGetEbayStatus($xmlResponse)
+  private function evalResponseGetEbayStatus( $xmlResponse )
   {
     $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
     $response = array(
-      'EndTime' => (string) $xmlResponse->Item->ListingDetails->EndTime,
-      'EndingReason' => (string) $xmlResponse->Item->ListingDetails->EndingReason,
-      'Quantity' => (integer) $xmlResponse->Item->Quantity,
-      'QuantitySold' => (integer) $xmlResponse->Item->SellingStatus->QuantitySold,
-      'ViewItemURL' => (string) $xmlResponse->Item->ListingDetails->ViewItemURL
+      'EndTime' => ( string ) $xmlResponse->Item->ListingDetails->EndTime,
+      'EndingReason' => ( string ) $xmlResponse->Item->ListingDetails->EndingReason,
+      'Quantity' => ( integer ) $xmlResponse->Item->Quantity,
+      'QuantitySold' => ( integer ) $xmlResponse->Item->SellingStatus->QuantitySold,
+      'ViewItemURL' => ( string ) $xmlResponse->Item->ListingDetails->ViewItemURL
     );
 
     $oneMinute = 60;
-    switch (true)
+    switch ( true )
     {
-      case(!empty($response['EndingReason'])):  // endtime is in the past
-        $prompt = 'isOnEbayDisabled because: EndingReason = ' . $response['EndingReason'];
-        $this->log($prompt, -1);
+      case(!empty( $response[ 'EndingReason' ] )):  // endtime is in the past
+        $prompt = 'isOnEbayDisabled because: EndingReason = ' . $response[ 'EndingReason' ];
+        $this->log( $prompt, -1 );
         $status = 'isOnEbayDisabled';
         break;
-      case(strtotime($response['EndTime']) <= ( time() + $oneMinute )):  // endtime is in the past
+      case(strtotime( $response[ 'EndTime' ] ) <= ( time() + $oneMinute )):  // endtime is in the past
         $prompt = 'isOnEbayDisabled because: EndTime is smaller than now';
-        $this->log($prompt, -1);
+        $this->log( $prompt, -1 );
         $status = 'isOnEbayDisabled';
         break;
-      case(strtotime($response['EndTime']) > ( time() + $oneMinute )):  // endtime is in the future
+      case(strtotime( $response[ 'EndTime' ] ) > ( time() + $oneMinute )):  // endtime is in the future
         $prompt = 'isOnEbayEnabled because: EndTime is greater than now';
-        $this->log($prompt, -1);
+        $this->log( $prompt, -1 );
         $status = 'isOnEbayEnabled';
         break;
       default:
         $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
         $prompt = 'Ebay status is ' . $status;
-        $this->log($prompt, 3);
+        $this->log( $prompt, 3 );
         break;
     }
 
@@ -576,53 +576,60 @@ class tx_deal_ebayApiBase
    * evalResponseSetFieldEbayResponse( )  :
    *
    * @param   object    $xmlResponse  :
-   * @param   string    $status       : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @param   string    $status       : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @param   boolean   $dontPrompt   : do not prompt to the backend form (optional)
    * @return	void
    * @access private
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function evalResponseSetFieldEbayResponse($xmlResponse, $status, $dontPrompt = false)
+  private function evalResponseSetFieldEbayResponse( $xmlResponse, $status, $dontPrompt = false )
   {
     $key = 'tx_deal_ebaylog';
-    $this->log($status, -1);
-    switch ($status)
+    $this->log( $status, -1 );
+    switch ( $status )
     {
       case( 'isNotOnEbay'):
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsNotOnEbay');
-        if (!$dontPrompt)
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsNotOnEbay' );
+        if ( !$dontPrompt )
         {
-          $this->log($value, 1);
+          $this->log( $value, 1 );
         }
         break;
       case( 'isOnEbayDisabled'):
-        $URL = (string) $xmlResponse->Item->ListingDetails->ViewItemURL;
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsOnEbayDisabled');
-        $value = str_replace('%URL%', $URL, $value);
-        if (!$dontPrompt)
+        $URL = ( string ) $xmlResponse->Item->ListingDetails->ViewItemURL;
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsOnEbayDisabled' );
+        $value = str_replace( '%URL%', $URL, $value );
+        if ( !$dontPrompt )
         {
-          $this->log($value, 1);
+          $this->log( $value, 1 );
         }
         break;
       case( 'isOnEbayEnabled'):
-        $URL = (string) $xmlResponse->Item->ListingDetails->ViewItemURL;
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsOnEbayEnabled');
-        $value = str_replace('%URL%', $URL, $value);
-        if (!$dontPrompt)
+        $URL = ( string ) $xmlResponse->Item->ListingDetails->ViewItemURL;
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsOnEbayEnabled' );
+        $value = str_replace( '%URL%', $URL, $value );
+        if ( !$dontPrompt )
         {
-          $this->log($value, 1);
+          $this->log( $value, 1 );
+        }
+        break;
+      case( 'isWoStatus'):
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusIsWoStatus' );
+        if ( !$dontPrompt )
+        {
+          $this->log( $value, 1 );
         }
         break;
       default:
-        $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusError');
-        $value = str_replace('%status%', $status, $value);
-        $this->log($value, 3);
+        $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayStatusError' );
+        $value = str_replace( '%status%', $status, $value );
+        $this->log( $value, 3 );
         break;
     }
 
-    $value = date('y-m-d H:i: ') . $value;
-    $this->setDatamapRecordFieldPrepend($key, $value);
+    $value = date( 'y-m-d H:i: ' ) . $value;
+    $this->setDatamapRecordFieldPrepend( $key, $value );
   }
 
   /*   * *********************************************
@@ -640,34 +647,34 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function feesPrompt($xmlResponse)
+  protected function feesPrompt( $xmlResponse )
   {
     $prompt = null;
     $sum = 0.00;
     $currency = $this->ebayMarketplaceCurrency;
 
-    foreach ((array) $xmlResponse->Fees as $Fees)
+    foreach ( ( array ) $xmlResponse->Fees as $Fees )
     {
-      foreach ((array) $Fees as $Fee)
+      foreach ( ( array ) $Fees as $Fee )
       {
         $key = $Fee->Name;
-        $value = (double) $Fee->Fee;
-        $currency = $Fee->Fee['currencyID'];
-        if ($value > 0)
+        $value = ( double ) $Fee->Fee;
+        $currency = $Fee->Fee[ 'currencyID' ];
+        if ( $value > 0 )
         {
           $prompt = $prompt
-                  . '+ ' . sprintf('%01.2f', $value) . ' ' . $currency . ' : ' . $key . PHP_EOL
+                  . '+ ' . sprintf( '%01.2f', $value ) . ' ' . $currency . ' : ' . $key . PHP_EOL
           ;
           $sum = $sum + $value;
         }
       }
     }
 
-    $strTitle = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableTitle');
-    $strWoFees = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoFees');
-    $strWoWarranty = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoWarranty');
-    $strSum = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableSum');
-    if (empty($prompt))
+    $strTitle = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableTitle' );
+    $strWoFees = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoFees' );
+    $strWoWarranty = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoWarranty' );
+    $strSum = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableSum' );
+    if ( empty( $prompt ) )
     {
       $prompt = '+ 0.00 ' . $currency . ' : ' . $strWoFees . PHP_EOL;
     }
@@ -675,19 +682,19 @@ class tx_deal_ebayApiBase
             . '--------------------------------------------------------------------------------------------- ' . PHP_EOL
             . $prompt
             . '--------------------------------------------------------------------------------------------- ' . PHP_EOL
-            . '# ' . sprintf('%01.2f', $sum) . ' ' . $currency . ' : ' . $strSum . PHP_EOL
+            . '# ' . sprintf( '%01.2f', $sum ) . ' ' . $currency . ' : ' . $strSum . PHP_EOL
             . '--------------------------------------------------------------------------------------------- ' . PHP_EOL
             . PHP_EOL
             . '*' . $strWoWarranty
     ;
-    $this->log($prompt, 0);
+    $this->log( $prompt, 0 );
 
-    if ($this->getEbayMode() != 'test')
+    if ( $this->getEbayMode() != 'test' )
     {
-      $strWoWarrantyShort = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoWarrantyShort');
+      $strWoWarrantyShort = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayFeesTableNoWarrantyShort' );
       $key = 'tx_deal_ebaylog';
-      $value = date('y-m-d H:i: ') . $strTitle . ': ' . sprintf('%01.2f', $sum) . ' ' . $currency . ' (' . $strWoWarrantyShort . ')';
-      $this->setDatamapRecordFieldPrepend($key, $value);
+      $value = date( 'y-m-d H:i: ' ) . $strTitle . ': ' . sprintf( '%01.2f', $sum ) . ' ' . $currency . ' (' . $strWoWarrantyShort . ')';
+      $this->setDatamapRecordFieldPrepend( $key, $value );
     }
   }
 
@@ -712,9 +719,9 @@ class tx_deal_ebayApiBase
 
     $action = 'enableupdate';
 
-    switch (true)
+    switch ( true )
     {
-      case(!empty($this->ebayItemId)): //
+      case(!empty( $this->ebayItemId )): //
         $action = 'enableupdate';
         break;
       case($this->ebayErrorCode == 0): // No error occurs
@@ -745,9 +752,9 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  protected function getDatamapRecord($key = null)
+  protected function getDatamapRecord( $key = null )
   {
-    $value = $this->pObj->getDatamapRecord($key);
+    $value = $this->pObj->getDatamapRecord( $key );
 
     return $value;
   }
@@ -761,10 +768,10 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function getDatamapValueByTcaConfField($field)
+  private function getDatamapValueByTcaConfField( $field )
   {
-    $key = $this->getTcaConfFields($field);
-    $value = $this->pObj->getDatamapRecord($key);
+    $key = $this->getTcaConfFields( $field );
+    $value = $this->pObj->getDatamapRecord( $key );
 
     return $value;
   }
@@ -784,34 +791,34 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function getRequestContentAddItem($forceItemID = false)
+  protected function getRequestContentAddItem( $forceItemID = false )
   {
     //var_dump(__METHOD__, __LINE__, $this->pObj->confArr, $this->pObj->getDatamapRecord(), $this->getTcaConf());
     // fields
-    $CategoryID = trim($this->pObj->getDatamapRecord('tx_deal_ebaycategoryid'), ',');
-    $ConditionID = $this->pObj->getDatamapRecord('tx_deal_ebayconditionid'); // http://developer.ebay.com/DevZone/finding/CallRef/Enums/conditionIdList.html
+    $CategoryID = trim( $this->pObj->getDatamapRecord( 'tx_deal_ebaycategoryid' ), ',' );
+    $ConditionID = $this->pObj->getDatamapRecord( 'tx_deal_ebayconditionid' ); // http://developer.ebay.com/DevZone/finding/CallRef/Enums/conditionIdList.html
     $Country = $this->getRequestContentAddItemFieldsCountry();
     $Currency = $this->ebayMarketplaceCurrency;
     $currencyID = $this->ebayMarketplaceCurrency;
     $Description = $this->getRequestContentAddItemFieldsDescription();
-    $DispatchTimeMax = $this->pObj->getDatamapRecord('tx_deal_ebaydispatchtimemax');
+    $DispatchTimeMax = $this->pObj->getDatamapRecord( 'tx_deal_ebaydispatchtimemax' );
     $eBayAuthToken = $this->ebayApiToken;
     $ErrorLanguage = $this->getRequestContentAddItemFieldsErrorLanguage();
-    $ItemID = $this->getRequestContentAddItemFieldsItemID($forceItemID);
-    $ListingDuration = $this->pObj->getDatamapRecord('tx_deal_ebaylistingduration'); // http://developer.ebay.com/devzone/xml/docs/reference/ebay/types/ListingDurationCodeType.html
-    $Location = $this->pObj->getDatamapRecord('tx_deal_ebaylocation');
+    $ItemID = $this->getRequestContentAddItemFieldsItemID( $forceItemID );
+    $ListingDuration = $this->pObj->getDatamapRecord( 'tx_deal_ebaylistingduration' ); // http://developer.ebay.com/devzone/xml/docs/reference/ebay/types/ListingDurationCodeType.html
+    $Location = $this->pObj->getDatamapRecord( 'tx_deal_ebaylocation' );
     $PictureDetails = $this->getRequestContentAddItemFieldsPictureDetails();
     $ProductListingDetails = $this->getRequestContentAddItemFieldsProductListingDetails();
-    $Quantity = $this->pObj->getDatamapRecord('tx_deal_ebayquantity');
+    $Quantity = $this->pObj->getDatamapRecord( 'tx_deal_ebayquantity' );
     $PaymentMethods = $this->getRequestContentAddItemXmlPaymentmethods();
     $ReturnPolicy = $this->getRequestContentAddItemXmlReturnpolicy();
     $SiteCodeType = $this->ebayMarketplaceCountry;
     $ShippingService = $this->getRequestContentAddItemFieldsShippingservicecode();
-    $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord('tx_deal_ebayshippingserviceadditionalcosts');
-    $ShippingServiceCosts = $this->pObj->getDatamapRecord('tx_deal_ebayshippingservicecosts');
-    $SKU = $this->getDatamapValueByTcaConfField('sku');
-    $StartPrice = $this->getDatamapValueByTcaConfField('gross');
-    $Title = '<![CDATA[' . $this->getDatamapValueByTcaConfField('title') . ']]>';
+    $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingserviceadditionalcosts' );
+    $ShippingServiceCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingservicecosts' );
+    $SKU = $this->getDatamapValueByTcaConfField( 'sku' );
+    $StartPrice = $this->getDatamapValueByTcaConfField( 'gross' );
+    $Title = '<![CDATA[' . $this->getDatamapValueByTcaConfField( 'title' ) . ']]>';
     // XML
     $xmlrequestContent = '  <RequesterCredentials>
   <eBayAuthToken>' . $eBayAuthToken . '</eBayAuthToken>
@@ -866,10 +873,10 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsCountry()
   {
-    list( $ebay, $countryCode) = explode('-', $this->ebayMarketplaceGlobalId);
-    unset($ebay);
+    list( $ebay, $countryCode) = explode( '-', $this->ebayMarketplaceGlobalId );
+    unset( $ebay );
     //var_dump(__METHOD__, __LINE__, $this->ebayMarketplaceCountry, $this->ebayMarketplaceGlobalId, $this->ebayMarketplaceSiteId);
-    if (empty($countryCode))
+    if ( empty( $countryCode ) )
     {
       $countryCode = 'US';
     }
@@ -912,26 +919,26 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionDatasheet()
   {
-    $arrDescription = $this->getTcaConfFields('description');
-    $field = $arrDescription['datasheet'];
-    if (empty($field))
+    $arrDescription = $this->getTcaConfFields( 'description' );
+    $field = $arrDescription[ 'datasheet' ];
+    if ( empty( $field ) )
     {
       return null;
     }
-    $datasheet = $this->pObj->getDatamapRecord($field);
-    if (empty($datasheet))
+    $datasheet = $this->pObj->getDatamapRecord( $field );
+    if ( empty( $datasheet ) )
     {
       return null;
     }
-    $lines = explode(PHP_EOL, $datasheet);
-    foreach ($lines as $key => $line)
+    $lines = explode( PHP_EOL, $datasheet );
+    foreach ( $lines as $key => $line )
     {
-      $line = str_replace(' |', ':', $line);
+      $line = str_replace( ' |', ':', $line );
       $line = '<li>' . $line . '</li>';
-      $lines[$key] = $line;
+      $lines[ $key ] = $line;
     }
-    $header = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerDatasheet');
-    $datasheet = implode(PHP_EOL, $lines);
+    $header = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerDatasheet' );
+    $datasheet = implode( PHP_EOL, $lines );
     $datasheet = null
             . '<h2>' . $header . '</h2>' . PHP_EOL
             . '<ul>' . PHP_EOL
@@ -950,9 +957,9 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionDescription()
   {
-    $arrDescription = $this->getTcaConfFields('description');
-    $description = $this->pObj->getDatamapRecord($arrDescription['description']);
-    if (empty($description))
+    $arrDescription = $this->getTcaConfFields( 'description' );
+    $description = $this->pObj->getDatamapRecord( $arrDescription[ 'description' ] );
+    if ( empty( $description ) )
     {
       return null;
     }
@@ -970,12 +977,12 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionEbaypaymentmethodsdescription()
   {
-    $paymentMethodsDescription = $this->pObj->getDatamapRecord('tx_deal_ebaypaymentmethodsdescription');
-    if (empty($paymentMethodsDescription))
+    $paymentMethodsDescription = $this->pObj->getDatamapRecord( 'tx_deal_ebaypaymentmethodsdescription' );
+    if ( empty( $paymentMethodsDescription ) )
     {
       return null;
     }
-    $header = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerPaymentMethodsDescription');
+    $header = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerPaymentMethodsDescription' );
     $paymentMethodsDescription = null
             . '<h2>' . $header . '</h2>' . PHP_EOL
             . '<p>' . $paymentMethodsDescription . '</p>' . PHP_EOL
@@ -993,23 +1000,23 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionFilterCategories()
   {
-    $arrFilter = $this->getTcaConfFields('filter');
-    $field = $arrFilter['category'];
-    if (empty($field))
+    $arrFilter = $this->getTcaConfFields( 'filter' );
+    $field = $arrFilter[ 'category' ];
+    if ( empty( $field ) )
     {
       return null;
     }
 
-    $labels = $this->sqlGetLabelsFromForeignTables($field);
-    if (empty($labels))
+    $labels = $this->sqlGetLabelsFromForeignTables( $field );
+    if ( empty( $labels ) )
     {
       return null;
     }
 
-    $header = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterCategories');
+    $header = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterCategories' );
     $categories = null
             . '<ul>' . PHP_EOL
-            . '<li>' . implode('</li>' . PHP_EOL . '<li>', $labels) . '</li>' . PHP_EOL
+            . '<li>' . implode( '</li>' . PHP_EOL . '<li>', $labels ) . '</li>' . PHP_EOL
             . '</ul>' . PHP_EOL
     ;
     $categories = null
@@ -1029,23 +1036,23 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionFilterDimensions()
   {
-    $arrFilter = $this->getTcaConfFields('filter');
-    $field = $arrFilter['dimension'];
-    if (empty($field))
+    $arrFilter = $this->getTcaConfFields( 'filter' );
+    $field = $arrFilter[ 'dimension' ];
+    if ( empty( $field ) )
     {
       return null;
     }
 
-    $labels = $this->sqlGetLabelsFromForeignTables($field);
-    if (empty($labels))
+    $labels = $this->sqlGetLabelsFromForeignTables( $field );
+    if ( empty( $labels ) )
     {
       return null;
     }
 
-    $header = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterDimensions');
+    $header = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterDimensions' );
     $dimensions = null
             . '<ul>' . PHP_EOL
-            . '<li>' . implode('</li>' . PHP_EOL . '<li>', $labels) . '</li>' . PHP_EOL
+            . '<li>' . implode( '</li>' . PHP_EOL . '<li>', $labels ) . '</li>' . PHP_EOL
             . '</ul>' . PHP_EOL
     ;
     $dimensions = null
@@ -1065,23 +1072,23 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionFilterMaterial()
   {
-    $arrFilter = $this->getTcaConfFields('filter');
-    $field = $arrFilter['material'];
-    if (empty($field))
+    $arrFilter = $this->getTcaConfFields( 'filter' );
+    $field = $arrFilter[ 'material' ];
+    if ( empty( $field ) )
     {
       return null;
     }
 
-    $labels = $this->sqlGetLabelsFromForeignTables($field);
-    if (empty($labels))
+    $labels = $this->sqlGetLabelsFromForeignTables( $field );
+    if ( empty( $labels ) )
     {
       return null;
     }
 
-    $header = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterMaterial');
+    $header = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:headerFilterMaterial' );
     $material = null
             . '<ul>' . PHP_EOL
-            . '<li>' . implode('</li>' . PHP_EOL . '<li>', $labels) . '</li>' . PHP_EOL
+            . '<li>' . implode( '</li>' . PHP_EOL . '<li>', $labels ) . '</li>' . PHP_EOL
             . '</ul>' . PHP_EOL
     ;
     $material = null
@@ -1101,14 +1108,14 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionShort()
   {
-    $arrDescription = $this->getTcaConfFields('description');
-    $field = $arrDescription['short'];
-    if (empty($field))
+    $arrDescription = $this->getTcaConfFields( 'description' );
+    $field = $arrDescription[ 'short' ];
+    if ( empty( $field ) )
     {
       return null;
     }
-    $short = $this->pObj->getDatamapRecord($field);
-    if (empty($short))
+    $short = $this->pObj->getDatamapRecord( $field );
+    if ( empty( $short ) )
     {
       return null;
     }
@@ -1126,7 +1133,7 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsDescriptionTitle()
   {
-    $title = '<h1>' . $this->getDatamapValueByTcaConfField('title') . '</h1>' . PHP_EOL;
+    $title = '<h1>' . $this->getDatamapValueByTcaConfField( 'title' ) . '</h1>' . PHP_EOL;
     return $title;
   }
 
@@ -1140,8 +1147,8 @@ class tx_deal_ebayApiBase
    */
   private function getRequestContentAddItemFieldsErrorLanguage()
   {
-    $errorLanguage = $this->pObj->confArr['ebayErrorLanguage'];
-    if (empty($errorLanguage))
+    $errorLanguage = $this->pObj->confArr[ 'ebayErrorLanguage' ];
+    if ( empty( $errorLanguage ) )
     {
       $errorLanguage = 'en_GB';
     }
@@ -1157,17 +1164,17 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function getRequestContentAddItemFieldsItemID($forceItemID = false)
+  private function getRequestContentAddItemFieldsItemID( $forceItemID = false )
   {
-    if ($forceItemID)
+    if ( $forceItemID )
     {
-      if (empty($this->ebayItemId))
+      if ( empty( $this->ebayItemId ) )
       {
-        $this->ebayItemId = $this->getDatamapRecord('tx_deal_ebayitemid');
+        $this->ebayItemId = $this->getDatamapRecord( 'tx_deal_ebayitemid' );
       }
     }
 
-    if (empty($this->ebayItemId))
+    if ( empty( $this->ebayItemId ) )
     {
       return null;
     }
@@ -1190,23 +1197,23 @@ class tx_deal_ebayApiBase
     $pictureDetails = null;
     // uploadfolder
     $table = $this->pObj->getDatamapTable();
-    $tcaColumn = $this->getTcaConfFields('pictures');
-    $uploadFolder = $TCA[$table]['columns'][$tcaColumn]['config']['uploadfolder'];
+    $tcaColumn = $this->getTcaConfFields( 'pictures' );
+    $uploadFolder = $TCA[ $table ][ 'columns' ][ $tcaColumn ][ 'config' ][ 'uploadfolder' ];
 
-    $urlToPicture = TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $uploadFolder . '/';
+    $urlToPicture = TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv( 'TYPO3_SITE_URL' ) . $uploadFolder . '/';
 //    var_dump(__METHOD__, __LINE__, $tcaColumn, $pictures, $uploadFolder, $GLOBALS['TYPO3_SITE_URL'],
 //            TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), $url);
-    $csvPictures = trim($this->getDatamapValueByTcaConfField('pictures'), ',');
-    $arrPictures = explode(',', $csvPictures);
+    $csvPictures = trim( $this->getDatamapValueByTcaConfField( 'pictures' ), ',' );
+    $arrPictures = explode( ',', $csvPictures );
 
     $pictureUrl = null;
-    foreach ($arrPictures as $picture)
+    foreach ( $arrPictures as $picture )
     {
       $pictureUrl = $pictureUrl
               . '    <PictureURL>' . $urlToPicture . $picture . '</PictureURL>' . PHP_EOL;
     }
 
-    if (empty($pictureUrl))
+    if ( empty( $pictureUrl ) )
     {
       return;
     }
@@ -1229,13 +1236,13 @@ class tx_deal_ebayApiBase
   private function getRequestContentAddItemFieldsProductListingDetails()
   {
     $productListingDetails = null;
-    $ean = $this->getDatamapValueByTcaConfField('ean');
-    if (!empty($ean))
+    $ean = $this->getDatamapValueByTcaConfField( 'ean' );
+    if ( !empty( $ean ) )
     {
       $ean = '  <EAN>' . $ean . '</EAN>';
     }
 
-    switch (true)
+    switch ( true )
     {
       case($ean):
         // follow the workflow
@@ -1262,72 +1269,72 @@ class tx_deal_ebayApiBase
   private function getRequestContentAddItemFieldsShippingservicecode()
   {
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
-      // #i0009, 140324, dwildt, 2+
+    // #i0009, 140324, dwildt, 2+
     global $TCA;
     $table = $this->pObj->getDatamapTable();
 
-      // #i0009, 140324, dwildt, 1-
+    // #i0009, 140324, dwildt, 1-
     //$uid = $this->pObj->getDatamapRecord('tx_deal_ebayshippingservicecode');
-      // #i0009, 140324, dwildt, 1+
-    $uid = $this->pObj->getDatamapRecord(tx_deal_ebayshippingservicecode);
+    // #i0009, 140324, dwildt, 1+
+    $uid = $this->pObj->getDatamapRecord( tx_deal_ebayshippingservicecode );
 
-    if (empty($uid))
+    if ( empty( $uid ) )
     {
-      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayShippingcostsEmpty');
-      $this->log($prompt, 4);
+      $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayShippingcostsEmpty' );
+      $this->log( $prompt, 4 );
       return false;
     }
 
     $select_fields = 'code';
-      // #i0009, 140324, dwildt, 1-
+    // #i0009, 140324, dwildt, 1-
     //$from_table = 'tx_deal_ebayshippingservicecode';
-      // #i0009, 140324, dwildt, 1+
-    $from_table = $TCA[$table]['columns']['tx_deal_ebayshippingservicecode']['config']['foreign_table'];
+    // #i0009, 140324, dwildt, 1+
+    $from_table = $TCA[ $table ][ 'columns' ][ 'tx_deal_ebayshippingservicecode' ][ 'config' ][ 'foreign_table' ];
     $where_clause = 'uid = ' . $uid;
     $groupBy = null;
     $orderBy = null;
     $limit = null;
 
-    $query = $GLOBALS['TYPO3_DB']->SELECTquery
+    $query = $GLOBALS[ 'TYPO3_DB' ]->SELECTquery
             (
             $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
     );
     //var_dump(__METHOD__, __LINE__, $query);
     // Set the query
     // Execute the query
-    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery
+    $res = $GLOBALS[ 'TYPO3_DB' ]->exec_SELECTquery
             (
             $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
     );
     // Execute the query
     // RETURN : ERROR
-    $error = $GLOBALS['TYPO3_DB']->sql_error();
-    if (!empty($error))
+    $error = $GLOBALS[ 'TYPO3_DB' ]->sql_error();
+    if ( !empty( $error ) )
     {
       $prompt = 'ERROR: Unproper SQL query at ' . __METHOD__ . ' (#' . __LINE__ . ')';
-      $this->log($prompt, 4, 2, 1);
+      $this->log( $prompt, 4, 2, 1 );
       $prompt = 'query: ' . $query;
-      $this->log($prompt, 0, 2, 1);
+      $this->log( $prompt, 0, 2, 1 );
       $prompt = 'prompt: ' . $error;
-      $this->log($prompt, 4, 2, 1);
+      $this->log( $prompt, 4, 2, 1 );
 
       return;
     }
     // RETURN : ERROR
     // Fetch first row only
-    $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+    $row = $GLOBALS[ 'TYPO3_DB' ]->sql_fetch_assoc( $res );
     //var_dump(__METHOD__, __LINE__, $row);
     // Free the SQL result
-    $GLOBALS['TYPO3_DB']->sql_free_result($res);
+    $GLOBALS[ 'TYPO3_DB' ]->sql_free_result( $res );
 
-    if (!$row)
+    if ( !$row )
     {
       return false;
     }
 
-    return $row['code'];
+    return $row[ 'code' ];
   }
 
   /**
@@ -1342,14 +1349,14 @@ class tx_deal_ebayApiBase
   private function getRequestContentAddItemXmlPaymentmethods()
   {
     //var_dump(__METHOD__, __LINE__, $this->pObj->getDatamapRecord('tx_deal_ebaypaymentmethods'));
-    $csvPaymentMethods = trim($this->pObj->getDatamapRecord('tx_deal_ebaypaymentmethods'), ',');
-    $arrPaymentMethods = explode(',', $csvPaymentMethods);
+    $csvPaymentMethods = trim( $this->pObj->getDatamapRecord( 'tx_deal_ebaypaymentmethods' ), ',' );
+    $arrPaymentMethods = explode( ',', $csvPaymentMethods );
 
     $xmlTagPaymentMethod = null;
     $boolTagPaymentMethodPaypal = false;
-    foreach ((array) $arrPaymentMethods as $arrPaymentMethod)
+    foreach ( ( array ) $arrPaymentMethods as $arrPaymentMethod )
     {
-      if ($arrPaymentMethod == 'PayPal')
+      if ( $arrPaymentMethod == 'PayPal' )
       {
         $boolTagPaymentMethodPaypal = true;
       }
@@ -1358,7 +1365,7 @@ class tx_deal_ebayApiBase
       ;
     }
     $xmlTag = $xmlTagPaymentMethod;
-    if ($boolTagPaymentMethodPaypal)
+    if ( $boolTagPaymentMethodPaypal )
     {
       $xmlTag = $xmlTag . PHP_EOL
               . '  <PayPalEmailAddress>' . $this->ebayPaypalEmail . '</PayPalEmailAddress>' . PHP_EOL
@@ -1379,11 +1386,11 @@ class tx_deal_ebayApiBase
   private function getRequestContentAddItemXmlReturnpolicy()
   {
     //var_dump(__METHOD__, __LINE__, $this->pObj->confArr, $this->pObj->getDatamapRecord(), $this->getTcaConf());
-    $ReturnsAcceptedOption = $this->pObj->getDatamapRecord('tx_deal_ebayreturnsacceptoption');
-    $ReturnPolicyDescription = $this->pObj->getDatamapRecord('tx_deal_ebayreturnpolicydescription');
+    $ReturnsAcceptedOption = $this->pObj->getDatamapRecord( 'tx_deal_ebayreturnsacceptoption' );
+    $ReturnPolicyDescription = $this->pObj->getDatamapRecord( 'tx_deal_ebayreturnpolicydescription' );
 
     $xmlTagDescription = null;
-    if (!empty($ReturnPolicyDescription))
+    if ( !empty( $ReturnPolicyDescription ) )
     {
       $xmlTagDescription = '<Description><![CDATA[' . $ReturnPolicyDescription . ']]></Description>';
     }
@@ -1419,7 +1426,7 @@ class tx_deal_ebayApiBase
     $eBayAuthToken = $this->ebayApiToken;
     $EndingReason = 'NotAvailable'; // http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/types/EndReasonCodeType.html
     $ErrorLanguage = $this->getRequestContentAddItemFieldsErrorLanguage();
-    $ItemID = $this->getDatamapRecord('tx_deal_ebayitemid');
+    $ItemID = $this->getDatamapRecord( 'tx_deal_ebayitemid' );
     // XML
     $xmlrequestContent = '  <RequesterCredentials>
   <eBayAuthToken>' . $eBayAuthToken . '</eBayAuthToken>
@@ -1451,7 +1458,7 @@ class tx_deal_ebayApiBase
     // fields
     $eBayAuthToken = $this->ebayApiToken;
     $ErrorLanguage = $this->getRequestContentAddItemFieldsErrorLanguage();
-    $ItemID = $this->getDatamapRecord('tx_deal_ebayitemid');
+    $ItemID = $this->getDatamapRecord( 'tx_deal_ebayitemid' );
     // XML
     $xmlrequestContent = '  <RequesterCredentials>
   <eBayAuthToken>' . $eBayAuthToken . '</eBayAuthToken>
@@ -1479,7 +1486,7 @@ class tx_deal_ebayApiBase
   protected function getRequestContentRelistItem()
   {
     $forceItemID = true;
-    $xmlrequest = $this->getRequestContentAddItem($forceItemID);
+    $xmlrequest = $this->getRequestContentAddItem( $forceItemID );
     return $xmlrequest;
   }
 
@@ -1500,7 +1507,7 @@ class tx_deal_ebayApiBase
   protected function getRequestContentReviseItem()
   {
     $forceItemID = true;
-    $xmlrequest = $this->getRequestContentAddItem($forceItemID);
+    $xmlrequest = $this->getRequestContentAddItem( $forceItemID );
     return $xmlrequest;
   }
 
@@ -1520,7 +1527,7 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function getRequestHeader($callName, $length)
+  protected function getRequestHeader( $callName, $length )
   {
     $headers = array(
       'X-EBAY-API-CALL-NAME: ' . $callName,
@@ -1530,8 +1537,8 @@ class tx_deal_ebayApiBase
       'Content-Length: ' . $length,
     );
 
-    $prompt = 'headers: ' . PHP_EOL . var_export($headers, true);
-    $this->log($prompt, -1);
+    $prompt = 'headers: ' . PHP_EOL . var_export( $headers, true );
+    $this->log( $prompt, -1 );
 
     return $headers;
   }
@@ -1590,16 +1597,16 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function getTcaConfFields($key = null)
+  private function getTcaConfFields( $key = null )
   {
     $tcaConf = $this->getTcaConf();
-    $fields = $tcaConf['fields'];
+    $fields = $tcaConf[ 'fields' ];
 
-    if (empty($key))
+    if ( empty( $key ) )
     {
       return $fields;
     }
-    return $fields[$key];
+    return $fields[ $key ];
   }
 
   /*   * *********************************************
@@ -1617,20 +1624,20 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  protected function init($pObj)
+  protected function init( $pObj )
   {
-    if ($this->init !== null)
+    if ( $this->init !== null )
     {
       return;
     }
     $this->init = true;
 
-    $this->initVarsPobj($pObj);
+    $this->initVarsPobj( $pObj );
     $this->initConf();
     $this->initVarsEbay();
 
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
   }
 
   /**
@@ -1655,9 +1662,9 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function initVars($pObj)
+  private function initVars( $pObj )
   {
-    $this->initVarsPobj($pObj);
+    $this->initVarsPobj( $pObj );
     $this->initVarsEbay();
   }
 
@@ -1701,7 +1708,7 @@ class tx_deal_ebayApiBase
    */
   private function initVarsEbayApiEndpoint()
   {
-    switch (true)
+    switch ( true )
     {
       case( $this->ebayEnvironment == 'production' ):
         $this->ebayApiEndpointXml = $this->ebayApiEndpointXmlProduction;
@@ -1709,16 +1716,16 @@ class tx_deal_ebayApiBase
       case( $this->ebayEnvironment == 'sandbox' ):
         $this->ebayApiEndpointXml = $this->ebayApiEndpointXmlSandbox;
         break;
-      case( empty($this->ebayEnvironment) ):
+      case( empty( $this->ebayEnvironment ) ):
 // RETURN : ebay isn't enabled
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse');
-        $this->log($prompt, 0, 2);
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse' );
+        $this->log( $prompt, 0, 2 );
         break;
       default:
 // RETURN : ebay isn't enabled
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError');
-        $prompt = str_replace('%ebayEnvironment%', $this->ebayEnvironment, $prompt);
-        $this->log($prompt, 4, 2);
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError' );
+        $prompt = str_replace( '%ebayEnvironment%', $this->ebayEnvironment, $prompt );
+        $this->log( $prompt, 4, 2 );
         break;
     }
   }
@@ -1733,22 +1740,22 @@ class tx_deal_ebayApiBase
    */
   private function initVarsEbayApiToken()
   {
-    switch (true)
+    switch ( true )
     {
       case( $this->ebayEnvironment == 'production' ):
-        $this->ebayApiToken = $this->ebayApiConfFromTCA['environment']['production']['token'];
+        $this->ebayApiToken = $this->ebayApiConfFromTCA[ 'environment' ][ 'production' ][ 'token' ];
         break;
       case( $this->ebayEnvironment == 'sandbox' ):
-        $this->ebayApiToken = $this->ebayApiConfFromTCA['environment']['sandbox']['token'];
+        $this->ebayApiToken = $this->ebayApiConfFromTCA[ 'environment' ][ 'sandbox' ][ 'token' ];
         break;
-      case( empty($this->ebayEnvironment) ):
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse');
-        $this->log($prompt, 4, 2);
+      case( empty( $this->ebayEnvironment ) ):
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse' );
+        $this->log( $prompt, 4, 2 );
         break;
       default:
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError');
-        $prompt = str_replace('%ebayEnvironment%', $this->ebayEnvironment, $prompt);
-        $this->log($prompt, 4, 2);
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError' );
+        $prompt = str_replace( '%ebayEnvironment%', $this->ebayEnvironment, $prompt );
+        $this->log( $prompt, 4, 2 );
         break;
     }
   }
@@ -1763,7 +1770,7 @@ class tx_deal_ebayApiBase
    */
   private function initVarsEbayEnvironment()
   {
-    $this->ebayEnvironment = $this->ebayApiConfFromTCA['environment']['key'];
+    $this->ebayEnvironment = $this->ebayApiConfFromTCA[ 'environment' ][ 'key' ];
   }
 
   /**
@@ -1776,20 +1783,20 @@ class tx_deal_ebayApiBase
    */
   private function initVarsEbayMarketplace()
   {
-    $this->ebayMarketplace = $this->ebayApiConfFromTCA['marketplace'];
-    if (empty($this->ebayMarketplace))
+    $this->ebayMarketplace = $this->ebayApiConfFromTCA[ 'marketplace' ];
+    if ( empty( $this->ebayMarketplace ) )
     {
       $this->ebayMarketplace = 'US - EBAY-US/USD (0)';
     }
 
-    list( $country, $ebayCode ) = explode(' - ', $this->ebayMarketplace);
-    list( $globalId, $currencyAndSiteid) = explode('/', $ebayCode);
-    list( $currency, $siteId) = explode(' ', $currencyAndSiteid);
+    list( $country, $ebayCode ) = explode( ' - ', $this->ebayMarketplace );
+    list( $globalId, $currencyAndSiteid) = explode( '/', $ebayCode );
+    list( $currency, $siteId) = explode( ' ', $currencyAndSiteid );
 
     $this->ebayMarketplaceCountry = $country;
     $this->ebayMarketplaceCurrency = $currency;
     $this->ebayMarketplaceGlobalId = $globalId;
-    $this->ebayMarketplaceSiteId = trim($siteId, '()');
+    $this->ebayMarketplaceSiteId = trim( $siteId, '()' );
   }
 
   /**
@@ -1802,34 +1809,34 @@ class tx_deal_ebayApiBase
    */
   private function initVarsEbayPaypalEmail()
   {
-    switch (true)
+    switch ( true )
     {
       case( $this->ebayEnvironment == 'production' ):
-        $this->ebayPaypalEmail = $this->ebayApiConfFromTCA['paypal']['production']['email'];
+        $this->ebayPaypalEmail = $this->ebayApiConfFromTCA[ 'paypal' ][ 'production' ][ 'email' ];
         break;
       case( $this->ebayEnvironment == 'sandbox' ):
-        $this->ebayPaypalEmail = $this->ebayApiConfFromTCA['paypal']['sandbox']['email'];
+        $this->ebayPaypalEmail = $this->ebayApiConfFromTCA[ 'paypal' ][ 'sandbox' ][ 'email' ];
         break;
-      case( empty($this->ebayEnvironment) ):
+      case( empty( $this->ebayEnvironment ) ):
 // RETURN : ebay isn't enabled
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse');
-        $this->log($prompt, 0, 2);
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentFalse' );
+        $this->log( $prompt, 0, 2 );
         break;
       default:
 // RETURN : ebay isn't enabled
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError');
-        $prompt = str_replace('%ebayEnvironment%', $this->ebayEnvironment, $prompt);
-        $this->log($prompt, 4, 2);
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayEnvironmentError' );
+        $prompt = str_replace( '%ebayEnvironment%', $this->ebayEnvironment, $prompt );
+        $this->log( $prompt, 4, 2 );
         break;
     }
 
-    if ($this->ebayPaypalEmail)
+    if ( $this->ebayPaypalEmail )
     {
       return;
     }
 
-    $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayPaypalEmailEmpty');
-    $this->log($prompt, 3);
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayPaypalEmailEmpty' );
+    $this->log( $prompt, 3 );
   }
 
   /**
@@ -1841,7 +1848,7 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function initVarsPobj($pObj)
+  private function initVarsPobj( $pObj )
   {
     $this->pObj = $pObj;
   }
@@ -1864,9 +1871,9 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  protected function log($prompt, $status = -1, $action = 2, $header = 2)
+  protected function log( $prompt, $status = -1, $action = 2, $header = 2 )
   {
-    $this->pObj->log($prompt, $status, $action, $header);
+    $this->pObj->log( $prompt, $status, $action, $header );
   }
 
   /*   * *********************************************
@@ -1898,15 +1905,15 @@ class tx_deal_ebayApiBase
    */
   private function requirementsVarsEbay()
   {
-    switch (true)
+    switch ( true )
     {
-      case( empty($this->ebayApiEndpointXml)):
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayApiEndpointEmpty');
-        $this->log($prompt, 4, 2);
+      case( empty( $this->ebayApiEndpointXml )):
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayApiEndpointEmpty' );
+        $this->log( $prompt, 4, 2 );
         return false;
-      case( empty($this->ebayApiToken)):
-        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayApiTokenEmpty');
-        $this->log($prompt, 4, 2);
+      case( empty( $this->ebayApiToken )):
+        $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayApiTokenEmpty' );
+        $this->log( $prompt, 4, 2 );
         return false;
     }
 
@@ -1937,9 +1944,9 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function setDatamapRecordFieldPrepend($key, $value, $boolWiEol = true)
+  private function setDatamapRecordFieldPrepend( $key, $value, $boolWiEol = true )
   {
-    $this->pObj->setDatamapRecordFieldPrepend($key, $value, $boolWiEol);
+    $this->pObj->setDatamapRecordFieldPrepend( $key, $value, $boolWiEol );
   }
 
   /**
@@ -1953,44 +1960,50 @@ class tx_deal_ebayApiBase
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function setDatamapRecordFieldUpdate($key, $value, $boolPrompt = true)
+  private function setDatamapRecordFieldUpdate( $key, $value, $boolPrompt = true )
   {
-    $this->pObj->setDatamapRecordFieldUpdate($key, $value, $boolPrompt);
+    $this->pObj->setDatamapRecordFieldUpdate( $key, $value, $boolPrompt );
   }
 
   /**
    * setEbayItemStatus( )
    *
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access public
-   * @version   0.0.3
+   * @version   0.1.2
    * @since     0.0.3
    */
-  public function setEbayItemStatus($dontPrompt = false)
+  public function setEbayItemStatus( $dontPrompt = false )
   {
     $status = 'undefined (by ' . __METHOD__ . ' #' . __LINE__ . ')';
-    $ebayItemID = $this->getDatamapRecord('tx_deal_ebayitemid');
-    switch (true)
+    $ebayItemID = $this->getDatamapRecord( 'tx_deal_ebayitemid' );
+    switch ( true )
     {
-      case(!empty($ebayItemID)):
-        $status = $this->setEbayItemStatusWiItemID($dontPrompt);
+      case(!empty( $ebayItemID )):
+        $status = $this->setEbayItemStatusWiItemID( $dontPrompt );
+        // #i0014, 141002, dwildt, 4+
+        if ( empty( $status ) )
+        {
+          $status = 'isWoStatus';
+        }
         break;
-      case(empty($ebayItemID)):
+      case(empty( $ebayItemID )):
       default:
         $status = $this->setEbayItemStatusWoItemID();
         break;
     }
 
-    switch ($status)
+    switch ( $status )
     {
       case( 'isNotOnEbay'):
       case( 'isOnEbayEnabled'):
       case( 'isOnEbayDisabled'):
+      case( 'isWoStatus'):
         return $status;
       default:
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): ebay status is undefined: "' . $status . '"';
-        die($prompt);
+        die( $prompt );
     }
     return $status;
   }
@@ -1999,18 +2012,18 @@ class tx_deal_ebayApiBase
    * setEbayItemStatusWiItemID( )
    *
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
-   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled
+   * @return	string    $status : isNotOnEbay, isOnEbayEnabled, isOnEbayDisabled, isWoStatus
    * @access private
    * @version   0.0.3
    * @since     0.0.3
    */
-  private function setEbayItemStatusWiItemID($dontPrompt = false)
+  private function setEbayItemStatusWiItemID( $dontPrompt = false )
   {
     $status = null;
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
-    $status = $this->getItem($dontPrompt);
+    $status = $this->getItem( $dontPrompt );
 
     return $status;
   }
@@ -2027,12 +2040,12 @@ class tx_deal_ebayApiBase
   {
     $status = 'isNotOnEbay';
     $prompt = __METHOD__ . ' #' . __LINE__;
-    $this->log($prompt, -1);
+    $this->log( $prompt, -1 );
 
     $key = 'tx_deal_ebayitemstatus';
-    $value = $GLOBALS['LANG']->sL('LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsNotOnEbay');
+    $value = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayItemIsNotOnEbay' );
     $boolPrompt = false;
-    $this->setDatamapRecordFieldUpdate($key, $value, $boolPrompt);
+    $this->setDatamapRecordFieldUpdate( $key, $value, $boolPrompt );
 
     return $status;
   }
@@ -2052,27 +2065,27 @@ class tx_deal_ebayApiBase
    * @version  0.0.3
    * @since    0.0.3
    */
-  private function sqlGetLabelsFromForeignTables($tcaField)
+  private function sqlGetLabelsFromForeignTables( $tcaField )
   {
     global $TCA;
 
-    $arrFilter = $this->getTcaConfFields('filter');
-    $field = $arrFilter[$tcaField];
-    if (empty($field))
+    $arrFilter = $this->getTcaConfFields( 'filter' );
+    $field = $arrFilter[ $tcaField ];
+    if ( empty( $field ) )
     {
       return null;
     }
-    $uids = $this->pObj->getDatamapRecord($field);
+    $uids = $this->pObj->getDatamapRecord( $field );
     $table = $this->pObj->getDatamapTable();
 
-    if (empty($uids))
+    if ( empty( $uids ) )
     {
       return null;
     }
 
-    $uids = trim($uids, ',');
-    $foreign_table = $TCA[$table]['columns'][$tcaField]['config']['foreign_table'];
-    $label = $TCA[$foreign_table]['ctrl']['label'];
+    $uids = trim( $uids, ',' );
+    $foreign_table = $TCA[ $table ][ 'columns' ][ $tcaField ][ 'config' ][ 'foreign_table' ];
+    $label = $TCA[ $foreign_table ][ 'ctrl' ][ 'label' ];
 
     $select_fields = $label;
     $from_table = $foreign_table;
@@ -2081,48 +2094,48 @@ class tx_deal_ebayApiBase
     $orderBy = null;
     $limit = null;
 
-    $query = $GLOBALS['TYPO3_DB']->SELECTquery(
+    $query = $GLOBALS[ 'TYPO3_DB' ]->SELECTquery(
             $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
     );
     //var_dump(__METHOD__, __LINE__, $query);
     // Set the query
     // Execute the query
-    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery
+    $res = $GLOBALS[ 'TYPO3_DB' ]->exec_SELECTquery
             (
             $select_fields, $from_table, $where_clause, $groupBy, $orderBy, $limit
     );
     // Execute the query
     // RETURN : ERROR
-    $error = $GLOBALS['TYPO3_DB']->sql_error();
-    if (!empty($error))
+    $error = $GLOBALS[ 'TYPO3_DB' ]->sql_error();
+    if ( !empty( $error ) )
     {
       $prompt = 'ERROR: Unproper SQL query at ' . __METHOD__ . ' (#' . __LINE__ . ')';
-      $this->log($prompt, 4, 2, 1);
+      $this->log( $prompt, 4, 2, 1 );
       $prompt = 'query: ' . $query;
-      $this->log($prompt, 0, 2, 1);
+      $this->log( $prompt, 0, 2, 1 );
       $prompt = 'prompt: ' . $error;
-      $this->log($prompt, 4, 2, 1);
+      $this->log( $prompt, 4, 2, 1 );
 
       return;
     }
     // RETURN : ERROR
     // Fetch first row only
     $lines = array();
-    while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))
+    while ( $row = $GLOBALS[ 'TYPO3_DB' ]->sql_fetch_assoc( $res ) )
     {
       //var_dump(__METHOD__, __LINE__, $row);
       //$lines[] = '<li>' . $row[$label] . '</li>';
-      $lines[] = $row[$label];
+      $lines[] = $row[ $label ];
     }
     // Free the SQL result
-    $GLOBALS['TYPO3_DB']->sql_free_result($res);
+    $GLOBALS[ 'TYPO3_DB' ]->sql_free_result( $res );
 
     return $lines;
   }
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/deal/lib/marketplaces/ebay/api/class.tx_deal_ebayApiBase.php'])
+if ( defined( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS[ TYPO3_MODE ][ 'XCLASS' ][ 'ext/deal/lib/marketplaces/ebay/api/class.tx_deal_ebayApiBase.php' ] )
 {
-  include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/deal/lib/marketplaces/ebay/api/class.tx_deal_ebayApiBase.php']);
+  include_once($TYPO3_CONF_VARS[ TYPO3_MODE ][ 'XCLASS' ][ 'ext/deal/lib/marketplaces/ebay/api/class.tx_deal_ebayApiBase.php' ]);
 }
