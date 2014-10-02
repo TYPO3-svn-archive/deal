@@ -40,8 +40,9 @@
         Your items are on <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>
       <label index="ebayEnvironmentSandbox">Sandbox (ebay environment). Test it without any fees :) Your items are on http://www.sandbox.ebay.de/. Disable sandbox: Extension Manager > Deal! > ebay > Admin Tools > Environment.</label>
       <label index="ebayErrorAuctionAlreadyClosed">The offer can't closed again, it is already closed.</label>
+      <label index="ebayErrorNotTheOwner">You are not the owner of the item.</label>
       <label index="ebayErrorRelistNotPossible">The item can not offered again. Probably the offer is still exist. Maybe the item does not exist.</label>
-      <label index="ebayErrorReviseEndedListings">You ae not allowed to edit items, which aren't offered.</label>
+      <label index="ebayErrorReviseEndedListings">You are not allowed to edit items, which aren't offered.</label>
       <label index="ebayFeesTablePromptCantEvaluated">Can't evaluated in this mode.</label>
       <label index="ebayFeesTableNoFees">Transaction is without any fee.</label>
       <label index="ebayFeesTableNoWarranty">Without any warranty! And without any further costs like any commission.</label>
@@ -49,6 +50,7 @@
       <label index="ebayFeesTableSum">Sum</label>
       <label index="ebayFeesTableTitle">ebay fees</label>
       <label index="ebayHelpAuctionAlreadyClosed">Please change your current configuration. See [Deal! ebay] > Action > action: [Disable].</label>
+      <label index="ebayHelpNotTheOwner">Please check your ebay token. The token is defined in the extension manager of Deal!</label>
       <label index="ebayHelpRelistNotPossible">Enable the item, if you like to update it. See [Deal! ebay] > Action > action: [Enable/update].</label>
       <label index="ebayHelpReviseEndedListings">Please offer the item again, if you like to edit it. See [Deal! ebay] > Action > action: [Offer/update again].</label>
       <label index="ebayItemError">Fatal error: The status of your item on ebay can't evaluated.</label>
@@ -123,6 +125,7 @@
         Deine Artikel findest Du hier <a href="http://www.sandbox.ebay.de/" target="_blank">www.sandbox.ebay.de</a>]]></label>
       <label index="ebayEnvironmentSandbox">Sandbox: ebay testen ohne Gebühren :) Sandbox ausschalten: Adminwerkzeuge > Erweiterungsmanager > Deal! > ebay > Environment.</label>
       <label index="ebayErrorAuctionAlreadyClosed">Das Angebot kann nicht erneut beendet werden, da es bereits beendet ist.</label>
+      <label index="ebayErrorNotTheOwner">Du bist nicht der Eigentümer des Artikels.</label>
       <label index="ebayErrorRelistNotPossible">Der Artikel kann nicht erneut angeboten werden. Entweder wird er bereits angeboten oder es gibt ihn nicht mehr.</label>
       <label index="ebayErrorReviseEndedListings">Artikel, die nicht angeboten werden, können nicht bearbeitet werden.</label>
       <label index="ebayFeesTablePromptCantEvaluated">Können in diesem Modus vorab nicht ermittelt werden.</label>
@@ -132,6 +135,7 @@
       <label index="ebayFeesTableSum">Betrag</label>
       <label index="ebayFeesTableTitle">ebay Gebühren</label>
       <label index="ebayHelpAuctionAlreadyClosed">Ändere bitte Deine aktuelle Einstellung. Siehe [Deal! ebay] > Aktion > Aktion: [Deaktivieren].</label>
+      <label index="ebayHelpNotTheOwner">Prüfe bitte Deinen ebay-Token. Der Token ist im Extension-Manager von Deal! hinterlegt.</label>
       <label index="ebayHelpRelistNotPossible">Aktiviere den Artikel, um ihn zu aktualisieren. Siehe [Deal! ebay] > Aktion > Aktion: [Aktivieren/Aktualisieren].</label>
       <label index="ebayHelpReviseEndedListings">Biete den Artikel bitte erneut an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Aktion > Aktion: [Artikel erneut anbieten].</label>
       <label index="ebayItemError">System-Fehler: Der Status Deines Artikels auf ebay kann nicht festgestellt werden.</label>

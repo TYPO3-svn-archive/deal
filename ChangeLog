@@ -1,6 +1,7 @@
 0.1.2
   2014-10-02
   Improvements
+  * #i0018: ebay error 290: you are not the owner
   * #i0017: subtype_value_field, subtypes_excludelist
   * #i0016: #i0015 is canceled
             Reason: Without filled fields the user gets a lot of error and warning messages.

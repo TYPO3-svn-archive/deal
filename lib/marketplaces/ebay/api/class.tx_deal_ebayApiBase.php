@@ -185,6 +185,9 @@ class tx_deal_ebayApiBase
       case(196): // Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
         $this->evalResponsePromptErrorErrors00000196();
         return true;
+      case(290): // You're not the owner of the item.
+        $this->evalResponsePromptErrorErrors00000290();
+        return true;
       case(291): // Auction ended. You're not allowed to revise ended listings.
         $this->evalResponsePromptErrorErrors00000291();
         return true;
@@ -258,6 +261,23 @@ class tx_deal_ebayApiBase
     $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorRelistNotPossible' );
     $this->log( $prompt, 4 );
     $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpRelistNotPossible' );
+    $this->log( $prompt, 1 );
+  }
+
+  /**
+   * evalResponsePromptErrorErrors00000290(): You aren't the owner of the item
+   *
+   * @return	void
+   * @access private
+   * @internal #i0018
+   * @version  0.1.2
+   * @since    0.1.2
+   */
+  private function evalResponsePromptErrorErrors00000290()
+  {
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorNotTheOwner' );
+    $this->log( $prompt, 4 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpNotTheOwner' );
     $this->log( $prompt, 1 );
   }
 
