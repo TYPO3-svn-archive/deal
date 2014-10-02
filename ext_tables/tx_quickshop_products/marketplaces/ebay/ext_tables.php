@@ -575,7 +575,7 @@ $TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'showitem' ] = $str_showitem;
 $TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'subtype_value_field' ] = 'tx_deal_ebaymode';
 $TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'subtypes_excludelist' ] = array(
   'off' => ''
-  . 'tx_deal_ebayaction,'
+  //. 'tx_deal_ebayaction,'
   . 'tx_deal_ebaycategoryid,'
   . 'tx_deal_ebayconditionid,'
   . 'tx_deal_ebaydispatchtimemax,'
