@@ -488,8 +488,8 @@ $showRecordFieldList = $showRecordFieldList
         . 'tx_deal_ebaylistingduration,'
         . 'tx_deal_ebaylocation,'
         . 'tx_deal_ebaymode,'
-        . 'tx_deal_ebaypaymentmethods'
-        . 'tx_deal_ebaypaymentmethodsdescription'
+        . 'tx_deal_ebaypaymentmethods,'
+        . 'tx_deal_ebaypaymentmethodsdescription,'
         . 'tx_deal_ebayquantity,'
         . 'tx_deal_ebaylog,'
         . 'tx_deal_ebayreturnsacceptoption,'
@@ -515,7 +515,7 @@ $TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayitem' ][ 'showitem' 
 ;
 $TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaylengthoftime' ][ 'canNotCollapse' ] = 1;
 $TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaylengthoftime' ][ 'showitem' ] = ''
-        . 'tx_deal_ebaydispatchtimemax;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaydispatchtimemax,,'
+        . 'tx_deal_ebaydispatchtimemax;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaydispatchtimemax,'
         . 'tx_deal_ebaylistingduration;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaylistingduration,'
 ;
 $TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaypaymentmethods' ][ 'canNotCollapse' ] = 1;
@@ -585,8 +585,8 @@ $TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'subtypes_excludelist' ] = ar
   . 'tx_deal_ebaylistingduration,'
   . 'tx_deal_ebaylocation,'
   // . 'tx_deal_ebaymode,'
-  . 'tx_deal_ebaypaymentmethods'
-  . 'tx_deal_ebaypaymentmethodsdescription'
+  . 'tx_deal_ebaypaymentmethods,'
+  . 'tx_deal_ebaypaymentmethodsdescription,'
   . 'tx_deal_ebayquantity,'
   . 'tx_deal_ebaylog,'
   . 'tx_deal_ebayreturnsacceptoption,'
