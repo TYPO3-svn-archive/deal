@@ -1,6 +1,9 @@
 0.1.2
   2014-10-02
   Improvements
+  * #i0017: subtype_value_field, subtypes_excludelist
+  * #i0016: #i0015 is canceled
+            Reason: Without filled fields the user gets a lot of error and warning messages.
   * #i0015: required is removed from quick shop fields
   * #i0013: Extension Manager Labeling
   Bugfix

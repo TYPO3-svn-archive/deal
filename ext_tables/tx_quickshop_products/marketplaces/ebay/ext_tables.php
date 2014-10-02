@@ -1,8 +1,8 @@
 <?php
 
-if (!defined('TYPO3_MODE'))
+if ( !defined( 'TYPO3_MODE' ) )
 {
-  die('Access denied.');
+  die( 'Access denied.' );
 }
 
 
@@ -21,30 +21,30 @@ if (!defined('TYPO3_MODE'))
  * ************************************************************************ */
 
 // Configuration by the extension manager
-$confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['deal']);
+$confArr = unserialize( $GLOBALS[ 'TYPO3_CONF_VARS' ][ 'EXT' ][ 'extConf' ][ 'deal' ] );
 
 // values of the ebay marketplace
-$ebayMarketplace = $confArr['ebayMarketplace'];
-if (empty($ebayMarketplace))
+$ebayMarketplace = $confArr[ 'ebayMarketplace' ];
+if ( empty( $ebayMarketplace ) )
 {
   $ebayMarketplace = 'US - EBAY-US/USD (0)';
 }
-list( $country, $ebayCode ) = explode(' - ', $ebayMarketplace);
-list( $globalId, $currencyAndSiteid) = explode('/', $ebayCode);
-list( $currency, $siteId) = explode(' ', $currencyAndSiteid);
+list( $country, $ebayCode ) = explode( ' - ', $ebayMarketplace );
+list( $globalId, $currencyAndSiteid) = explode( '/', $ebayCode );
+list( $currency, $siteId) = explode( ' ', $currencyAndSiteid );
 $ebayMarketplaceCountry = $country;
 $ebayMarketplaceCurrency = $currency;
 $ebayMarketplaceGlobalId = $globalId;
-$ebayMarketplaceSiteId = trim($siteId, '()');
+$ebayMarketplaceSiteId = trim( $siteId, '()' );
 // values of the ebay marketplace
 
-$SiteID = sprintf('%03d', $ebayMarketplaceSiteId);
+$SiteID = sprintf( '%03d', $ebayMarketplaceSiteId );
 $tx_deal_ebaycategories = 'tx_deal_ebaycategories_' . $SiteID;
 $tx_deal_ebayshippingservicecode = 'tx_deal_ebayshippingservicecode_' . $SiteID;
 $tx_quickshop_products_mm_tx_deal_ebaycategories = 'tx_quickshop_products_mm_tx_deal_ebaycategories_' . $SiteID;
 $tx_quickshop_products_mm_tx_deal_ebayshippingservicecode = 'tx_quickshop_products_mm_tx_deal_ebayshippingservicecode_' . $SiteID;
-t3lib_div::loadTCA($tx_deal_ebaycategories);
-if (empty($TCA[$tx_deal_ebaycategories]))
+t3lib_div::loadTCA( $tx_deal_ebaycategories );
+if ( empty( $TCA[ $tx_deal_ebaycategories ] ) )
 {
   $tx_deal_ebaycategories = 'tx_deal_ebaycategories_000';
   $tx_deal_ebayshippingservicecode = 'tx_deal_ebayshippingservicecode_000';
@@ -55,19 +55,19 @@ if (empty($TCA[$tx_deal_ebaycategories]))
 // constants
 $int_div_position = 6;    // ..., 5. div[Images], 6. div[deal], 7. div[controlling], ...
 // TCA load
-t3lib_div::loadTCA('tx_quickshop_products');
+t3lib_div::loadTCA( 'tx_quickshop_products' );
 
 // TCA ctrl
-$TCA['tx_quickshop_products']['ctrl']['tx_deal'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'ctrl' ][ 'tx_deal' ] = array(
   'marketplaces' => array(
     'ebay' => array(
       'environment' => array(
-        'key' => $confArr['ebayEnvironment'], // sandbox, production
+        'key' => $confArr[ 'ebayEnvironment' ], // sandbox, production
         'production' => array(
-          'token' => $confArr['ebayProductionToken']  // obligate for production environment
+          'token' => $confArr[ 'ebayProductionToken' ]  // obligate for production environment
         ),
         'sandbox' => array(
-          'token' => $confArr['ebaySandboxToken']     // obligate for sandbox environment
+          'token' => $confArr[ 'ebaySandboxToken' ]     // obligate for sandbox environment
         )
       ),
       'fields' => array(
@@ -88,15 +88,15 @@ $TCA['tx_quickshop_products']['ctrl']['tx_deal'] = array(
         'title' => 'title', // obligate
       ),
       'manufacturer' => array(
-        'company' => $confArr['manufacturerCompany']
+        'company' => $confArr[ 'manufacturerCompany' ]
       ),
-      'marketplace' => $confArr['ebayMarketplace'],
+      'marketplace' => $confArr[ 'ebayMarketplace' ],
       'paypal' => array(
         'production' => array(
-          'email' => $confArr['paypalProductionEmail']  // optional
+          'email' => $confArr[ 'paypalProductionEmail' ]  // optional
         ),
         'sandbox' => array(
-          'email' => $confArr['paypalSandboxEmail']  // optional
+          'email' => $confArr[ 'paypalSandboxEmail' ]  // optional
         )
       ),
     ),
@@ -104,7 +104,7 @@ $TCA['tx_quickshop_products']['ctrl']['tx_deal'] = array(
 );
 // TCA ctrl
 // TCA columns
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayaction'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayaction' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction',
   'config' => array(
@@ -134,7 +134,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayaction'] = array(
     'default' => 'enableupdate'
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaycategoryid'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaycategoryid' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaycategoryid',
   'config' => array(
@@ -153,7 +153,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaycategoryid'] = array(
     'MM' => $tx_quickshop_products_mm_tx_deal_ebaycategories,
   )
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayconditionid'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayconditionid' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayconditionid',
   'config' => array(
@@ -187,7 +187,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayconditionid'] = array(
     'default' => '1000'
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaydispatchtimemax'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaydispatchtimemax' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaydispatchtimemax',
   'config' => array(
@@ -233,7 +233,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaydispatchtimemax'] = array(
     'default' => '2'
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayexternalLinks'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayexternalLinks' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayexternalLinks',
   'config' => array(
@@ -241,7 +241,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayexternalLinks'] = array(
     'userFunc' => 'tx_deal_userfunc->promptExternalLinks',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayitemid'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayitemid' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayitemid',
   'config' => array(
@@ -250,7 +250,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayitemid'] = array(
     'readOnly' => '1',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayitemstatus'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayitemstatus' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayitemstatus',
   'config' => array(
@@ -260,7 +260,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayitemstatus'] = array(
     'readOnly' => '1',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaylistingduration'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaylistingduration' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaylistingduration',
   'config' => array(
@@ -318,19 +318,19 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaylistingduration'] = array(
     'default' => 'Days_30',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaylocation'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaylocation' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaylocation',
   'config' => array(
     'type' => 'input',
     'size' => '30',
     'max' => '60',
-    // #i0015, 141002, dwildt, 1-, 1+
-    //'eval' => 'required,trim',
-    'eval' => 'trim',
+    // #i0015, #i0016, 141002, dwildt, 1+, 1-
+    'eval' => 'required,trim',
+  //'eval' => 'trim',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaymode'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaymode' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaymode',
   'config' => array(
@@ -352,7 +352,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaymode'] = array(
     'default' => 'off',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayquantity'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayquantity' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayquantity',
   'config' => array(
@@ -363,15 +363,15 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayquantity'] = array(
     'default' => 1
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaypaymentmethods'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaypaymentmethods' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaypaymentmethods',
   'config' => array(
     'type' => 'select',
     'size' => 3,
-    // #i0015, 141002, dwildt, 1-, 1+
-    //'minitems' => 1,
-    'minitems' => 0,
+    // #i0015, #i0016, 141002, dwildt, 1+, 1-
+    'minitems' => 1,
+    //'minitems' => 0,
     'maxitems' => 3,
     'items' => array(
       array(
@@ -389,7 +389,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaypaymentmethods'] = array(
     ),
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaypaymentmethodsdescription'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaypaymentmethodsdescription' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaypaymentmethodsdescription',
   'config' => array(
@@ -398,7 +398,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaypaymentmethodsdescription'
     'rows' => '3',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebaylog'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebaylog' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaylog',
   'config' => array(
@@ -407,7 +407,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaylog'] = array(
     'rows' => '10',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayreturnsacceptoption'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayreturnsacceptoption' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayreturnsacceptoption',
   'config' => array(
@@ -420,7 +420,7 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayreturnsacceptoption'] = ar
     ),
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayreturnpolicydescription'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayreturnpolicydescription' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayreturnpolicydescription',
   'config' => array(
@@ -429,20 +429,20 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayreturnpolicydescription'] 
     'rows' => '5',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingserviceadditionalcosts'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayshippingserviceadditionalcosts' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingserviceadditionalcosts',
   'config' => array(
     'type' => 'input',
     'size' => '10',
     'max' => '10',
-    // #i0015, 141002, dwildt, 1-, 1+
-    //'eval' => 'required,double2,nospace',
-    'eval' => 'double2,nospace',
+    // #i0015, #i0016, 141002, dwildt, 1+, 1-
+    'eval' => 'required,double2,nospace',
+    //'eval' => 'double2,nospace',
     'default' => '0.00',
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingservicecode'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayshippingservicecode' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingservicecode',
   'config' => array(
@@ -462,21 +462,21 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingservicecode'] = ar
     'MM' => $tx_quickshop_products_mm_tx_deal_ebayshippingservicecode,
   ),
 );
-$TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingservicecosts'] = array(
+$TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayshippingservicecosts' ] = array(
   'exclude' => 1,
   'label' => 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingservicecosts',
   'config' => array(
     'type' => 'input',
     'size' => '10',
     'max' => '10',
-    // #i0015, 141002, dwildt, 1-, 1+
-    //'eval' => 'required,double2,nospace',
-    'eval' => 'double2,nospace',
+    // #i0015, #i0016, 141002, dwildt, 1+, 1-
+    'eval' => 'required,double2,nospace',
+  //'eval' => 'double2,nospace',
   ),
 );
 // TCA columns
 // TCA interface
-$showRecordFieldList = $TCA['tx_quickshop_products']['interface']['showRecordFieldList'];
+$showRecordFieldList = $TCA[ 'tx_quickshop_products' ][ 'interface' ][ 'showRecordFieldList' ];
 $showRecordFieldList = $showRecordFieldList
         . 'tx_deal_ebayaction,'
         . 'tx_deal_ebaycategoryid,'
@@ -498,38 +498,38 @@ $showRecordFieldList = $showRecordFieldList
         . 'tx_deal_ebayshippingservicecode,'
         . 'tx_deal_ebayshippingservicecosts,'
 ;
-$TCA['tx_quickshop_products']['interface']['showRecordFieldList'] = $showRecordFieldList;
+$TCA[ 'tx_quickshop_products' ][ 'interface' ][ 'showRecordFieldList' ] = $showRecordFieldList;
 // TCA interface
 // TCA palettes
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaymodeaction']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaymodeaction']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaymodeaction' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaymodeaction' ][ 'showitem' ] = ''
         . 'tx_deal_ebayaction;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayaction,'
         . 'tx_deal_ebaymode;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaymode'
 ;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayitem']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayitem']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayitem' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayitem' ][ 'showitem' ] = ''
         . 'tx_deal_ebayitemid;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayitemid,'
         . 'tx_deal_ebayconditionid;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayconditionid,'
         . 'tx_deal_ebayquantity;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayquantity, --linebreak--,'
         . 'tx_deal_ebaycategoryid;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaycategoryid'
 ;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaylengthoftime']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaylengthoftime']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaylengthoftime' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaylengthoftime' ][ 'showitem' ] = ''
         . 'tx_deal_ebaydispatchtimemax;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaydispatchtimemax,,'
         . 'tx_deal_ebaylistingduration;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaylistingduration,'
 ;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaypaymentmethods']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebaypaymentmethods']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaypaymentmethods' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebaypaymentmethods' ][ 'showitem' ] = ''
         . 'tx_deal_ebaypaymentmethods;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaypaymentmethods,'
         . 'tx_deal_ebaypaymentmethodsdescription;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebaypaymentmethodsdescription'
 ;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayreturnpolicy']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayreturnpolicy']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayreturnpolicy' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayreturnpolicy' ][ 'showitem' ] = ''
         . 'tx_deal_ebayreturnsacceptoption;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayreturnsacceptoption,'
         . 'tx_deal_ebayreturnpolicydescription;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayreturnpolicydescription'
 ;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayshipping']['canNotCollapse'] = 1;
-$TCA['tx_quickshop_products']['palettes']['tx_deal_ebayshipping']['showitem'] = ''
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayshipping' ][ 'canNotCollapse' ] = 1;
+$TCA[ 'tx_quickshop_products' ][ 'palettes' ][ 'tx_deal_ebayshipping' ][ 'showitem' ] = ''
         . 'tx_deal_ebayshippingservicecode;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingservicecode, --linebreak--,'
         . 'tx_deal_ebayshippingservicecosts;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingservicecosts,'
         . 'tx_deal_ebayshippingserviceadditionalcosts;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_deal_ebayshippingserviceadditionalcosts,'
@@ -537,18 +537,18 @@ $TCA['tx_quickshop_products']['palettes']['tx_deal_ebayshipping']['showitem'] = 
 ;
 // TCA palettes
 // TCA types
-$str_showitem = $TCA['tx_quickshop_products']['types']['0']['showitem'];
-$arr_showitem = explode('--div--;', $str_showitem);
+$str_showitem = $TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'showitem' ];
+$arr_showitem = explode( '--div--;', $str_showitem );
 $arr_new_showitem = array();
-foreach ($arr_showitem as $key => $value)
+foreach ( $arr_showitem as $key => $value )
 {
-  switch (true)
+  switch ( true )
   {
     case($key < $int_div_position):
-      $arr_new_showitem[$key] = $value;
+      $arr_new_showitem[ $key ] = $value;
       break;
     case($key == $int_div_position):
-      $arr_new_showitem[$key] = ''
+      $arr_new_showitem[ $key ] = ''
               . 'LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:tx_quickshop_products_div_tx_deal_ebay, '
               . 'tx_deal_ebayitemstatus,'
               . '--palette--;LLL:EXT:deal/ext_tables/tx_quickshop_products/marketplaces/ebay/locallang_db.xml:palette_tx_deal_ebaymodeaction;tx_deal_ebaymodeaction,'
@@ -560,17 +560,24 @@ foreach ($arr_showitem as $key => $value)
               . 'tx_deal_ebaylog,'
               . 'tx_deal_ebayexternalLinks,'
       ;
-      $arr_new_showitem[$key + 1] = $value;
+      $arr_new_showitem[ $key + 1 ] = $value;
       break;
     case($key > $int_div_position):
     default:
-      $arr_new_showitem[$key + 1] = $value;
+      $arr_new_showitem[ $key + 1 ] = $value;
       break;
   }
 }
-$str_showitem = implode('--div--;', $arr_new_showitem);
-$TCA['tx_quickshop_products']['types']['0']['showitem'] = $str_showitem;
-unset($int_div_position);
+$str_showitem = implode( '--div--;', $arr_new_showitem );
+$TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'showitem' ] = $str_showitem;
+
+// #i0017, 141002, dwildt, 4+;
+$TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'subtype_value_field' ] = 'tx_deal_ebaymode';
+$TCA[ 'tx_quickshop_products' ][ 'types' ][ '0' ][ 'subtypes_excludelist' ] = array(
+  'off' => 'tx_deal_ebayaction',
+);
+
+unset( $int_div_position );
 // TCA types
 
   // TCA for tx_quickshop_products
