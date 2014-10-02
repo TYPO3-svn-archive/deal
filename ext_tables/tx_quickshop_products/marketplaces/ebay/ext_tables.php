@@ -369,7 +369,9 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaypaymentmethods'] = array(
   'config' => array(
     'type' => 'select',
     'size' => 3,
-    'minitems' => 1,
+    // #i0015, 141002, dwildt, 1-, 1+
+    //'minitems' => 1,
+    'minitems' => 0,
     'maxitems' => 3,
     'items' => array(
       array(
