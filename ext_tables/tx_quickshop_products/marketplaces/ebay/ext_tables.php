@@ -325,7 +325,9 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebaylocation'] = array(
     'type' => 'input',
     'size' => '30',
     'max' => '60',
-    'eval' => 'required,trim',
+    // #i0015, 141002, dwildt, 1-, 1+
+    //'eval' => 'required,trim',
+    'eval' => 'trim',
   ),
 );
 $TCA['tx_quickshop_products']['columns']['tx_deal_ebaymode'] = array(
@@ -432,7 +434,9 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingserviceadditionalc
     'type' => 'input',
     'size' => '10',
     'max' => '10',
-    'eval' => 'required,double2,nospace',
+    // #i0015, 141002, dwildt, 1-, 1+
+    //'eval' => 'required,double2,nospace',
+    'eval' => 'double2,nospace',
     'default' => '0.00',
   ),
 );
@@ -463,7 +467,9 @@ $TCA['tx_quickshop_products']['columns']['tx_deal_ebayshippingservicecosts'] = a
     'type' => 'input',
     'size' => '10',
     'max' => '10',
-    'eval' => 'required,double2,nospace',
+    // #i0015, 141002, dwildt, 1-, 1+
+    //'eval' => 'required,double2,nospace',
+    'eval' => 'double2,nospace',
   ),
 );
 // TCA columns

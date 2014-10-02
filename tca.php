@@ -3,16 +3,18 @@
 //echo 'GET';
 //var_export( $_GET, false);
 
-if (!defined('TYPO3_MODE'))
-  die('Access denied.');
+if ( !defined( 'TYPO3_MODE' ) )
+{
+  die( 'Access denied.' );
+}
 
 // tx_deal_ebaycategories
-$TCA['tx_deal_ebaycategories'] = array(
-  'ctrl' => $TCA['tx_deal_ebaycategories']['ctrl'],
+$TCA[ 'tx_deal_ebaycategories' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebaycategories' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,uid_parent'
   ),
-  'feInterface' => $TCA['tx_deal_ebaycategories']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebaycategories' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -52,21 +54,20 @@ $TCA['tx_deal_ebaycategories'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebaycategories
-
 // tx_deal_ebaycategories_000
-$TCA['tx_deal_ebaycategories_000'] = array(
-  'ctrl' => $TCA['tx_deal_ebaycategories_000']['ctrl'],
+$TCA[ 'tx_deal_ebaycategories_000' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebaycategories_000' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,uid_parent'
   ),
-  'feInterface' => $TCA['tx_deal_ebaycategories_000']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebaycategories_000' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -106,21 +107,20 @@ $TCA['tx_deal_ebaycategories_000'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebaycategories_000
-
 // tx_deal_ebaycategories_077
-$TCA['tx_deal_ebaycategories_077'] = array(
-  'ctrl' => $TCA['tx_deal_ebaycategories_077']['ctrl'],
+$TCA[ 'tx_deal_ebaycategories_077' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebaycategories_077' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,uid_parent'
   ),
-  'feInterface' => $TCA['tx_deal_ebaycategories_077']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebaycategories_077' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -160,21 +160,20 @@ $TCA['tx_deal_ebaycategories_077'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, uid_parent' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebaycategories_077
-
 // tx_deal_ebayshippingservicecode
-$TCA['tx_deal_ebayshippingservicecode'] = array(
-  'ctrl' => $TCA['tx_deal_ebayshippingservicecode']['ctrl'],
+$TCA[ 'tx_deal_ebayshippingservicecode' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebayshippingservicecode' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,code'
   ),
-  'feInterface' => $TCA['tx_deal_ebayshippingservicecode']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebayshippingservicecode' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -204,21 +203,20 @@ $TCA['tx_deal_ebayshippingservicecode'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebayshippingservicecode
-
 // tx_deal_ebayshippingservicecode_000
-$TCA['tx_deal_ebayshippingservicecode_000'] = array(
-  'ctrl' => $TCA['tx_deal_ebayshippingservicecode_000']['ctrl'],
+$TCA[ 'tx_deal_ebayshippingservicecode_000' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebayshippingservicecode_000' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,code'
   ),
-  'feInterface' => $TCA['tx_deal_ebayshippingservicecode_000']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebayshippingservicecode_000' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -248,21 +246,20 @@ $TCA['tx_deal_ebayshippingservicecode_000'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebayshippingservicecode_000
-
 // tx_deal_ebayshippingservicecode_077
-$TCA['tx_deal_ebayshippingservicecode_077'] = array(
-  'ctrl' => $TCA['tx_deal_ebayshippingservicecode_077']['ctrl'],
+$TCA[ 'tx_deal_ebayshippingservicecode_077' ] = array(
+  'ctrl' => $TCA[ 'tx_deal_ebayshippingservicecode_077' ][ 'ctrl' ],
   'interface' => array(
     'showRecordFieldList' => 'hidden,title,code'
   ),
-  'feInterface' => $TCA['tx_deal_ebayshippingservicecode_077']['feInterface'],
+  'feInterface' => $TCA[ 'tx_deal_ebayshippingservicecode_077' ][ 'feInterface' ],
   'columns' => array(
     'hidden' => array(
       'exclude' => 1,
@@ -292,10 +289,10 @@ $TCA['tx_deal_ebayshippingservicecode_077'] = array(
     ),
   ),
   'types' => array(
-    '0' => array('showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code')
+    '0' => array( 'showitem' => 'hidden;;1;;1-1-1, title;;;;2-2-2, code' )
   ),
   'palettes' => array(
-    '1' => array('showitem' => ''),
+    '1' => array( 'showitem' => '' ),
   )
 );
 // tx_deal_ebayshippingservicecode_077

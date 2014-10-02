@@ -1,6 +1,7 @@
 0.1.2
   2014-10-02
   Improvements
+  * #i0015: required is removed from quick shop fields
   * #i0013: Extension Manager Labeling
   Bugfix
   * #i0014: tx_deal_ebayApiBase::setEbayItemStatus (#1994): ebay status is undefined: ""
