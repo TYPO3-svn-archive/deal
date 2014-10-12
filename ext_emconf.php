@@ -6,7 +6,7 @@ $EM_CONF[$_EXTKEY] = array(
   'category' => 'be',
   'shy' => 0,
   'version' => '1.0.0',
-  'dependencies' => 'cps_tcatree,deal_ebay_000_us',
+  'dependencies' => 'cps_devlib,cps_tcatree,deal_ebay_000_us,typo3',
   'conflicts' => '',
   'priority' => '',
   'loadOrder' => '',
@@ -24,9 +24,10 @@ $EM_CONF[$_EXTKEY] = array(
   'CGLcompliance_note' => '',
   'constraints' => array(
     'depends' => array(
-      'cps_tcatree' => '',
+      'cps_devlib' => '0.9.1-',
+      'cps_tcatree' => '0.4.2-',
       'deal_ebay_000_us' => '',
-      'typo3' => '4.5.0-6.1.99',
+      'typo3' => '4.5.0-6.2.99',
     ),
     'conflicts' => array(
     ),
