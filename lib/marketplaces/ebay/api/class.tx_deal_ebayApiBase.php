@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage	tx_deal
  * @internal    #i0003
- * @version     0.1.2
+ * @version     1.0.0
  * @since       0.0.3
  */
 class tx_deal_ebayApiBase
@@ -1208,7 +1208,7 @@ class tx_deal_ebayApiBase
    *
    * @return	string  $pictureDetails : XML tag with the picture details
    * @access private
-   * @version  0.0.3
+   * @version  1.0.0
    * @since    0.0.3
    */
   private function getRequestContentAddItemFieldsPictureDetails()
@@ -1221,6 +1221,9 @@ class tx_deal_ebayApiBase
     $uploadFolder = $TCA[ $table ][ 'columns' ][ $tcaColumn ][ 'config' ][ 'uploadfolder' ];
 
     $urlToPicture = TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv( 'TYPO3_SITE_URL' ) . $uploadFolder . '/';
+
+    // #i0015, 141012, dwildt, 1+
+    $urlToPicture = str_replace( 'https://', 'http://', $urlToPicture );
 //    var_dump(__METHOD__, __LINE__, $tcaColumn, $pictures, $uploadFolder, $GLOBALS['TYPO3_SITE_URL'],
 //            TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), $url);
     $csvPictures = trim( $this->getDatamapValueByTcaConfField( 'pictures' ), ',' );
