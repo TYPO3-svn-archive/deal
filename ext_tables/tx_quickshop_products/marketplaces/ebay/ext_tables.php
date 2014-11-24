@@ -247,7 +247,8 @@ $TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayitemid' ] = array(
   'config' => array(
     'type' => 'input',
     'size' => '30',
-    'readOnly' => '1',
+    'eval' => 'trim',
+    //'readOnly' => '1',
   ),
 );
 $TCA[ 'tx_quickshop_products' ][ 'columns' ][ 'tx_deal_ebayitemstatus' ] = array(

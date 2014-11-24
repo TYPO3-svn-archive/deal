@@ -32,7 +32,7 @@
       <label index="promptEvaluatorTYPO3version48orGreater">You are using TYPO3 greater than 4.7. Flip it! isn't tested in this version. Try it!</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div style="float:right;padding-left:1em;">
-          <a href="http://deal.de/en/" th
+          <a href="http://typo3-deal.de/en/"
             alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
@@ -71,28 +71,28 @@
               target="_blank">Manual (PDF) &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/en"
+            <a href="http://typo3-deal.de/en"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="deal - the Shopping Cart"
               title="deal - the Shopping Cart"
               target="_blank">Homepage &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/forum/"
+            <a href="http://typo3-deal.de/forum/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="TYPO3-deal - Forum"
               title="TYPO3-deal - Forum"
               target="_blank">Forum &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/en/support"
+            <a href="http://typo3-deal.de/en/support"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="deal - the Shopping Cart"
               title="deal - the Shopping Cart"
               target="_blank">Support &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/en/sponsoring"
+            <a href="http://typo3-deal.de/en/sponsoring"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="deal - the Shopping Cart"
               title="deal - the Shopping Cart"
@@ -127,7 +127,7 @@
           I need the money for improving and developing Deal.<br />
           <br />
           Dirk Wildt<br />
-          <a href="http://deal.de/en/sponsoring/"
+          <a href="http://typo3-deal.de/en/sponsoring/"
             style="background:none;border:none;float:none;text-decoration:underline;"
             alt="Donating and Sponsoring"
             title="Donating and Sponsoring"
@@ -147,14 +147,14 @@
             alt="made in nature, Germany, sponsors the Deal project" /></a>
         <p style="padding:0 0 1em 0;">
           You like to subsidise the Deal project?
-          <a href="http://deal.de/en/sponsoring/"
+          <a href="http://typo3-deal.de/en/sponsoring/"
             style="background:none;border:none;float:none;text-decoration:underline;"
             alt="Your logo with your URL. 120 x 90 pixel."
             title="Your logo with your URL. 120 x 90 pixel."
             target="_blank">
             Further information &raquo;</a>.
         </p>
-        <a href="http://deal.de/en/sponsoring/"
+        <a href="http://typo3-deal.de/en/sponsoring/"
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
@@ -163,7 +163,7 @@
             height="90"
             title="Your logo with your URL. 120 x 90 pixel." /></a>
         &nbsp;&nbsp;
-        <a href="http://deal.de/en/sponsoring/"
+        <a href="http://typo3-deal.de/en/sponsoring/"
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
@@ -172,7 +172,7 @@
             height="90"
             title="Your logo with your URL. 120 x 90 pixel." /></a>
         &nbsp;&nbsp;
-        <a href="http://deal.de/en/sponsoring/"
+        <a href="http://typo3-deal.de/en/sponsoring/"
           alt="Your logo with your URL. 120 x 90 pixel."
           title="Your logo with your URL. 120 x 90 pixel."
           target="_blank">
@@ -210,7 +210,7 @@
       <label index="promptEvaluatorTYPO3version48orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als 4.7. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div style="float:right;padding-left:1em;">
-          <a href="http://deal.de/en/" th
+          <a href="http://typo3-deal.de/en/"
             alt="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             title="Deal is powered by Dirk Wildt (die-netzmacher.de)"
             target="_blank">
@@ -249,28 +249,28 @@
               target="_blank">Handbuch (PDF) &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/en"
+            <a href="http://typo3-deal.de/en"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="deal - the Shopping Cart"
               title="deal - the Shopping Cart"
               target="_blank">Homepage &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/forum/"
+            <a href="http://typo3-deal.de/forum/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Forum"
               title="Deal - Forum"
               target="_blank">Forum &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/support/"
+            <a href="http://typo3-deal.de/support/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Support"
               title="Deal - Support"
               target="_blank">Support &raquo;</a>
           </li>
           <li style="margin-bottom:.6em;">
-            <a href="http://deal.de/sponsoring/"
+            <a href="http://typo3-deal.de/sponsoring/"
               style="background:none;border:none;float:none;text-decoration:underline;"
               alt="Deal - Sponsoring"
               title="Deal - Sponsoring"
@@ -305,7 +305,7 @@
           Ich brauche das Geld f&uuml;r die Verbesserung und Weiterentwicklung von Deal.<br />
           <br />
           Dirk Wildt<br />
-          <a href="http://deal.de/sponsoring/"
+          <a href="http://typo3-deal.de/sponsoring/"
             style="background:none;border:none;float:none;text-decoration:underline;"
             alt="Spenden und Sponsern"
             title="Spenden und Sponsern"
@@ -325,14 +325,14 @@
             title="made in nature, Deutschland, Sponsor des Deal-Projekts" /></a>
         <p style="padding:0 0 1em 0;">
           M&ouml;chtest Du das Deal-Projekt unterst&uuml;tzen?
-          <a href="http://deal.de/sponsoring/"
+          <a href="http://typo3-deal.de/sponsoring/"
             style="background:none;border:none;float:none;text-decoration:underline;"
             alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
             target="_blank">
             Mehr Infos &raquo;</a>.
         </p>
-        <a href="http://deal.de/sponsoring/"
+        <a href="http://typo3-deal.de/sponsoring/"
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
@@ -341,7 +341,7 @@
             height="90"
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
         &nbsp;&nbsp;
-        <a href="http://deal.de/sponsoring/"
+        <a href="http://typo3-deal.de/sponsoring/"
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
@@ -350,7 +350,7 @@
             height="90"
             title="Dein Logo mit Deiner URL. 120 x 90 Pixel." /></a>
         &nbsp;&nbsp;
-        <a href="http://deal.de/sponsoring/"
+        <a href="http://typo3-deal.de/sponsoring/"
           alt="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           title="Dein Logo mit Deiner URL. 120 x 90 Pixel."
           target="_blank">
