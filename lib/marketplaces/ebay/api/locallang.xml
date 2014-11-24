@@ -43,6 +43,7 @@
       <label index="ebayErrorNotTheOwner">You are not the owner of the item.</label>
       <label index="ebayErrorRelistNotPossible">The item can not offered again. Probably the offer is still exist. Maybe the item does not exist.</label>
       <label index="ebayErrorReviseEndedListings">You are not allowed to edit items, which aren't offered.</label>
+      <label index="ebayErrorShippingServiceCost">The costs for shipping service arent proper.</label>
       <label index="ebayFeesTablePromptCantEvaluated">Can't evaluated in this mode.</label>
       <label index="ebayFeesTableNoFees">Transaction is without any fee.</label>
       <label index="ebayFeesTableNoWarranty">Without any warranty! And without any further costs like any commission.</label>
@@ -53,6 +54,7 @@
       <label index="ebayHelpNotTheOwner">Please check your ebay token. The token is defined in the extension manager of Deal!</label>
       <label index="ebayHelpRelistNotPossible">Enable the item, if you like to update it. See [Deal! ebay] > Action > action: [Enable/update].</label>
       <label index="ebayHelpReviseEndedListings">Please offer the item again, if you like to edit it. See [Deal! ebay] > Action > action: [Offer/update again].</label>
+      <label index="ebayHelpShippingServiceCost">Please enter proper  costs for shipping service.</label>
       <label index="ebayItemError">Fatal error: The status of your item on ebay can't evaluated.</label>
       <label index="ebayItemIsNotOnEbay">Your item isn't on ebay available.</label>
       <label index="ebayItemIsOnEbayEnabled"><![CDATA[Your item is on ebay%ebayEnvironment% enabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>Item on ebay</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
@@ -128,6 +130,7 @@
       <label index="ebayErrorNotTheOwner">Du bist nicht der Eigentümer des Artikels.</label>
       <label index="ebayErrorRelistNotPossible">Der Artikel kann nicht erneut angeboten werden. Entweder wird er bereits angeboten oder es gibt ihn nicht mehr.</label>
       <label index="ebayErrorReviseEndedListings">Artikel, die nicht angeboten werden, können nicht bearbeitet werden.</label>
+      <label index="ebayErrorShippingServiceCost">Die Versandkosten sind nicht in Ordnung.</label>
       <label index="ebayFeesTablePromptCantEvaluated">Können in diesem Modus vorab nicht ermittelt werden.</label>
       <label index="ebayFeesTableNoFees">Änderungen sind kostenlos.</label>
       <label index="ebayFeesTableNoWarranty">Ohne Gewähr! Und ohne weitere Kosten wie etwa Verkaufsgebühren.</label>
@@ -138,6 +141,7 @@
       <label index="ebayHelpNotTheOwner">Prüfe bitte Deinen ebay-Token. Der Token ist im Extension-Manager von Deal! hinterlegt.</label>
       <label index="ebayHelpRelistNotPossible">Aktiviere den Artikel, um ihn zu aktualisieren. Siehe [Deal! ebay] > Aktion > Aktion: [Aktivieren/Aktualisieren].</label>
       <label index="ebayHelpReviseEndedListings">Biete den Artikel bitte erneut an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Aktion > Aktion: [Artikel erneut anbieten].</label>
+      <label index="ebayErrorShippingServiceCost">Geben Sie bitte korrekte Versandkosten an.</label>
       <label index="ebayItemError">System-Fehler: Der Status Deines Artikels auf ebay kann nicht festgestellt werden.</label>
       <label index="ebayItemIsNotOnEbay">Dein Artikel ist auf ebay nicht vorhanden.</label>
       <label index="ebayItemIsOnEbayEnabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>

@@ -182,6 +182,9 @@ class tx_deal_ebayApiBase
 
     switch ( $this->ebayErrorCode )
     {
+      case(37): // Unproper ShippingServiceOptions.ShippingServiceCost
+        $this->evalResponsePromptErrorErrors00000037();
+        return true;
       case(196): // Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
         $this->evalResponsePromptErrorErrors00000196();
         return true;
@@ -246,6 +249,22 @@ class tx_deal_ebayApiBase
     $this->log( $xml, -1 );
 
     return true;
+  }
+
+  /**
+   * evalResponsePromptErrorErrors00000196(): Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
+   *
+   * @return	void
+   * @access private
+   * @version  1.0.1
+   * @since    1.0.1
+   */
+  private function evalResponsePromptErrorErrors00000037()
+  {
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorShippingServiceCost' );
+    $this->log( $prompt, 4 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpShippingServiceCost' );
+    $this->log( $prompt, 1 );
   }
 
   /**
