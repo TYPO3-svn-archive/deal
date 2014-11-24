@@ -182,8 +182,11 @@ class tx_deal_ebayApiBase
 
     switch ( $this->ebayErrorCode )
     {
-      case(37): // Unproper ShippingServiceOptions.ShippingServiceCost
+      case(37): // Unproper ShippingServiceCost
         $this->evalResponsePromptErrorErrors00000037();
+        return true;
+      case(73): // Unproper starting price
+        $this->evalResponsePromptErrorErrors00000073();
         return true;
       case(196): // Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
         $this->evalResponsePromptErrorErrors00000196();
@@ -252,7 +255,7 @@ class tx_deal_ebayApiBase
   }
 
   /**
-   * evalResponsePromptErrorErrors00000196(): Item cannot be relisted. This item was not relisted because the listing does not exist or is still active.
+   * evalResponsePromptErrorErrors00000037(): Unproper shipping costs
    *
    * @return	void
    * @access private
@@ -264,6 +267,22 @@ class tx_deal_ebayApiBase
     $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorShippingServiceCost' );
     $this->log( $prompt, 4 );
     $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpShippingServiceCost' );
+    $this->log( $prompt, 1 );
+  }
+
+  /**
+   * evalResponsePromptErrorErrors00000073(): Unproper starting price
+   *
+   * @return	void
+   * @access private
+   * @version  1.0.1
+   * @since    1.0.1
+   */
+  private function evalResponsePromptErrorErrors00000073()
+  {
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayErrorStartingPrice' );
+    $this->log( $prompt, 4 );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayHelpStartingPrice' );
     $this->log( $prompt, 1 );
   }
 

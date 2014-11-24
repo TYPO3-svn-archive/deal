@@ -1,6 +1,7 @@
 1.0.1
   2014-10-12
   Feature
+  * #i0023: Manage error code 73
   * #i0022: Manage error code 37
   * #i0021: TCA tx_deal_ebayitemid isn't read only any longer
 
