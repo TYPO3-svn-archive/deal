@@ -141,7 +141,7 @@
       <label index="ebayHelpNotTheOwner">Prüfe bitte Deinen ebay-Token. Der Token ist im Extension-Manager von Deal! hinterlegt.</label>
       <label index="ebayHelpRelistNotPossible">Aktiviere den Artikel, um ihn zu aktualisieren. Siehe [Deal! ebay] > Aktion > Aktion: [Aktivieren/Aktualisieren].</label>
       <label index="ebayHelpReviseEndedListings">Biete den Artikel bitte erneut an, um ihn zu bearbeiten. Siehe [Deal! ebay] > Aktion > Aktion: [Artikel erneut anbieten].</label>
-      <label index="ebayErrorShippingServiceCost">Geben Sie bitte korrekte Versandkosten an.</label>
+      <label index="ebayHelpShippingServiceCost">Geben Sie bitte korrekte Versandkosten an.</label>
       <label index="ebayItemError">System-Fehler: Der Status Deines Artikels auf ebay kann nicht festgestellt werden.</label>
       <label index="ebayItemIsNotOnEbay">Dein Artikel ist auf ebay nicht vorhanden.</label>
       <label index="ebayItemIsOnEbayEnabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
