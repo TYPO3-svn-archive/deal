@@ -12,7 +12,7 @@
       <label index="palette_tx_deal_ebaypaymentmethods">Payment methods</label>
       <label index="palette_tx_deal_ebayreturnpolicy">Return policy</label>
       <label index="palette_tx_deal_ebayshipping">Shipping</label>
-      <label index="tx_quickshop_products_div_tx_deal_ebay">Deal! ebay</label>
+      <label index="tx_quickshop_products_div_tx_deal_ebay">ebay</label>
       <label index="tx_deal_ebayaction">Action</label>
       <label index="tx_deal_ebayaction_item_delete">Cleanup</label>
       <label index="tx_deal_ebayaction_item_disable">Disable</label>
@@ -79,7 +79,7 @@
       <label index="palette_tx_deal_ebaypaymentmethods">Bezahlmethoden</label>
       <label index="palette_tx_deal_ebayreturnpolicy">Rückgabebedingungen</label>
       <label index="palette_tx_deal_ebayshipping">Versand</label>
-      <label index="tx_quickshop_products_div_tx_deal_ebay">Deal! ebay</label>
+      <label index="tx_quickshop_products_div_tx_deal_ebay">ebay</label>
       <label index="tx_deal_ebayaction">Aktion</label>
       <label index="tx_deal_ebayaction_item_delete">Löschen</label>
       <label index="tx_deal_ebayaction_item_disable">Deaktivieren</label>

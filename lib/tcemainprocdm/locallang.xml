@@ -9,14 +9,14 @@
       <label index="amazonEnabledFalse">amazon is disabled. You can enable it by the Extension Manager.</label>
       <label index="ebayEnvironmentError">Fatal error: the selected ebay environment isn't defined. The selected environment in the extension manager is '%ebayEnvironment%'.</label>
       <label index="ebayEnvironmentFalse">ebay is disabled. Change it? Admin Tools > Extension Manager > Deal! > ebay > Environment.</label>
-      <label index="promptDealPhrase">Deal! TYPO3 for amazon and ebay</label>
+      <label index="promptDealPhrase">ebay (TYPO3 extension Deal!)</label>
       <label index="promptDetailsToSyslog">See details at Modul > Admin Tools > Log. You have to enable prompts. See extension manager > Deal! > [DRS] > Logging.</label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="amazonEnabledFalse">amazon ist deaktiviert. Du kannst es mit dem Extension Manager aktivieren.</label>
       <label index="ebayEnvironmentError">System-Fehler: die im Extension Manager gewählte ebay-Umgebung ist nicht definiert. Die gewählte Umgebung ist '%ebayEnvironment%'.</label>
       <label index="ebayEnvironmentFalse">ebay ist deaktiviert. Ändern? Adminwerkzeuge > Erweiterungsmanager > Deal! > ebay > Environment.</label>
-      <label index="promptDealPhrase">Deal! TYPO3 für amazon und ebay</label>
+      <label index="promptDealPhrase">ebay (TYPO3 Erweiterung Deal!)</label>
       <label index="promptDetailsToSyslog">Einzelheiten findest Du im Modul > Adminwerkzeuge > Protokoll. Du musst die Meldungen aktivieren. Siehe Extension Manager > Deal! > [DRS] > Logging.</label>
     </languageKey>
   </data>
