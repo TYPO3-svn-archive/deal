@@ -66,6 +66,7 @@
       <label index="ebayItemWarnNoUpdate">Warning: Your item won't updated on ebay.</label>
       <label index="ebayModeTest">The ebay modus of the current item is 'Test'. Your item won't updated on ebay.  Change it? [Deal! ebay] > Action > Mode.</label>
       <label index="ebayPaypalEmailEmpty">There isn't any Paypal e-mail-adress. Paymill won't used as payment method.</label>
+      <label index="ebaySalestaxpercentUndefined">Tax is undefined: '%tax%'. Please inspect tab [Price ...] > Tax.</label>
       <label index="ebayShippingcostsEmpty">No shipping type is selected. Please enable a shipping type: see tab [Deal! ebay] > Shipping.</label>
       <label index="ebayShippingservicecodeAreEmptyError">Fatal Error: ebay table with shipping service code is empty.</label>
       <label index="ebayShippingservicecodeAreEmptyHelp"><![CDATA[You have selected the marketplace [%marketplace%] by the extension manager.
@@ -155,6 +156,7 @@
       <label index="ebayItemWarnNoUpdate">Warnung: Dein Artikel auf ebay wird nicht aktualisiert.</label>
       <label index="ebayModeTest">Der ebay-Modus des aktuellen Artikels ist 'Test'. Dein Artikel auf ebay wird nicht aktualisiert. Ändern: [Deal! ebay] > Aktion > Modus.</label>
       <label index="ebayPaypalEmailEmpty">Es gibt keine Paymill E-Mail-Adresse. Paymill wird als Zahlungsmethode nicht verwendet.</label>
+      <label index="ebaySalestaxpercentUndefined">MwSt. ist nicht definiert: '%tax%'. Bitte prüfe im Reiter  [Preis ...] > MwSt.</label>
       <label index="ebayShippingcostsEmpty">Du hast keine Versandart ausgewählt. Bitte wähle eine Versandart aus: Reiter [Deal! ebay] > Versand.</label>
       <label index="ebayStatusError">System-Fehler: ebay-Status ist nicht definiert '%status%'.</label>
       <label index="ebayStatusIsNotOnEbay">Artikel ist nicht im ebay-Shop.</label>

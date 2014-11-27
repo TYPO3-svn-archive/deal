@@ -871,6 +871,7 @@ class tx_deal_ebayApiBase
     $PaymentMethods = $this->getRequestContentAddItemXmlPaymentmethods();
     $ReturnPolicy = $this->getRequestContentAddItemXmlReturnpolicy();
     $SiteCodeType = $this->ebayMarketplaceCountry;
+    $SalesTaxPercent = $this->getRequestContentAddItemFieldsSalestaxpercent( 'tax' );
     $ShippingService = $this->getRequestContentAddItemFieldsShippingservicecode();
     $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingserviceadditionalcosts' );
     $ShippingServiceCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingservicecosts' );
@@ -903,6 +904,9 @@ class tx_deal_ebayApiBase
   ' . $ProductListingDetails . '
   <Quantity>' . $Quantity . '</Quantity>
   ' . $ReturnPolicy . '
+  <SalesTax>
+    <SalesTaxPercent>' . $SalesTaxPercent . '</SalesTaxPercent>
+  </SalesTax>
   <ShippingDetails>
     <ShippingType>Flat</ShippingType>
     <ShippingServiceOptions>
@@ -1317,6 +1321,39 @@ class tx_deal_ebayApiBase
   </ProductListingDetails>';
 
     return $productListingDetails;
+  }
+
+  /**
+   * getRequestContentAddItemFieldsSalestaxpercent( )  : i.e. DE_Paket, DE_HermesPaket, USPSMedia
+   *
+   * @return	string  ebay shipping service code
+   * @access private
+   * @version  1.0.3
+   * @since    1.0.3
+   */
+  private function getRequestContentAddItemFieldsSalestaxpercent()
+  {
+    $prompt = __METHOD__ . ' #' . __LINE__;
+    $this->log( $prompt, -1 );
+
+    $SalesTaxPercent = $this->pObj->getDatamapRecord( 'tax' );
+
+    switch ( true )
+    {
+      case( $SalesTaxPercent === NULL ):
+        break;
+      case( $SalesTaxPercent < 1 ):
+        return $SalesTaxPercent;
+      case( $SalesTaxPercent == 1 ):
+        return 0.07;
+      case( $SalesTaxPercent == 2 ):
+        return 0.19;
+    }
+
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebaySalestaxpercentUndefined' );
+    $prompt = str_replace( '%tax%', $SalesTaxPercent, $prompt );
+    $this->log( $prompt, 4 );
+    return false;
   }
 
   /**
