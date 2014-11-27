@@ -904,10 +904,10 @@ class tx_deal_ebayApiBase
   ' . $ProductListingDetails . '
   <Quantity>' . $Quantity . '</Quantity>
   ' . $ReturnPolicy . '
-  <SalesTax>
-    <SalesTaxPercent>' . $SalesTaxPercent . '</SalesTaxPercent>
-  </SalesTax>
   <ShippingDetails>
+    <SalesTax>
+      <SalesTaxPercent>' . $SalesTaxPercent . '</SalesTaxPercent>
+    </SalesTax>
     <ShippingType>Flat</ShippingType>
     <ShippingServiceOptions>
       <ShippingServicePriority>1</ShippingServicePriority>
