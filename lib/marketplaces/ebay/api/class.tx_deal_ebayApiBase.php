@@ -871,7 +871,7 @@ class tx_deal_ebayApiBase
     $PaymentMethods = $this->getRequestContentAddItemXmlPaymentmethods();
     $ReturnPolicy = $this->getRequestContentAddItemXmlReturnpolicy();
     $SiteCodeType = $this->ebayMarketplaceCountry;
-    $SalesTaxPercent = $this->getRequestContentAddItemFieldsSalestaxpercent( );
+    $VatPercent = $this->getRequestContentAddItemFieldsVatpercent( );
     $ShippingService = $this->getRequestContentAddItemFieldsShippingservicecode();
     $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingserviceadditionalcosts' );
     $ShippingServiceCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingservicecosts' );
@@ -905,9 +905,6 @@ class tx_deal_ebayApiBase
   <Quantity>' . $Quantity . '</Quantity>
   ' . $ReturnPolicy . '
   <ShippingDetails>
-    <SalesTax>
-      <SalesTaxPercent>' . $SalesTaxPercent . '</SalesTaxPercent>
-    </SalesTax>
     <ShippingType>Flat</ShippingType>
     <ShippingServiceOptions>
       <ShippingServicePriority>1</ShippingServicePriority>
@@ -921,9 +918,7 @@ class tx_deal_ebayApiBase
   <StartPrice currencyID="' . $currencyID . '">' . $StartPrice . '</StartPrice>
   <Title>' . $Title . '</Title>
   <VATDetails> VATDetailsType
-    <BusinessSeller>1</BusinessSeller>
-    <RestrictedToBusiness>0</RestrictedToBusiness>
-    <VATPercent>' . $SalesTaxPercent . '</VATPercent>
+    <VATPercent>' . $VatPercent . '</VATPercent>
   </VATDetails>
  </Item>';
     $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $xmlrequestContent;
@@ -1333,46 +1328,34 @@ class tx_deal_ebayApiBase
   }
 
   /**
-   * getRequestContentAddItemFieldsSalestaxpercent( )  : i.e. DE_Paket, DE_HermesPaket, USPSMedia
+   * getRequestContentAddItemFieldsVatpercent( )  : i.e. DE_Paket, DE_HermesPaket, USPSMedia
    *
    * @return	string  ebay shipping service code
    * @access private
    * @version  1.0.3
    * @since    1.0.3
    */
-  private function getRequestContentAddItemFieldsSalestaxpercent()
+  private function getRequestContentAddItemFieldsVatpercent()
   {
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log( $prompt, -1 );
 
-
-    $SalesTaxPercent = $this->pObj->getDatamapRecord( 'tax' );
-
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
-    $this->log( $prompt, 2 );
+    $VatPercent = $this->pObj->getDatamapRecord( 'tax' );
 
     switch ( true )
     {
-      case( $SalesTaxPercent === NULL ):
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
-    $this->log( $prompt, 2 );
+      case( $VatPercent === NULL ):
         break;
-      case( $SalesTaxPercent < 1 ):
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
-    $this->log( $prompt, 2 );
-        return $SalesTaxPercent;
-      case( $SalesTaxPercent == 1 ):
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
-    $this->log( $prompt, 2 );
+      case( $VatPercent < 1 ):
+        return $VatPercent;
+      case( $VatPercent == 1 ):
         return 0.07;
-      case( $SalesTaxPercent == 2 ):
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
-    $this->log( $prompt, 2 );
+      case( $VatPercent == 2 ):
         return 0.19;
     }
 
-    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebaySalestaxpercentUndefined' );
-    $prompt = str_replace( '%tax%', $SalesTaxPercent, $prompt );
+    $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayVatpercentUndefined' );
+    $prompt = str_replace( '%tax%', $VatPercent, $prompt );
     $this->log( $prompt, 4 );
     return false;
   }
