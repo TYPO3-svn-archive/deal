@@ -85,6 +85,11 @@ $TCA[ 'tx_quickshop_products' ][ 'ctrl' ][ 'tx_deal' ] = array(
         'gross' => 'price', // obligate
         'pictures' => 'image', // optional
         'sku' => 'sku', // obligate: sku or uid
+        'tax' => array(
+          'vatpercent' => 'tax', // obligate: field for vat rate / tax
+          'normal' => '0.19', // obligate: value for the normal tax rate. Needed, if tax stores 1 for reduced and 2 for normal tax rate.
+          'reduced' => '0.07', // obligate: value for the reduced tax rate. Needed, if tax stores 1 for reduced and 2 for normal tax rate.
+        ),
         'title' => 'title', // obligate
       ),
       'manufacturer' => array(

@@ -1340,7 +1340,10 @@ class tx_deal_ebayApiBase
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log( $prompt, -1 );
 
-    $VatPercent = $this->pObj->getDatamapRecord( 'tax' );
+    $arrFilter = $this->getTcaConfFields( 'tax' );
+    $field = $arrFilter[ 'vatpercent' ];
+
+    $VatPercent = $this->pObj->getDatamapRecord( $field );
 
     switch ( true )
     {
@@ -1349,9 +1352,9 @@ class tx_deal_ebayApiBase
       case( $VatPercent < 1 ):
         return $VatPercent;
       case( $VatPercent == 1 ):
-        return 0.07;
+        return $arrFilter[ 'reduced' ];
       case( $VatPercent == 2 ):
-        return 0.19;
+        return $arrFilter[ 'normal' ];
     }
 
     $prompt = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/lib/marketplaces/ebay/api/locallang.xml:ebayVatpercentUndefined' );
