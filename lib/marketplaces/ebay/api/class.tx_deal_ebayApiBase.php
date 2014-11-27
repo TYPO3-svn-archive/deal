@@ -921,9 +921,8 @@ class tx_deal_ebayApiBase
     <VATPercent>' . $VatPercent . '</VATPercent>
   </VATDetails>
  </Item>';
-    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $xmlrequestContent;
-    $this->log( $prompt, 2 );
-
+//    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $xmlrequestContent;
+//    $this->log( $prompt, 2 );
 
     return $xmlrequestContent;
   }
