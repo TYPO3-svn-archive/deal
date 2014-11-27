@@ -1345,12 +1345,20 @@ class tx_deal_ebayApiBase
     switch ( true )
     {
       case( $SalesTaxPercent === NULL ):
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
+    $this->log( $prompt, 2 );
         break;
       case( $SalesTaxPercent < 1 ):
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
+    $this->log( $prompt, 2 );
         return $SalesTaxPercent;
       case( $SalesTaxPercent == 1 ):
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
+    $this->log( $prompt, 2 );
         return 0.07;
       case( $SalesTaxPercent == 2 ):
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
+    $this->log( $prompt, 2 );
         return 0.19;
     }
 
