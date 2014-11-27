@@ -871,7 +871,7 @@ class tx_deal_ebayApiBase
     $PaymentMethods = $this->getRequestContentAddItemXmlPaymentmethods();
     $ReturnPolicy = $this->getRequestContentAddItemXmlReturnpolicy();
     $SiteCodeType = $this->ebayMarketplaceCountry;
-    $SalesTaxPercent = $this->getRequestContentAddItemFieldsSalestaxpercent( 'tax' );
+    $SalesTaxPercent = $this->getRequestContentAddItemFieldsSalestaxpercent( );
     $ShippingService = $this->getRequestContentAddItemFieldsShippingservicecode();
     $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingserviceadditionalcosts' );
     $ShippingServiceCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingservicecosts' );
@@ -920,7 +920,16 @@ class tx_deal_ebayApiBase
   <SKU>' . $SKU . '</SKU>
   <StartPrice currencyID="' . $currencyID . '">' . $StartPrice . '</StartPrice>
   <Title>' . $Title . '</Title>
-</Item>';
+  <VATDetails> VATDetailsType
+    <BusinessSeller>1</BusinessSeller>
+    <RestrictedToBusiness>0</RestrictedToBusiness>
+    <VATPercent>' . $SalesTaxPercent . '</VATPercent>
+  </VATDetails>
+ </Item>';
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $xmlrequestContent;
+    $this->log( $prompt, 2 );
+
+
     return $xmlrequestContent;
   }
 
