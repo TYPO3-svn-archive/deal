@@ -1336,7 +1336,11 @@ class tx_deal_ebayApiBase
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log( $prompt, -1 );
 
+
     $SalesTaxPercent = $this->pObj->getDatamapRecord( 'tax' );
+
+    $prompt = __METHOD__ . ' #' . __LINE__ . ': ' . $SalesTaxPercent;
+    $this->log( $prompt, 2 );
 
     switch ( true )
     {
