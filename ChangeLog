@@ -1,7 +1,12 @@
+1.0.4
+  2014-12-01
+  Bugfix
+  * #i0026: ext_tables.php: vat percent is moved from 0.19 to 19 and 0.07 to 7 (see #i0025)
+
 1.0.3
   2014-11-27
   Improvement
-  * #i0025: Adding field vatRate
+  * #i0025: Adding field vatRate / vatPercent (see #i0026)
 
 1.0.2
   2014-11-25
