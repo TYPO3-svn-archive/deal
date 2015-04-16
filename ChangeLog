@@ -1,3 +1,15 @@
+6.0.12
+  2015-04-16
+  Improvement
+  * #i0028: CI
+  * #i0027: Update for Quick Shop 6.0.12
+            Fields are moved
+            table tx_quickshop_products
+            * category  > tx_quickshop_categories
+            * dimension > tx_quickshop_dimension
+            * material  > tx_quickshop_material
+            See: Quick Shop #i0026
+
 1.0.4
   2014-12-01
   Bugfix
