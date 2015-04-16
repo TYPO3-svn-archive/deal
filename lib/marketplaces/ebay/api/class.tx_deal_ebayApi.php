@@ -1231,8 +1231,13 @@ class tx_deal_ebayApi
         $this->log($prompt, -1);
         break;
       default:
-        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: ' . $this->ebayMode;
-        die($prompt);
+        // #i0029, 150416, dwildt, 2-/
+//        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: ' . $this->ebayMode;
+//        die($prompt);
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: "' . $this->ebayMode . '". mode is set to "off"';
+        $this->ebayMode = 'off';
+        $this->log($prompt, -1);
+        break;
     }
   }
 
