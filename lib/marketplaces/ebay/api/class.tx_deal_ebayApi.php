@@ -1175,8 +1175,13 @@ class tx_deal_ebayApi
         $this->log($prompt, -1);
         break;
       default:
-        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: "' . $this->ebayAction . '"';
-        die($prompt);
+        // #i0029, 150416, dwildt, 2-/3+
+//        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: "' . $this->ebayAction . '"';
+//        die($prompt);
+        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay action: "' . $this->ebayAction . '". Action is set to "donothing"';
+        $this->ebayAction = 'donothing';
+        $this->log($prompt, 0);
+        break;
     }
   }
 
@@ -1213,7 +1218,7 @@ class tx_deal_ebayApi
    *
    * @return	void
    * @access private
-   * @version   0.0.3
+   * @version   6.0.13
    * @since     0.0.3
    */
   private function initVarsEbayMode()
@@ -1231,12 +1236,12 @@ class tx_deal_ebayApi
         $this->log($prompt, -1);
         break;
       default:
-        // #i0029, 150416, dwildt, 2-/
+        // #i0029, 150416, dwildt, 2-/3+
 //        $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: ' . $this->ebayMode;
 //        die($prompt);
         $prompt = __METHOD__ . ' (#' . __LINE__ . '): Undefined value for ebay mode: "' . $this->ebayMode . '". mode is set to "off"';
         $this->ebayMode = 'off';
-        $this->log($prompt, -1);
+        $this->log($prompt, 0);
         break;
     }
   }

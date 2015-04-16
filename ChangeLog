@@ -1,7 +1,8 @@
 6.0.13
   2015-04-16
   Bugfix
-  * #i0029: tx_deal_ebayApi::initVarsEbayMode (#1234): Undefined value for ebay mode:
+  * #i0029: tx_deal_ebayApi::initVarsEbayMode (#1234): Undefined value for ebay mode: ""
+            tx_deal_ebayApi::initVarsEbayAction (#1178): Undefined value for ebay action: ""
 
 6.0.12
   2015-04-16
