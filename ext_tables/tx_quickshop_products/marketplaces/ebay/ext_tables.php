@@ -78,9 +78,9 @@ $TCA[ 'tx_quickshop_products' ][ 'ctrl' ][ 'tx_deal' ] = array(
         ),
         'ean' => 'ean', // optional
         'filter' => array(
-          'category' => 'category', // optional
-          'dimension' => 'dimension', // optional
-          'material' => 'material', // optional
+          'category' => 'tx_quickshop_categories', // optional
+          'dimension' => 'tx_quickshop_dimension', // optional
+          'material' => 'tx_quickshop_material', // optional
         ),
         'gross' => 'price', // obligate
         'pictures' => 'image', // optional

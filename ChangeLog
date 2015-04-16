@@ -8,6 +8,7 @@
             * category  > tx_quickshop_categories
             * dimension > tx_quickshop_dimension
             * material  > tx_quickshop_material
+            See: ext_tables/tx_quickshop_products/marketplaces/ebay/ext_tables.php
             See: Quick Shop #i0026
 
 1.0.4
