@@ -1,3 +1,9 @@
+6.0.14
+  2015-04-17
+  Improvement
+  * #i0031: CI: res/images/favicon.ico
+  * #i0030: state is set from alpha to beta
+
 6.0.13
   2015-04-16
   Bugfix
