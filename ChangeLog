@@ -1,3 +1,14 @@
+7.0.0
+  2015-06-26
+  New Feature
+  * #67771: Interface for Immobilienscout24
+  Improvement
+  * #i0032: File structure TYPO3 6.x
+            * ext_icons/marketplaces/ebay/ext_icon.gif      > Resources/Public/Images/Marketplace/ebay/ext_icon.gif
+            * ext_tables/tx_quickshop_products/marketplaces > Configuration/TCA/tx_quickshop_products/Marketplace
+            * res/images/favicon.ico                        > Resources/Public/Images/favicon.ico
+            * static/marketplaces/ebay                      > Configuration/TypoScript/Marketplace/ebay
+
 6.0.14
   2015-04-17
   Improvement

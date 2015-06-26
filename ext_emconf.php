@@ -1,11 +1,13 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = array(
-  'title' => 'Deal! And TYPO3 can deal on ebay.',
-  'description' => 'TYPO3 Quick Shop interface for the marketplace ebay. Manage all items with TYPO3 and publish it on ebay. Amazon is under construction. See: http://typo3-deal.de/typo3conf/ext/deal/doc/manual.pdf',
+  'title' => 'Deal! TYPO3 for ebay and immoscout24.',
+  'description' => 'TYPO3 Quick Shop interface for the marketplaces ebay and immobilienscout24. '
+  . 'Manage all items with TYPO3 and publish it on ebay and immobilienscout24. '
+  . 'See: http://typo3-deal.de/typo3conf/ext/deal/doc/manual.pdf',
   'category' => 'be',
   'shy' => 0,
-  'version' => '6.0.14',
+  'version' => '7.0.0',
   'dependencies' => 'cps_devlib,cps_tcatree,deal_ebay_000_us,typo3',
   'conflicts' => '',
   'priority' => '',

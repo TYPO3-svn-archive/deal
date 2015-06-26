@@ -3,28 +3,28 @@ beLanguage = English
   # cat=be language//198;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 beLanguageExternalLinks = 1
   # cat=be language//199;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-beLanguageSponsors = 1ca
+beLanguageSponsors =
 
   # cat=drs//100;            type=boolean; label= Logging:DRS – Development Reporting System. Enable the prompting to the Modul > Admin Tools > Log. SECURITY RISK! Private data like token will prompt to the log table.
 drsAdmintoolsLogEnabled = 0
   # cat=drs//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 drsExternalLinks = 1
   # cat=drs//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-drsSponsors = 1ca
+drsSponsors =
 
   # cat=manufacturer//100;            type=string; label= Company:Name of your company
 manufacturerCompany = my company ltd.
   # cat=manufacturer//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 manufacturerExternalLinks = 1
   # cat=manufacturer//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-manufacturerSponsors = 1ca
+manufacturerSponsors =
 
   # cat=amazon//990;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptAmazonContract]; label=Contracting
 amazonContract = 1
   # cat=amazon//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 amazonExternalLinks = 1
   # cat=amazon//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-amazonSponsors = 1ca
+amazonSponsors =
 
   # cat=ebay//100;          type=options[,production,sandbox];     label= Environment: If no environment isn't selected, ebay is disabled. Each environment needs the keys below. BE AWARE: Production environment can effect costs on your ebay account!
 ebayEnvironment =
@@ -41,7 +41,24 @@ ebayCategoriyDirectory = Root directory (recommended)
   # cat=ebay//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 ebayExternalLinks = 1
   # cat=ebay//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-ebaySponsors = 1ca
+ebaySponsors =
+
+  # cat=immoscout24//100;          type=options[,production,sandbox];     label= Environment: If no environment isn't selected, ebay is disabled. Each environment needs the keys below. BE AWARE: Production environment can effect costs on your ebay account!
+is24Environment =
+  # cat=immoscout24//200;          type=options[Australia - EBAY-AU/EUR (15),Austria - EBAY-AT/EUR (16),Belgium (Dutch) - EBAY-NLBE/EUR (123),Belgium (French) - EBAY-FRBE/EUR (23),Canada (English) - EBAY-ENCA/CAD (2),Canada (English) - EBAY-ENCA/USD (2),Canada (French) - EBAY-FRCA/USD (210),France - EBAY-FR/EUR (71),Germany - EBAY-DE/EUR (77),Hong Kong - EBAY-HK/HKD (201),India - EBAY-IN/INR (203),Ireland - EBAY-IE/EUR (205),Italy - EBAY-IT/EUR (101),Malaysia - EBAY-MY/MYR (207),Motors - EBAY-MOTOR/USD (100),Netherlands - EBAY-NL/EUR (146),Philippines - EBAY-PH/PHP (211),Poland - EBAY-PL/PLN (212),Singapore - EBAY-SG/SGD (216),Spain - EBAY-ES/EUR (186),Switzerland - EBAY-CH/CHF (193),UK - EBAY-GB/GBP (3),US - EBAY-US/USD (0)];  label= Your marketplace: Country - Global ID/Currency (Site ID). See: https://developer.ebay.com/DevZone/merchandising/docs/Concepts/SiteIDToGlobalID.html. BE AWARE: Categories and shipping service costs are provided by other Deal! extensions. See Manual below. Look for the section "ebay > Import values for marketplaces".
+is24Marketplace = US - EBAY-US/USD (0)
+  # cat=immoscout24//201;          type=options[de_AT,de_CH,de_DE,en_AU,en_CA,en_GB,en_IE,en_IN,en_SG,en_US,es_ES,fr_BE,fr_CA,fr_FR,it_IT,nl_BE,nl_NL,zh_CN,zh_HK];  label= Error language: Australia (en_AU), Austria (de_AT), Belgium (Dutch) (nl_BE), Belgium (French) (fr_BE), Canada (en_CA), Canada (French) (fr_CA), China (zh_CN), France (fr_FR), Germany (de_DE), Hong Kong (zh_HK), India (en_IN), Ireland (en_IE), Italy (it_IT), Netherlands (nl_NL), Singapore (en_SG), Spain (es_ES), Switzerland (de_CH), United Kingdom (en_GB), United States (en_US)
+is24ErrorLanguage = en_GB
+  # cat=immoscout24//300;          type=string;     label= Production Token*: OBLIGATED! Your token for the production environment. See your is24 account on https://developer.ebay.com/DevZone/account/default.aspx. See "Generate Token" on https://developer.ebay.com/DevZone/account/tokens/default.aspx. If you don't have a developer account, please register on https://developer.ebay.com/base/membership/signin/
+is24ProductionToken =
+  # cat=immoscout24//301;          type=string;     label= Sandbox Token: Your token for the sandbox environment. It is obligated, if you like to use the sandbox. See your ebay account on https://developer.ebay.com/DevZone/account/default.aspx. See "Generate Token" on https://developer.ebay.com/DevZone/account/tokens/default.aspx. If you don't have a developer account, please register on https://developer.ebay.com/base/membership/signin/
+is24SandboxToken =
+  # cat=immoscout24//400;          type=options[Root directory (recommended),Items directories,Root and items directories];     label= Category Directory: Store ebay categories in the root directory (pid is 0). The root directory is recommended, if you are using one shop for the whole website only. Use [Item directories], if you are using more than one shop. You can use different categories per each shop. But you have to store the ebay categories for each shop manually. See manual below.
+is24CategoriyDirectory = Root directory (recommended)
+  # cat=immoscout24//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
+is24ExternalLinks = 1
+  # cat=immoscout24//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
+is24Sponsors =
 
   # cat=paypal//100;          type=string;     label= Production e-mail-adress: The e-mail-adress of your paypal account. It is needed, if you like to enable and update items on ebay. See https://www.paypal.com/
 paypalProductionEmail =
@@ -50,4 +67,4 @@ paypalSandboxEmail =
   # cat=paypal//998;            type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptExternalLinks]; label=External Links
 paypalExternalLinks = 1
   # cat=paypal//999;           type=user[EXT:deal/lib/userfunc/class.tx_deal_userfunc.php:tx_deal_userfunc->promptSponsors]; label=Subsidise the deal project!
-paypalSponsors = 1ca
+paypalSponsors =

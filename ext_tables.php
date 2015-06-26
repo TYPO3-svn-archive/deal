@@ -78,8 +78,8 @@ switch (true)
 {
   case( $beLanguage == 'de' ):
     // German
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay Kategorien');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 Artikel');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Marketplace/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay Kategorien');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Marketplace/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 Artikel');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -92,8 +92,8 @@ switch (true)
     break;
   default:
     // English
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay categories');
-    t3lib_extMgm::addStaticFile($_EXTKEY, 'static/marketplaces/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 items');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Marketplace/ebay/dev/GetCategories/', 'Deal [1] [DEV] ebay categories');
+    t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Marketplace/ebay/dev/GettingStarted_PHP_XML_XML/', 'Deal [1] [DEV] ebay 3 items');
 //    switch( true )
 //    {
 //      case( $typo3Version < 4007000 ):
@@ -175,7 +175,7 @@ $TCA['tx_deal_ebaycategories'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title',
     'treeParentField' => 'uid_parent',
   ),
@@ -199,7 +199,7 @@ $TCA['tx_deal_ebaycategories_000'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title',
     'rootLevel' => 1,
     'treeParentField' => 'uid_parent',
@@ -224,7 +224,7 @@ $TCA['tx_deal_ebaycategories_077'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title',
     'rootLevel' => 1,
     'treeParentField' => 'uid_parent',
@@ -251,7 +251,7 @@ $TCA['tx_deal_ebayshippingservicecode'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title,key',
     'rootLevel' => 1,
   ),
@@ -277,7 +277,7 @@ $TCA['tx_deal_ebayshippingservicecode_000'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title,key',
     'rootLevel' => 1,
   ),
@@ -303,7 +303,7 @@ $TCA['tx_deal_ebayshippingservicecode_077'] = array(
       'disabled' => 'hidden',
     ),
     'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'tca.php',
-    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'ext_icons/marketplaces/ebay/ext_icon.gif',
+    'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title,key',
     'rootLevel' => 1,
   ),
@@ -313,6 +313,6 @@ $TCA['tx_deal_ebayshippingservicecode_077'] = array(
 //
 // TCA for tx_quickshop_products
 
-require_once(t3lib_extMgm::extPath($_EXTKEY) . 'ext_tables/tx_quickshop_products/marketplaces/ebay/ext_tables.php');
+require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tx_quickshop_products/Marketplace/ebay/ext_tables.php');
 // TCA for tx_quickshop_products
 ?>
