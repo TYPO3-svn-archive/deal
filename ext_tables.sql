@@ -6,6 +6,8 @@
 # tx_deal_ebayshippingservicecode
 # tx_deal_ebayshippingservicecode_000
 # tx_deal_ebayshippingservicecode_077
+# tx_deal_immo24certificate
+# tx_deal_immo24certificateSandbox
 # tx_quickshop_products
 # tx_quickshop_products_mm_tx_deal_ebaycategories
 # tx_quickshop_products_mm_tx_deal_ebaycategories_000
@@ -123,6 +125,44 @@ CREATE TABLE tx_deal_ebayshippingservicecode_077 (
   PRIMARY KEY (uid),
   KEY parent (pid)
 );
+
+#
+# Table structure for table 'tx_deal_immo24certificate'
+#
+CREATE TABLE tx_deal_immo24certificate (
+  uid int(11) DEFAULT '0' NOT NULL,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  crdate int(11) DEFAULT '0' NOT NULL,
+  cruser_id int(11) DEFAULT '0' NOT NULL,
+  ic_id int(16) unsigned NOT NULL auto_increment,
+  ic_desc varchar(32) DEFAULT '0' NOT NULL,
+  ic_expire datetime DEFAULT NULL,
+  ic_key varchar(128) DEFAULT '0' NOT NULL,
+  ic_secret varchar(128) DEFAULT '0' NOT NULL,
+  ic_username varchar(60) DEFAULT NULL,
+  PRIMARY KEY (ic_id),
+  KEY parent (pid)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+#
+# Table structure for table 'tx_deal_immo24certificate'
+#
+CREATE TABLE tx_deal_immo24certificateSandbox (
+  uid int(11) DEFAULT '0' NOT NULL,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  crdate int(11) DEFAULT '0' NOT NULL,
+  cruser_id int(11) DEFAULT '0' NOT NULL,
+  ic_id int(16) unsigned NOT NULL auto_increment,
+  ic_desc varchar(32) DEFAULT '0' NOT NULL,
+  ic_expire datetime DEFAULT NULL,
+  ic_key varchar(128) DEFAULT '0' NOT NULL,
+  ic_secret varchar(128) DEFAULT '0' NOT NULL,
+  ic_username varchar(60) DEFAULT NULL,
+  PRIMARY KEY (ic_id),
+  KEY parent (pid)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 #
 # Table structure for table 'tx_quickshop_products'

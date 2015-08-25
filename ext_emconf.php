@@ -1,9 +1,10 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = array(
-  'title' => 'Deal! TYPO3 for ebay and immoscout24.',
-  'description' => 'TYPO3 Quick Shop interface for the marketplaces ebay and immobilienscout24. '
-  . 'Manage all items with TYPO3 and publish it on ebay and immobilienscout24. '
+  'title' => 'Deal! TYPO3 for ebay and immoscout24',
+  'description' => 'TYPO3 interface for the marketplaces ebay and immobilienscout24. '
+  . 'Manage all items with TYPO3 and publish it on ebay and immobilienscout24 (is24). '
+  . 'Deal! is ready for use with Quick Shop. '
   . 'See: http://typo3-deal.de/typo3conf/ext/deal/doc/manual.pdf',
   'category' => 'be',
   'shy' => 0,
