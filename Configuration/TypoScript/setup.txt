@@ -1,0 +1,40 @@
+plugin.tx_deal {
+    // marketplaces
+  settings =
+  settings {
+      // immo24
+    marketplaces =
+    marketplaces {
+        // api
+      immo24 =
+      immo24 {
+          // properties
+        api =
+        api {
+            // type
+          database =
+          database {
+              // [STRING] mysql
+            type = {$plugin.tx_deal.settings.marketplaces.immo24.api.database.type}
+          }
+            // contentResultType, readingType, requestDebug, strictMode
+          properties =
+          properties {
+              // [STRING] json or xml
+            contentResultType = {$plugin.tx_deal.settings.marketplaces.immo24.api.properties.contentResultType}
+            readingType       = {$plugin.tx_deal.settings.marketplaces.immo24.api.properties.readingType}
+            requestDebug      = {$plugin.tx_deal.settings.marketplaces.immo24.api.properties.requestDebug}
+            strictMode        = {$plugin.tx_deal.settings.marketplaces.immo24.api.properties.strictMode}
+          }
+        }
+      }
+    }
+  }
+    // templateRootPath, partialRootPath, layoutRootPath
+  view =
+  view {
+    templateRootPath  = {$plugin.tx_deal.view.templateRootPath}
+    partialRootPath   = {$plugin.tx_deal.view.partialRootPath}
+    layoutRootPath    = {$plugin.tx_deal.view.layoutRootPath}
+  }
+}

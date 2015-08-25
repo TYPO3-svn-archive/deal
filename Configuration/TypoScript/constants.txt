@@ -1,0 +1,33 @@
+plugin.tx_deal {
+  settings {
+    marketplaces {
+      immo24 {
+        api {
+          database {
+            # cat=deal - immo24 api - database//101;    type=string;                  label= database:
+	          type = mysql
+          }
+          properties {
+            # cat=deal - immo24 api - properties//101;  type=options[json,none];      label= content result type:json or none (xml). json is recommended.
+	          contentResultType = json
+            # cat=deal - immo24 api - properties//102;  type=options[curl,none];      label= reading type:curl or none. curl is recommended but you need the PHP curl extension.
+            readingType = curl
+            # cat=deal - immo24 api - properties//103;  type=boolean;                 label= request debug:debug mode for the request. False is recommended for production mode.
+            requestDebug = 0
+            # cat=deal - immo24 api - properties//105;  type=boolean;                 label= strict mode:
+            strictMode = 0
+          }
+        }
+      }
+    }
+  }
+
+  view {
+    # cat=deal - view//101;           type=string;     label= Templates:Path to the templates
+		templateRootPath  = EXT:deal/Resources/Private/View/Templates/
+    # cat=deal - view//102;           type=string;     label= Partials:Path to the partials
+		partialRootPath   = EXT:deal/Resources/Private/View/Partials/
+    # cat=deal - view//103;           type=string;     label= Layouts:Path to the layouts
+		layoutRootPath    = EXT:deal/Resources/Private/View/Layouts/
+  }
+}

@@ -1,0 +1,136 @@
+<T3DataStructure>
+  <meta>
+    <langDisable>1</langDisable>
+  </meta>
+  <sheets>
+    <liveorsandbox>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandbox</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.flexform.liveorsandbox.requestUrl>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxRequestUrl</label>
+              <onChange>reload</onChange>
+              <config>
+                <type>select</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxRequestUrlLive</numIndex>
+                    <numIndex index="1">Live</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxRequestUrlSandbox</numIndex>
+                    <numIndex index="1">Sandbox</numIndex>
+                  </numIndex>
+                </items>
+                <default>Sandbox</default>
+                <maxitems>1</maxitems>
+                <size>1</size>
+              </config>
+            </TCEforms>
+          </settings.flexform.liveorsandbox.requestUrl>
+          <settings.flexform.liveorsandbox.keysLivePublic>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxKeysLivePublic</label>
+              <displayCond>FIELD:settings.flexform.liveorsandbox.requestUrl:=:Live</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,nospace</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.liveorsandbox.keysLivePublic>
+          <settings.flexform.liveorsandbox.keysLivePrivate>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxKeysLivePrivate</label>
+              <displayCond>FIELD:settings.flexform.liveorsandbox.requestUrl:=:Live</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,nospace</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.liveorsandbox.keysLivePrivate>
+          <settings.flexform.liveorsandbox.keysSandboxPublic>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxKeysSandboxPublic</label>
+              <displayCond>FIELD:settings.flexform.liveorsandbox.requestUrl:=:Sandbox</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,nospace</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.liveorsandbox.keysSandboxPublic>
+          <settings.flexform.liveorsandbox.keysSandboxPrivate>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetLiveorsandboxKeysSandboxPrivate</label>
+              <displayCond>FIELD:settings.flexform.liveorsandbox.requestUrl:=:Sandbox</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,nospace</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.liveorsandbox.keysSandboxPrivate>
+        </el>
+      </ROOT>
+    </liveorsandbox>
+    <application>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplication</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.flexform.application.type>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationType</label>
+              <onChange>reload</onChange>
+              <config>
+                <type>select</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypeCertification</numIndex>
+                    <numIndex index="1">certification</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypeRegion</numIndex>
+                    <numIndex index="1">region</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypeLogo</numIndex>
+                    <numIndex index="1">logo</numIndex>
+                  </numIndex>
+                </items>
+                <default>certification</default>
+                <maxitems>1</maxitems>
+                <size>1</size>
+              </config>
+            </TCEforms>
+          </settings.flexform.application.type>
+          <settings.flexform.application.typeRegionSword>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypeRegionSword</label>
+              <displayCond>FIELD:settings.flexform.application.type:=:region</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,required</eval>
+                <default>Berlin</default>
+              </config>
+            </TCEforms>
+          </settings.flexform.application.typeRegionSword>
+        </el>
+      </ROOT>
+    </application>
+  </sheets>
+</T3DataStructure>
