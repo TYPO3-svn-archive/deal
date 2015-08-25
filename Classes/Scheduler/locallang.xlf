@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1416085778" source-language="en" datatype="plaintext" original="messages" date="2011-10-17T20:22:37Z" product-name="scheduler">
+		<header/>
+		<body>
+			<trans-unit id="immo24.export.description" xml:space="preserve">
+				<source>Export items to immobilienscout24.</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.adminemail" xml:space="preserve">
+				<source>E-mail address of the administrator*</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.adminemailmode" xml:space="preserve">
+				<source>Report mode</source>
+			</trans-unit>
+      <trans-unit id="immo24.field.adminemailmode.all" xml:space="preserve">
+				<source>e-mail always</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.adminemailmode.nothing" xml:space="preserve">
+				<source>e-mail never</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.adminemailmode.update" xml:space="preserve">
+				<source>e-mail in case of updates</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.adminemailmode.warn" xml:space="preserve">
+				<source>e-mail in case of warnings and errors (recommended)</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24" xml:space="preserve">
+				<source>Clean up immobilienscout24 database</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.all.all" xml:space="preserve">
+				<source>Remove all</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.all.apartmentsrent" xml:space="preserve">
+				<source>Remove all: apartments for rent</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.all.contacts" xml:space="preserve">
+				<source>Remove all: contacts</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.deal.all" xml:space="preserve">
+				<source>Remove known items (known by Deal!)</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.deal.apartmentsrent" xml:space="preserve">
+				<source>Remove known: apartments for rent (known by Deal!)</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.deal.contacts" xml:space="preserve">
+				<source>Remove known: contacts (known by Deal!)</source>
+			</trans-unit>
+      <trans-unit id="immo24.field.cleanupimmo24.nothing" xml:space="preserve">
+				<source>Do nothing</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.unknown.all" xml:space="preserve">
+				<source>Remove unknown items (not known by Deal!) [recommended]</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.unknown.apartmentsrent" xml:space="preserve">
+				<source>Remove unknown: apartments for rent (not known by Deal!)</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.unknown.contacts" xml:space="preserve">
+				<source>Remove unknown: contacts (not known by Deal!)</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.keyliveprivate" xml:space="preserve">
+				<source>Live: private key*</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.keylivepublic" xml:space="preserve">
+				<source>Live: public key*</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.keysandboxprivate" xml:space="preserve">
+				<source>Sandbox: private key</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.keysandboxpublic" xml:space="preserve">
+				<source>Sandbox: public key</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.liveorsandbox" xml:space="preserve">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.liveorsandbox.live" xml:space="preserve">
+				<source>Live</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.liveorsandbox.sandbox" xml:space="preserve">
+				<source>Sandbox</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.tableappartmentrent" xml:space="preserve">
+				<source>Table with appartments for rent</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.tablecontact" xml:space="preserve">
+				<source>Table with contact persons</source>
+			</trans-unit>
+			<trans-unit id="immo24.export.name" xml:space="preserve">
+				<source>Deal! immo24 export</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enteradminemail" xml:space="preserve">
+				<source>Please enter the e-mail address of the administrator!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enteradminemailmode" xml:space="preserve">
+				<source>Fatal error: The report mode for the admin is undefined!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.entercleanupimmo24" xml:space="preserve">
+				<source>Fatal error: The report mode for the admin is undefined!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enterkeyliveprivate" xml:space="preserve">
+				<source>Please enter the private key for the live mode!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enterkeylivepublic" xml:space="preserve">
+				<source>Please enter the public key for the live mode!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enterkeysandboxprivate" xml:space="preserve">
+				<source>Please enter the private key for the sandbox mode!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enterkeysandboxpublic" xml:space="preserve">
+				<source>Please enter the public key for the sandbox mode!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.enterliveorsandbox" xml:space="preserve">
+				<source>Fatal error: The mode (live or sandbox) is undefined!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.entertableappartmentrent" xml:space="preserve">
+				<source>You haven't entered the table with appartments for rent. Appartments for rent won't exported to immobilienscout24!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.entertablecontact" xml:space="preserve">
+				<source>You haven't entered the table with contact persons. Contact persons won't exported to immobilienscout24!</source>
+			</trans-unit>
+			<trans-unit id="immo24.prompt.errortcactrl" xml:space="preserve">
+				<source>The table '%table%' doesn't have a control section for immobilienscout24. Please check: %tca%</source>
+			</trans-unit>
+			<trans-unit id="test.description" xml:space="preserve">
+				<source>For testing only.</source>
+			</trans-unit>
+			<trans-unit id="test.field.adminemail" xml:space="preserve">
+				<source>E-mail address of the administrator</source>
+			</trans-unit>
+			<trans-unit id="test.name" xml:space="preserve">
+				<source>Deal! test</source>
+			</trans-unit>
+			<trans-unit id="test.prompt.enteradminemail" xml:space="preserve">
+				<source>Please enter the e-mail address of the administrator!</source>
+			</trans-unit>
+    </body>
+	</file>
+</xliff>
