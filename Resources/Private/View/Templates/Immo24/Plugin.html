@@ -1,0 +1,40 @@
+<f:layout name="immo24/Default" />
+<f:section name="content">
+  <div class="row">
+    <div class="columns">
+      <f:format.raw>{liveorsandbox}</f:format.raw>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns">
+      <f:format.raw>{header}</f:format.raw>
+    </div>
+  </div>
+  <f:if condition="{pluginIsCertification}">
+    <div class="row">
+      <div class="large-4 columns">
+        <f:form action="submit">
+          <fieldset>
+            <legend>{legend}</legend>
+            <label >{user}
+              <f:form.textfield name="user" value="" placeholder="{placeholder}" />
+            </label>
+            <f:form.submit value="{submit}" name="submit" class="button" />
+          </fieldset>
+        </f:form>
+      </div>
+    </div>
+  </f:if>
+  <f:if condition="{authentication}">
+    <div class="row">
+      <div class="columns">
+        <f:format.raw>{authentication}</f:format.raw>
+      </div>
+    </div>
+  </f:if>
+  <div class="row">
+    <div class="columns">
+      <f:format.raw>{application}</f:format.raw>
+    </div>
+  </div>
+</f:section>

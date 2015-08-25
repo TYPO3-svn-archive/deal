@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-01T21:00:00Z" product-name="deal">
+		<header/>
+		<body>
+			<trans-unit id="errorCertificate">
+				<source>No success: the certificate seems to exits and seems to be stored in the database.</source>
+			</trans-unit>
+			<trans-unit id="errorDatabaseMoreThanOneRecordHeader">
+				<source>Fatal error: trouble with the uid 0!</source>
+			</trans-unit>
+			<trans-unit id="errorDatabaseMoreThanOneRecordPrompt">
+				<source>There is more than one record in the database with the uid 0. Please remove records with the uid 0 manually!</source>
+			</trans-unit>
+			<trans-unit id="errorFlexformApplicationUndefinedHeader">
+				<source>Fatal error: undefined value.</source>
+			</trans-unit>
+			<trans-unit id="errorFlexformApplicationUndefinedPrompt">
+				<source>Value of the flexform property type is undefined.</source>
+			</trans-unit>
+			<trans-unit id="errorFormInputNoUserHeader">
+				<source>Fatal error: no user!</source>
+			</trans-unit>
+			<trans-unit id="errorFormInputNoUserPrompt">
+				<source>Please return and enter a valid user.</source>
+			</trans-unit>
+			<trans-unit id="errorNoLogoXmlSupportHeader">
+				<source>Error: there isn't any XML support.</source>
+			</trans-unit>
+			<trans-unit id="errorNoLogoXmlSupportPrompt">
+				<source>Sorry, but there isn't any XML support. Please move xml to json. See the TypoScript Constant Editor [DEAL - IS24 API - PROPERTIES] > Content result type</source>
+			</trans-unit>
+			<trans-unit id="errorNoKeysHeader">
+				<source>
+          Fatal error: empty key!
+        </source>
+			</trans-unit>
+			<trans-unit id="errorNoKeysPrompt">
+				<source>
+          immo24 mode is "%mode%", but one or both - private and public - keys are empty. Please configure a proper flexform.
+        </source>
+			</trans-unit>
+			<trans-unit id="errorNoLogoHeader">
+				<source>Error: any logo isn't found.</source>
+			</trans-unit>
+			<trans-unit id="errorNoLogoPrompt">
+				<source>Please configure a proper flexform: You need proper keys for the live mode and the sandbox mode. Your immobilienscout24 account must contain your company logo.</source>
+			</trans-unit>
+			<trans-unit id="errorNoRegionHeader">
+				<source>Error: any region isn't found.</source>
+			</trans-unit>
+			<trans-unit id="errorNoRegionPrompt">
+				<source>Please configure a proper flexform: You need proper keys for the live mode and the sandbox mode. And take a search word for cities in Germany like "Berlin". Don't leave the search word empty!</source>
+			</trans-unit>
+			<trans-unit id="errorNoRegionXmlSupportHeader">
+				<source>Error: there isn't any XML support.</source>
+			</trans-unit>
+			<trans-unit id="errorNoRegionXmlSupportPrompt">
+				<source>Sorry, but there isn't any XML support. Please move xml to json. See the TypoScript Constant Editor [DEAL - IS24 API - PROPERTIES] > Content result type</source>
+			</trans-unit>
+			<trans-unit id="errorRequestUrlUndefinedHeader">
+				<source>Error: undefined live or sandbox mode</source>
+			</trans-unit>
+			<trans-unit id="errorRequestUrlUndefinedPrompt">
+				<source>The mode is undefined: live or sandbox. Please report this buig to the developer of Deal!</source>
+			</trans-unit>
+
+			<trans-unit id="flexformPi1SheetApplication">
+				<source>Application</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationType">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypeCertification">
+				<source>Certification</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypeLogo">
+				<source>[TEST] Own logo / certificate</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypeRegion">
+				<source>[TEST] Region</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypeRegionSword">
+				<source>Search Word</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandbox">
+				<source>Live / Sandbox</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxRequestUrl">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxRequestUrlLive">
+				<source>Live</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxRequestUrlSandbox">
+				<source>Sandbox</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxKeysLivePrivate">
+				<source>Private Key</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxKeysLivePublic">
+				<source>Public Key</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxKeysSandboxPrivate">
+				<source>Private Key</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetLiveorsandboxKeysSandboxPublic">
+				<source>Public Key</source>
+			</trans-unit>
+
+      <trans-unit id="frontendApplicationCertification">
+				<source>Plugin Certification</source>
+			</trans-unit>
+      <trans-unit id="frontendApplicationCertificationRegisteredNo">
+				<source><![CDATA[The application isn't registered.
+          Please submit the form from above.
+          The table %dbtable% is empty.
+        ]]></source>
+			</trans-unit>
+      <trans-unit id="frontendApplicationCertificationRegisteredYes">
+				<source><![CDATA[<p>The application is registered. This is the list of the user names:</p>
+          %users%
+          <p>Everything should be proper, if the user name is the user name of the immobilienscout24 account.<br />
+          If not, please remove the certificatein the TYPO3 backend.<br />
+          See table %dbtable%</p>
+        ]]></source>
+			</trans-unit>
+      <trans-unit id="frontendApplicationCertificationRegisteredMultiple">
+				<source><![CDATA[<p>The application is registered more than once.<br />
+          Please remove all not needed certificates in the TYPO3 backend<br />
+          See table %dbtable%</p>
+        ]]></source>
+			</trans-unit>
+      <trans-unit id="frontendApplicationFormLegend">
+				<source>Certificate application</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationFormSubmit">
+				<source>Submit</source>
+      </trans-unit>
+			<trans-unit id="frontendApplicationFormInputUserPlaceholder">
+				<source>Obligate: your immo24 user name</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationFormInputUserLabel">
+				<source>Your immo24 user name</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoCertificateHeader">
+				<source>Certificate</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoCertificatePrompt">
+				<source>Used certificate</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoHeader">
+				<source>[Test] Plugin own logo</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoImage">
+				<source>Your company logo</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoPrompt">
+				<source>This plugin should work proper, if your application is certifed by immobilienscout 24. If your company logo isn't displayed, please use this plugin in certification mode and certify the application. Please check, if your immobilienscout24 account contains your company logo.</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoPromptNoCertificate">
+				<source>Error: there isn't any certificate.</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoPromptNoCertificateInfo">
+				<source><![CDATA[Help: Your application isn't certifed by immobilienscout 24. Please use this plugin in certification mode and certify the application.<br />
+          Tipp for debugging: take a look into the table
+        ]]></source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationLogoUrl">
+				<source>The URL of your logo</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationRegionPrompt">
+				<source>This plugin should work proper in every case. If is display regions, everything is proper. It is a test, if a connection with immobilienscout24 is possible. A search word is obligate! If there isn't any hit, please test the plugin with the search word "Berlin".</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationRegionWithSword">
+				<source>[Test] Plugin Regions with search word "%sword%"</source>
+			</trans-unit>
+			<trans-unit id="pluginPi1Title">
+				<source>Deal! immobilienscout24 certification</source>
+			</trans-unit>
+			<trans-unit id="pluginPi1WizardTitle">
+				<source>Deal! immobilienscout24 certification</source>
+			</trans-unit>
+			<trans-unit id="pluginPi1WizardDescription">
+				<source>Certificate the Deal! immobilienscout24 interface.</source>
+			</trans-unit>
+			<trans-unit id="successCertificate">
+				<source>Success: the certificate is stored in the databsase.</source>
+			</trans-unit>
+			<trans-unit id="successCertificates">
+				<source>Success: below you find comma separated the access token, the secret token and the encoded url.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

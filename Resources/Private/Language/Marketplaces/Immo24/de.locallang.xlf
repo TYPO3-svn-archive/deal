@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-07-06T12:00:00Z" product-name="deal">
+		<header/>
+		<body>
+			<trans-unit id="region.title">
+				<source>Regions with "Ber"</source>
+				<target state="translated">Regionen mit "Ber"</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

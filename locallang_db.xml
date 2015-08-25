@@ -24,6 +24,14 @@
       <label index="tx_deal_ebayshippingservicecode_077">Deal! ebay shipping services for Germany/77</label>
       <label index="tx_deal_ebayshippingservicecode_077.title">Shipping service</label>
       <label index="tx_deal_ebayshippingservicecode_077.code">ebay code</label>
+      <label index="tx_deal_immo24certificate">Deal! immobilienscout24 certificates</label>
+      <label index="tx_deal_immo24certificate.ic_desc">Description</label>
+      <label index="tx_deal_immo24certificate.ic_expire">Expires</label>
+      <label index="tx_deal_immo24certificate.ic_id">Id</label>
+      <label index="tx_deal_immo24certificate.ic_key">Key</label>
+      <label index="tx_deal_immo24certificate.ic_secret">Secret</label>
+      <label index="tx_deal_immo24certificate.ic_username">Username</label>
+      <label index="tx_deal_immo24certificateSandbox">Deal! immobilienscout24 certificates</label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="tx_deal_ebaycategories">Deal! ebay Kategorie</label>
@@ -44,6 +52,14 @@
       <label index="tx_deal_ebayshippingservicecode_077">Deal! ebay Versand Service für Deutschland/77</label>
       <label index="tx_deal_ebayshippingservicecode_077.title">Versand Service</label>
       <label index="tx_deal_ebayshippingservicecode_077.code">ebay Code</label>
+      <label index="tx_deal_immo24certificate">Deal! immobilienscout24 Zertifikate</label>
+      <label index="tx_deal_immo24certificate.ic_desc">Beschreibung</label>
+      <label index="tx_deal_immo24certificate.ic_expire">Ablaufdatum</label>
+      <label index="tx_deal_immo24certificate.ic_id">Id</label>
+      <label index="tx_deal_immo24certificate.ic_key">Key</label>
+      <label index="tx_deal_immo24certificate.ic_secret">Secret</label>
+      <label index="tx_deal_immo24certificate.ic_username">Benutzername</label>
+      <label index="tx_deal_immo24certificateSandbox">Deal! immobilienscout24 Zertifikate (Sandbox)</label>
     </languageKey>
   </data>
 </T3locallang>
