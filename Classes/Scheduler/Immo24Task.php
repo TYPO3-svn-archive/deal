@@ -241,18 +241,15 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
             . '  o IMMOBILIENSCOUT 24' . LF
             . 'o TECHNICAL DETAILS' . LF
             . '' . LF
-            . '- - - - - - - - - - - - - - - - - - - - - - -' . LF
-            . '' . LF
+            . '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -' . LF
             . 'REPORT' . LF
             . $this->_emailReport() . LF
             . '' . LF
-            . '- - - - - - - - - - - - - - - - - - - - - - -' . LF
-            . '' . LF
+            . '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -' . LF
             . 'STATISTIC' . LF
             . $this->_emailStatistic() . LF
             . '' . LF
-            . '- - - - - - - - - - - - - - - - - - - - - - -' . LF
-            . '' . LF
+            . '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -' . LF
             . '+++ TECHNICAL DETAILS' . LF
             . 'UID: ' . $this->taskUid . LF
             . 'Sitename: ' . $GLOBALS[ 'TYPO3_CONF_VARS' ][ 'SYS' ][ 'sitename' ] . LF

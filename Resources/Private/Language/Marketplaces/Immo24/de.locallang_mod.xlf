@@ -99,7 +99,7 @@
 				<source><![CDATA[<p>The application is registered. This is the list of the user names:</p>
           %users%
           <p>Everything should be proper, if the user name is the user name of the immobilienscout24 account.<br />
-          If not, please remove the certificatein the TYPO3 backend.<br />
+          If not, please remove the certificate in the TYPO3 backend.<br />
           See table %dbtable%</p>
         ]]></source>
 				<target state="translated"><![CDATA[<p>Die Anwendung ist mit folgenden Benutzernamen registriert:</p>

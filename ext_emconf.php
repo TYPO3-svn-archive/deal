@@ -42,4 +42,3 @@ $EM_CONF[$_EXTKEY] = array(
     'deal_ebay_077_germany' => '',
   ),
 );
-?>

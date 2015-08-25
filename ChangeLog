@@ -1,10 +1,15 @@
 7.0.0
-  2015-06-26
+  2015-08-25
   New Feature
   * #67771: Interface for Immobilienscout24
             * New table: tx_deal_immo24certificate
+  * #i0036: Configuration samples
+            * fe_users
+            * my_apartmentforrent
 
   Improvement
+  * #i0035: Extension manager: update shop icon.
+  * #i0034: Extension manager: tab for amazon is removed.
   * #i0033: New table tx_deal_immo24certificateSandbox
   * #i0032: File structure TYPO3 6.x
             * ext_icons/marketplaces/ebay/ext_icon.gif      > Resources/Public/Images/Marketplace/ebay/ext_icon.gif

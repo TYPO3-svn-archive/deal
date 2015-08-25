@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'deal'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="fe_users.div.immo24">Immobilienscout24</label>
+			<label index="fe_users.immo24id">Id</label>
+			<label index="fe_users.immo24idSandbox">Id (sandbox)</label>
+			<label index="fe_users.immo24log">Log (prompted by TYPO3 Deal! scheduler)</label>
+			<label index="fe_users.immo24tstamp">Update</label>
+			<label index="fe_users.immo24tstampSandbox">Update (sandbox)</label>
+			<label index="fe_users.immo24url">Url</label>
+			<label index="fe_users.immo24urlSandbox">Url (sandbox)</label>
+		</languageKey>
+	</data>
+</T3locallang>
