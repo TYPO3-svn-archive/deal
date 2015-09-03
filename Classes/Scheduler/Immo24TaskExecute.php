@@ -121,6 +121,8 @@ class Immo24TaskExecute extends \TYPO3\CMS\Scheduler\Task\AbstractTask
    *
    * @access public
    * @return boolean
+   * @version 7.0.0
+   * @since 7.0.0
    */
   public function execute()
   {
@@ -133,10 +135,26 @@ class Immo24TaskExecute extends \TYPO3\CMS\Scheduler\Task\AbstractTask
   }
 
   /**
+   * This method returns the destination mail address as additional information
+   *
+   * @access public
+   * @return	string		Information to display
+   * @internal #i0037
+   * @version 7.0.1
+   * @since 7.0.1
+   */
+  public function getAdditionalInformation()
+  {
+    return $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24' ) . ': ' . $this->deal_cleanupimmo24;
+  }
+
+  /**
    * init( ) :
    *
    * @access private
    * @return boolean
+   * @version 7.0.0
+   * @since 7.0.0
    */
   private function init()
   {
@@ -149,6 +167,8 @@ class Immo24TaskExecute extends \TYPO3\CMS\Scheduler\Task\AbstractTask
    *
    * @access private
    * @return boolean
+   * @version 7.0.0
+   * @since 7.0.0
    */
   private function initVars()
   {

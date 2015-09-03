@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package deal
  * @license http://www.gnu.org/licenses/lgpl.html
  * 			GNU Lesser General Public License, version 3 or later
- * @version 7.0.0
+ * @version 7.0.1
  * @since 7.0.0
  */
 class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
@@ -412,7 +412,7 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
 
     $prompt = 'Deal! The e-mail hasn\'t left your local server. It is stored in your mbox at ' . $TYPO3_CONF_VARS[ 'MAIL' ][ 'transport_mbox_file' ];
     $GLOBALS[ 'BE_USER' ]->simplelog( $prompt, 'deal', 0 );
-    $this->_zzFlashMessage( $prompt, 'INFO' );
+    $this->_zzFlashMessage( $prompt, 'NOTICE' );
   }
 
   /**
@@ -1447,7 +1447,7 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
       $this->_sImmo24User = $sUser;
 
       $prompt = 'Deal! User: ' . $sUser;
-      $this->_zzFlashMessage( $prompt, 'INFO' );
+      $this->_zzFlashMessage( $prompt, 'NOTICE' );
 
       return TRUE;
     }
@@ -1462,58 +1462,85 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    * _immo24RemoveAppartmentrent( ) :
    *
    * @param array $rows
-   * @param string $position  : beforeExport || afterExport
+   * @param string $workflow  : beforeExport || afterExport
    * @return boolean
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1
    * @since 7.0.0
    */
-  private function _immo24RemoveAppartmentrent( $rows, $position )
+  private function _immo24RemoveAppartmentrent( $rows, $workflow )
   {
-    if ( !$this->_immo24RemoveAppartmentrentRequirements( $position ) )
+    if ( !$this->_immo24RemoveAppartmentrentRequirements( $workflow ) )
     {
       return FALSE;
     }
 
     switch ( $this->deal_cleanupimmo24 )
     {
-      case 'allAll' :
-        $bUnknownOnly = FALSE;
-        $this->_immo24RemoveAppartmentrentAll( $rows, $bUnknownOnly );
+      // #t0428, 150828, dwildt, -
+//      case 'allAll' :
+//        $bUnknown = FALSE;
+//        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
+//        return TRUE;
+//      case 'knownAll' :
+//        $this->_immo24RemoveAppartmentrentKnown( $rows );
+//        return TRUE;
+//      case 'nothing' :
+//        return FALSE;
+//      case 'unknownAll' :
+//        $bUnknown = TRUE;
+//        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
+//        return TRUE;
+//      default:
+//      case 'apartmentsrentAll' :
+//      case 'allContacts' :
+//      case 'apartmentsrentKnown' :
+//      case 'knownContacts' :
+//      case 'apartmentsrentUnknown' :
+//      case 'unknownContacts' :
+//        return FALSE;
+      // #t0428, 150828, dwildt, +
+      case 'apartmentsrentAll' :
+        $bUnknown = FALSE;
+        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
+        $bUnknown = TRUE;
+        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
         return TRUE;
-      case 'dealAll' :
-        $this->_immo24RemoveAppartmentrentKnown( $rows );
+      case 'apartmentsrentKnown' :
+        $bUnknown = FALSE;
+        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
+        return TRUE;
+      case 'apartmentsrentUnknown' :
+        $bUnknown = TRUE;
+        $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
         return TRUE;
       case 'nothing' :
         return FALSE;
-      case 'unknownAll' :
-        $bUnknownOnly = TRUE;
-        $this->_immo24RemoveAppartmentrentAll( $rows, $bUnknownOnly );
-        return TRUE;
       default:
-      case 'allApartmentsRent' :
+      case 'allAll' :
       case 'allContacts' :
-      case 'dealApartmentsRent' :
-      case 'dealContacts' :
-      case 'unknownApartmentsRent' :
+      case 'knownAll' :
+      case 'knownContacts' :
+      case 'unknownAll' :
       case 'unknownContacts' :
         return FALSE;
     }
   }
 
   /**
-   * _immo24RemoveAppartmentrentAll( ) :
+   * _immo24RemoveAppartmentrentExec( ) :
    *
    * @param array $rows
-   * @param boolean $bUnknownOnly : If is true, only items will deleted, which aren't part of the given rows.
+   * @param boolean $bUnknown : TRUE  : items will deleted, which aren't part of the given rows (unknown)
+   *                            FALSE : items will deleted, which are part of the given rows (known)
    * @return boolean
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1
    * @since 7.0.0
    */
-  private function _immo24RemoveAppartmentrentAll( $rows, $bUnknownOnly )
+  private function _immo24RemoveAppartmentrentExec( $rows, $bUnknown )
   {
-    //var_dump( __METHOD__, __LINE__, $bUnknownOnly, array_keys( $rows ) );
+    //var_dump( __METHOD__, __LINE__, $bUnknown, array_keys( $rows ) );
     static $iHandledEstates = 0;
     $iRemovedRealEstates = 0;
 
@@ -1526,33 +1553,69 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
     $oRealestatesRealEstates = $aRealestates[ 'realestates.realEstates' ];
     //var_dump( __METHOD__, __LINE__, $oRealestatesRealEstates );
     $iNumberOfHits = $oRealestatesRealEstates->Paging->numberOfHits;
-    $aRealEstateElement = ( array ) $oRealestatesRealEstates->realEstateList->realEstateElement;
-    if ( $aRealEstateElement[ '@id' ] )
+//    $aRealEstateElement = ( array ) $oRealestatesRealEstates->realEstateList->realEstateElement;
+//    if ( $aRealEstateElement[ '@id' ] )
+//    {
+//        // #t0428, 150828, dwildt, +4
+//      if( $aRealEstateElement[ '@xsi.type' ] != 'offerlistelement:OfferApartmentRent')
+//      {
+//        // #t0428, 150828, dwildt
+//        //var_dump( __METHOD__, __LINE__, $aRealEstateElement );
+//        return TRUE;
+//      }
+//      // #t0428, 150828, dwildt
+//      //var_dump( __METHOD__, __LINE__, $aRealEstateElement );
+//      //return TRUE;
+//      $uid = $aRealEstateElement[ 'externalId' ];
+//      $row = $rows[ $uid ];
+//      //var_dump( __METHOD__, __LINE__, $uid, isset( $rows[ $uid ]) );
+//      if ( $bUnknown && isset( $rows[ $uid ] ) )
+//      {
+//        //var_dump( __METHOD__, __LINE__, $uid );
+//        $iHandledEstates++;
+//        return TRUE;
+//      }
+//      $iImmo24Id = $aRealEstateElement[ '@id' ];
+//      if ( $this->_immocasterDeleteObject( $row, $iImmo24Id ) )
+//      {
+//        $iRemovedRealEstates++;
+//      }
+//      $iHandledEstates++;
+//      return TRUE;
+//    }
+    $xRealEstates = ( array ) $oRealestatesRealEstates->realEstateList->realEstateElement;
+    if ( $xRealEstates[ '@id' ] )
     {
-      $uid = $aRealEstateElement[ 'externalId' ];
-      $row = $rows[ $uid ];
-      //var_dump( __METHOD__, __LINE__, $uid, isset( $rows[ $uid ]) );
-      if ( $bUnknownOnly && isset( $rows[ $uid ] ) )
-      {
-        //var_dump( __METHOD__, __LINE__, $uid );
-        $iHandledEstates++;
-        return TRUE;
-      }
-      $iImmo24Id = $aRealEstateElement[ '@id' ];
-      if ( $this->_immocasterDeleteObject( $row, $iImmo24Id ) )
-      {
-        $iRemovedRealEstates++;
-      }
-      $iHandledEstates++;
-      return TRUE;
+      $aRealEstateElement = array(
+        $xRealEstates,
+      );
+    }
+    else
+    {
+      $aRealEstateElement = $xRealEstates;
     }
     foreach ( $aRealEstateElement as $oRealEstateElement )
     {
       $aRealEstate = ( array ) $oRealEstateElement;
+      // #t0428, 150828, dwildt, +4
+      if ( $aRealEstate[ '@xsi.type' ] != 'offerlistelement:OfferApartmentRent' )
+      {
+        //var_dump( __METHOD__, __LINE__, $aRealEstate[ '@xsi.type' ], $aRealEstate );
+        continue;
+      }
+      // #t0428, 150828, dwildt
+      //var_dump( __METHOD__, __LINE__, $aRealEstate );
+      //continue;
       $uid = $aRealEstate[ 'externalId' ];
       $row = $rows[ $uid ];
       //var_dump( __METHOD__, __LINE__, $uid, isset( $rows[ $uid ]) );
-      if ( $bUnknownOnly && isset( $rows[ $uid ] ) )
+      if ( $this->_immo24RemoveAppartmentrentExecDont( $rows, $uid, $bUnknown ) )
+      {
+        //var_dump( __METHOD__, __LINE__, $uid );
+        $iHandledEstates++;
+        continue;
+      }
+      if ( $bUnknown && isset( $rows[ $uid ] ) )
       {
         //var_dump( __METHOD__, __LINE__, $uid );
         $iHandledEstates++;
@@ -1584,60 +1647,52 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
       return TRUE;
     }
 
-    return $this->_immo24RemoveAppartmentrentAll( $rows, $bUnknownOnly );
+    return $this->_immo24RemoveAppartmentrentExec( $rows, $bUnknown );
   }
 
   /**
-   * _immo24RemoveAppartmentrentKnown( ) :
+   * _immo24RemoveAppartmentrentExecDont( ) :
    *
    * @param array $rows
+   * @param integer $uid
+   * @param boolean $bUnknown : TRUE  : items will deleted, which aren't part of the given rows (unknown)
+   *                            FALSE : items will deleted, which are part of the given rows (known)
    * @return boolean
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1
    * @since 7.0.0
    */
-  private function _immo24RemoveAppartmentrentKnown( $rows )
+  private function _immo24RemoveAppartmentrentExecDont( $rows, $uid, $bUnknown )
   {
-    $table = $this->deal_tableappartmentrent;
-
-    $sImmo24Id = $this->_typo3GetImmo24CtrlField( $table, 'immo24id' );
-    if ( $sImmo24Id == 'error' )
+    switch ( $bUnknown )
     {
-      return FALSE;
+      case TRUE:
+        return isset( $rows[ $uid ] );
+      case FALSE:
+      default:
+        return !isset( $rows[ $uid ] );
     }
-
-    foreach ( ( array ) $rows as $row )
-    {
-      $this->_aStatistic[ 'TYPO3' ][ $table ][ 'records' ][ 'all' ] ++;
-      $iImmo24Id = $row[ $sImmo24Id ];
-      if ( empty( $iImmo24Id ) )
-      {
-        continue;
-      }
-      $this->_immocasterDeleteObject( $row, $iImmo24Id );
-    }
-    return TRUE;
   }
 
   /**
    * _immo24RemoveAppartmentrentRequirements( ) :
    *
-   * @param string $position  : beforeExport || afterExport
+   * @param string $workflow  : beforeExport || afterExport
    * @return boolean
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1
    * @since 7.0.0
    */
-  private function _immo24RemoveAppartmentrentRequirements( $position )
+  private function _immo24RemoveAppartmentrentRequirements( $workflow )
   {
-    switch ( $position )
+    switch ( $workflow )
     {
       case 'afterExport' :
         return $this->_immo24RemoveAppartmentrentRequirementsAfterExport();
       case 'beforeExport' :
         return $this->_immo24RemoveAppartmentrentRequirementsBeforeExport();
       default:
-        $prompt = $this->_extLabel . ': $position is undefined: "' . $position . '"';
+        $prompt = $this->_extLabel . ': $workflow is undefined: "' . $workflow . '"';
         $this->_zzFlashMessage( $prompt, 'ERROR' );
         return FALSE;
     }
@@ -1655,20 +1710,22 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
   {
     switch ( $this->deal_cleanupimmo24 )
     {
-      case 'unknownAll' :
-        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All data will removed, which isn\'t known by Deal!';
+      case 'apartmentsrentUnknown' :
+        // #t0428, 150828, dwildt, 3+
+        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All apartments for rent will removed, which aren\'t known by Deal!';
         $this->_zzFlashMessage( $prompt, 'NOTICE' );
         return TRUE;
-      case 'allAll' :
-      case 'dealAll' :
-      case 'nothing' :
-        return FALSE;
       default:
-      case 'allApartmentsRent' :
+      case 'allAll' :
       case 'allContacts' :
-      case 'dealApartmentsRent' :
-      case 'dealContacts' :
-      case 'unknownApartmentsRent' :
+      case 'apartmentsrentAll' :
+      case 'apartmentsrentAllWiContacts' :
+      case 'apartmentsrentKnown' :
+      case 'apartmentsrentKnownWiContacts' :
+      case 'knownAll' :
+      case 'knownContacts' :
+      case 'nothing' :
+      case 'unknownAll' :
       case 'unknownContacts' :
         return FALSE;
     }
@@ -1679,37 +1736,35 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    *
    * @return boolean
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1s
    * @since 7.0.0
    */
   private function _immo24RemoveAppartmentrentRequirementsBeforeExport()
   {
     switch ( $this->deal_cleanupimmo24 )
     {
+      case 'apartmentsrentAll' :
+        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All apartments for rent will removed. Any data won\'t exported.';
+        $this->_zzFlashMessage( $prompt, 'WARNING' );
+        $prompt = $this->_extLabel . ' If you like to export data, please disable the cleaning up of the immobilienscout24 database.';
+        $this->_zzFlashMessage( $prompt, 'INFO' );
+        return TRUE;
+      case 'apartmentsrentKnown' :
+        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All apartments for rent will removed, which are known by Deal! Any data won\'t exported.';
+        $this->_zzFlashMessage( $prompt, 'WARNING' );
+        $prompt = $this->_extLabel . ' If you like to export data, please disable the cleaning up of the immobilienscout24 database.';
+        $this->_zzFlashMessage( $prompt, 'INFO' );
+        return TRUE;
+      default:
       case 'allAll' :
-        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All data will removed. Any data won\'t exported.';
-        $this->_zzFlashMessage( $prompt, 'WARNING' );
-        $prompt = $this->_extLabel . ' If you like to export data, please disable the cleaning up of the immobilienscout24 database.';
-        $this->_zzFlashMessage( $prompt, 'NOTICE' );
-        return TRUE;
-//        $prompt = $this->_extLabel . ': Sorry, but action from above isn\'t implemented now.';
-//        $this->_zzFlashMessage( $prompt, 'ERROR' );
-//        return FALSE;
-      case 'dealAll' :
-        $prompt = $this->_extLabel . ' Immobilienscout24 database will cleaned up. All data will removed, which is known by Deal! Any data won\'t exported.';
-        $this->_zzFlashMessage( $prompt, 'WARNING' );
-        $prompt = $this->_extLabel . ' If you like to export data, please disable the cleaning up of the immobilienscout24 database.';
-        $this->_zzFlashMessage( $prompt, 'NOTICE' );
-        return TRUE;
+      case 'allContacts' :
+      case 'apartmentsrentAllWiContacts' :
+      case 'apartmentsrentKnownWiContacts' :
+      case 'apartmentsrentUnknown' :
+      case 'knownAll' :
+      case 'knownContacts' :
       case 'nothing' :
       case 'unknownAll' :
-        return FALSE;
-      default:
-      case 'allApartmentsRent' :
-      case 'allContacts' :
-      case 'dealApartmentsRent' :
-      case 'dealContacts' :
-      case 'unknownApartmentsRent' :
       case 'unknownContacts' :
         return FALSE;
     }
@@ -1947,13 +2002,13 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
       case( 'live' ):
         $this->_sImmo24TableCertificate = 'tx_deal_immo24certificate';
         $prompt = 'Deal! Environment: live.';
-        $this->_zzFlashMessage( $prompt, 'INFO' );
+        $this->_zzFlashMessage( $prompt, 'NOTICE' );
         break;
       case( 'sandbox' ):
       default:
         $this->_sImmo24TableCertificate = 'tx_deal_immo24certificateSandbox';
         $prompt = 'Deal! Environment: sandbox.';
-        $this->_zzFlashMessage( $prompt, 'INFO' );
+        $this->_zzFlashMessage( $prompt, 'NOTICE' );
         break;
     }
   }
@@ -2122,16 +2177,16 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
   {
     switch ( $this->deal_cleanupimmo24 )
     {
-      case 'allAll' :
-      case 'dealAll' :
+      case 'apartmentsrentAll' :
+      case 'apartmentsrentKnown' :
+      case 'apartmentsrentUnknown' :
       case 'nothing' :
-      case 'unknownAll' :
         return TRUE;
-      case 'allApartmentsRent' :
+      case 'allAll' :
       case 'allContacts' :
-      case 'dealApartmentsRent' :
-      case 'dealContacts' :
-      case 'unknownApartmentsRent' :
+      case 'knownAll' :
+      case 'knownContacts' :
+      case 'unknownAll' :
       case 'unknownContacts' :
       default:
         // follow the workflow
@@ -2139,7 +2194,8 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
     }
 
     $prompt = $this->_extLabel . ': ' . 'FATAL ERROR<br />' . LF
-            . '$this->deal_cleanupimmo24 is undefined: "' . $this->deal_cleanupimmo24 . '"'
+            . '$this->deal_cleanupimmo24 is undefined: "' . $this->deal_cleanupimmo24 . '"<br />' . LF
+            . __METHOD__ . ' (#' . __LINE__ . ')<br />'
     ;
 
     $this->_zzFlashMessage( $prompt, 'ERROR' );
@@ -2527,6 +2583,9 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
   /**
    * _typo3UpdateRow() :
    *
+   * @param  string $table
+   * @param  array $row
+   * @param  string $sImmo24id
    * @return boolean
    * @access private
    * @version 7.0.0
@@ -2534,6 +2593,7 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    */
   private function _typo3UpdateRow( $table, $row, $sImmo24id )
   {
+    #t0436
     //var_dump( __METHOD__, __LINE__, $sImmo24id );
     $uid = $row[ 'uid' ];
     $fields_values = array();
@@ -2668,12 +2728,15 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
   /**
    * _typo3UpdateRowUrl() :
    *
+   * @param  string $table
+   * @param  mixed $xImmo24id : Current immo24 id. Ca be an error prompt.
+   * @param  array $field_values
    * @return
    * @access private
-   * @version 7.0.0
+   * @version 7.0.1
    * @since 7.0.0
    */
-  private function _typo3UpdateRowUrl( $table, $sImmo24id, $fields_values )
+  private function _typo3UpdateRowUrl( $table, $xImmo24id, $fields_values )
   {
     // RETURN: table uisn't the table for apartment rent
     if ( $table != $this->deal_tableappartmentrent )
@@ -2685,16 +2748,24 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
 
     switch ( TRUE )
     {
-      case(is_int( $sImmo24id ) ):
+      // #t0436, 150829, dwildt, 1-/+
+      //case(is_int( $xImmo24id ) ):
+      case(( string ) ( int ) $xImmo24id === ( string ) $xImmo24id ):
         $valueImmo24urlexpose = $this->_typo3GetImmo24CtrlValue( $table, 'urlexpose' );
-        $fields_values [ $keyImmo24url ] = $valueImmo24urlexpose . '/' . $sImmo24id;
+        $fields_values [ $keyImmo24url ] = $valueImmo24urlexpose . '/' . $xImmo24id;
         break;
-      case(empty( $sImmo24id ) ):
-      case( $sImmo24id == 'ERROR_RESOURCE_NOT_FOUND' ):
-      case( $sImmo24id == 'MESSAGE_RESOURCE_DELETED' ):
-      default:
+      case(empty( $xImmo24id ) ):
+      case( $xImmo24id == 'ERROR_RESOURCE_NOT_FOUND' ):
+      case( $xImmo24id == 'MESSAGE_RESOURCE_DELETED' ):
         // no url
         break;
+      default:
+        $prompt = 'ERROR: value for switch is undefined.<br />'
+                . __METHOD__ . ' (#' . __LINE__ . ')<br />'
+                . 'Sorry for the trouble.<br />'
+                . 'This is a prompt of the TYPO3 extension Deal!'
+        ;
+        die( $prompt );
     }
 
     return $fields_values;
@@ -2904,7 +2975,7 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
         return $this->_zzImmo24XmlGetAttributeAppartmentrentContact( $table, $row, $aImmo24Field, $sImmo24Field, $level );
       default:
         $prompt = 'Deal! WARNING: There isn\'t any case for the attribute ' . $this->deal_tablecontact . '.' . $sImmo24Field . '.' . LF
-                . 'Method: ' . __METHOD__ . ' (' . __LINE__ . ')';
+                . 'Method: ' . __METHOD__ . ' (' . __LINE__ . ')'
         ;
         $this->_zzFlashMessage( $prompt, 'WARNING' );
         return TRUE;

@@ -30,19 +30,22 @@
 			<trans-unit id="immo24.field.cleanupimmo24.all.all" xml:space="preserve">
 				<source>Remove all</source>
 			</trans-unit>
-			<trans-unit id="immo24.field.cleanupimmo24.all.apartmentsrent" xml:space="preserve">
-				<source>Remove all: apartments for rent</source>
-			</trans-unit>
 			<trans-unit id="immo24.field.cleanupimmo24.all.contacts" xml:space="preserve">
 				<source>Remove all: contacts</source>
 			</trans-unit>
-			<trans-unit id="immo24.field.cleanupimmo24.deal.all" xml:space="preserve">
+			<trans-unit id="immo24.field.cleanupimmo24.apartmentsrentAll" xml:space="preserve">
+				<source>Apartments for rent: remove all</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.apartmentsrentKnown" xml:space="preserve">
+				<source>Apartments for rent: remove all known by Deal!</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.apartmentsrentUnknown" xml:space="preserve">
+				<source>Apartments for rent: remove all not known by Deal!</source>
+			</trans-unit>
+			<trans-unit id="immo24.field.cleanupimmo24.known.all" xml:space="preserve">
 				<source>Remove known items (known by Deal!)</source>
 			</trans-unit>
-			<trans-unit id="immo24.field.cleanupimmo24.deal.apartmentsrent" xml:space="preserve">
-				<source>Remove known: apartments for rent (known by Deal!)</source>
-			</trans-unit>
-			<trans-unit id="immo24.field.cleanupimmo24.deal.contacts" xml:space="preserve">
+			<trans-unit id="immo24.field.cleanupimmo24.known.contacts" xml:space="preserve">
 				<source>Remove known: contacts (known by Deal!)</source>
 			</trans-unit>
       <trans-unit id="immo24.field.cleanupimmo24.nothing" xml:space="preserve">
@@ -50,9 +53,6 @@
 			</trans-unit>
 			<trans-unit id="immo24.field.cleanupimmo24.unknown.all" xml:space="preserve">
 				<source>Remove unknown items (not known by Deal!) [recommended]</source>
-			</trans-unit>
-			<trans-unit id="immo24.field.cleanupimmo24.unknown.apartmentsrent" xml:space="preserve">
-				<source>Remove unknown: apartments for rent (not known by Deal!)</source>
 			</trans-unit>
 			<trans-unit id="immo24.field.cleanupimmo24.unknown.contacts" xml:space="preserve">
 				<source>Remove unknown: contacts (not known by Deal!)</source>

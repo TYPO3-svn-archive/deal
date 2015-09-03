@@ -41,7 +41,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  * @package deal
  * @license http://www.gnu.org/licenses/lgpl.html
  * 			GNU Lesser General Public License, version 3 or later
- * @version 7.0.0
+ * @version 7.0.2
  * @since 7.0.0
  */
 class Immo24Controller extends ActionController
@@ -323,7 +323,7 @@ class Immo24Controller extends ActionController
     $this->oImmocaster->setContentResultType( $aImmo24TsProperties[ 'contentResultType' ] );
 
     // curl or none
-    $this->oImmocaster->setReadingType( $aImmo24TsProperties[ 'readingType' ] );
+    $this->initPropertiesReadingType();
 
     // request debug mode
     if ( $aImmo24TsProperties[ 'requestDebug' ] )
@@ -343,6 +343,71 @@ class Immo24Controller extends ActionController
     $sRequestUrl = strtolower( $aImmo24FfProperties[ 'requestUrl' ] );
     $this->initPropertiesSandbox( $sRequestUrl );
     $this->oImmocaster->setRequestUrl( $sRequestUrl );
+  }
+
+  /**
+   * initPropertiesReadingType() :
+   *
+   * @return void
+   * @access private
+   * @version 7.1.0
+   * @since 7.1.0
+   */
+  private function initPropertiesReadingType()
+  {
+//      var_dump( __METHOD__, __LINE__, $this->settings );
+    $aImmo24TsProperties = $this->settings[ 'marketplaces' ][ 'immo24' ][ 'api' ][ 'properties' ];
+
+    switch ( TRUE )
+    {
+      case( $aImmo24TsProperties[ 'readingType' ] == 'curl' ):
+        $this->initPropertiesReadingTypeCurl();
+        return;
+      case( $aImmo24TsProperties[ 'readingType' ] == 'none' ):
+      default:
+        $this->initPropertiesReadingTypeNone();
+        return;
+    }
+  }
+
+  /**
+   * initPropertiesReadingTypeCurl() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0456
+   * @version 7.1.0
+   * @since 7.1.0
+   */
+  private function initPropertiesReadingTypeCurl()
+  {
+    //var_dump( __METHOD__, __LINE__ );
+    switch ( $this->zzCurlCheckBasicFunctions() )
+    {
+      case( TRUE ):
+        //var_dump( __METHOD__, __LINE__ );
+        $this->oImmocaster->setReadingType( 'curl' );
+        return;
+      case( FALSE ):
+      default:
+        $this->initPropertiesReadingTypeNone();
+        return;
+    }
+  }
+
+  /**
+   * initPropertiesReadingTypeNone() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0456
+   * @version 7.1.0
+   * @since 7.1.0
+   */
+  private function initPropertiesReadingTypeNone()
+  {
+    //var_dump( __METHOD__, __LINE__ );
+    $this->oImmocaster->setReadingType( 'none' );
   }
 
   /**
@@ -875,7 +940,7 @@ class Immo24Controller extends ActionController
    *
    * @return void
    * @access private
-   * @version 7.0.0
+   * @version 7.0.2
    * @since 7.0.0
    */
   private function pluginRegions()
@@ -886,6 +951,11 @@ class Immo24Controller extends ActionController
     }
 
     $aImmo24TsProperties = $this->settings[ 'marketplaces' ][ 'immo24' ][ 'api' ][ 'properties' ];
+    // #t0454, 150903, dwildt, 4+
+    if ( !isset( $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ] ) )
+    {
+      $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ] = 'Berlin';
+    }
     $sTypeRegionSword = $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ];
 
     $this->pluginRegionsLiveOrSandbox();
@@ -911,7 +981,7 @@ class Immo24Controller extends ActionController
    *
    * @return void
    * @access private
-   * @version 7.0.0
+   * @version 7.0.2
    * @since 7.0.0
    */
   private function pluginRegionsDebug()
@@ -923,6 +993,11 @@ class Immo24Controller extends ActionController
       return false;
     }
 
+    // #t0454, 150903, dwildt, 4+
+    if ( !isset( $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ] ) )
+    {
+      $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ] = 'Berlin';
+    }
     $sTypeRegionSword = $this->settings[ 'flexform' ][ 'application' ][ 'typeRegionSword' ];
     $aParameter = array( 'q' => $sTypeRegionSword );
     $aDebug = $this->oImmocaster->getRegions( $aParameter );
@@ -1287,6 +1362,40 @@ class Immo24Controller extends ActionController
     ;
     $prompt = str_replace( $aNeedle, $aReplace, $prompt );
     die( $prompt );
+  }
+
+  /**
+   * zzCurlCheckBasicFunctions() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0456
+   * @version 7.1.0
+   * @since 7.1.0
+   */
+  private function zzCurlCheckBasicFunctions()
+  {
+
+    switch ( TRUE )
+    {
+      case(!function_exists( "curl_exec" ) ):
+      case(!function_exists( "curl_close" ) ):
+      case(!function_exists( "curl_init" ) ):
+      case(!function_exists( "curl_setopt" ) ):
+        return false;
+      default:
+        // follow the workflow
+        break;
+    }
+
+    return true;
+//    $ch = curl_init();
+//    curl_setopt( $ch, CURLOPT_URL, "example.com" );
+//    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//    $output = curl_exec( $ch );
+//    curl_close( $ch );
+//    echo $output;
+//    die();
   }
 
 }

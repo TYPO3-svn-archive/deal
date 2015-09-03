@@ -1,3 +1,31 @@
+7.1.0
+  2015-09-03
+  New Feature
+  * #t0456: Check for a running PHP curl
+
+7.0.2
+  2015-09-03
+  Improvement
+  * #t0455: Debugging: empty oauth_token
+  * #t0454: Default value for serach word region
+
+7.0.1
+  2015-08-28
+  New Feature
+  * #t0429: New option: Don't remove contacts on immo24
+  * #t0428: Remove only appartments for rent on immo24
+  * #i0037: Additional information
+  * #t0435, #t0430: Dependency are removed:
+            * cps_devlib
+            * cps_tcatree
+            * deal_ebay_000_us
+            Suggestions are added:
+            * cps_devlib
+            * cps_tcatree
+            * deal_ebay_000_us
+  Bugfix
+  * #t0436: URL is missing
+
 7.0.0
   2015-08-25
   New Feature

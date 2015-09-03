@@ -193,26 +193,26 @@ class Immo24TaskFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldPro
     $fieldValue = $task->deal_cleanupimmo24;
 
     $optionAllAll = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.all.all' );
-    $optionAllApartmentsRent = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.all.apartmentsrent' );
+    $optionApartmentsrentAll = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.apartmentsrentAll' );
     $optionAllContacts = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.all.contacts' );
-    $optionDealAll = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.deal.all' );
-    $optionDealApartmentsRent = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.deal.apartmentsrent' );
-    $optionDealContacts = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.deal.contacts' );
+    $optionKnownAll = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.known.all' );
+    $optionApartmentsrentKnown = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.apartmentsrentKnown' );
+    $optionKnownContacts = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.known.contacts' );
     $optionNothing = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.nothing' );
     $optionUnknownAll = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.unknown.all' );
-    $optionUnknownApartmentsRent = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.unknown.apartmentsrent' );
+    $optionApartmentsrentUnknown = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.apartmentsrentUnknown' );
     $optionUnknownContacts = $GLOBALS[ 'LANG' ]->sL( 'LLL:EXT:deal/Classes/Scheduler/locallang.xlf:immo24.field.cleanupimmo24.unknown.contacts' );
 
     $selected = array(
       'allAll' => null,
-      'allApartmentsRent' => null,
+      'apartmentsrentAll' => null,
       'allContacts' => null,
-      'dealAll' => null,
-      'dealApartmentsRent' => null,
-      'dealContacts' => null,
+      'knownAll' => null,
+      'apartmentsrentKnown' => null,
+      'knownContacts' => null,
       'nothing' => null,
       'unknownAll' => null,
-      'unknownApartmentsRent' => null,
+      'apartmentsrentUnknown' => null,
       'unknownContacts' => null,
       $fieldValue => ' selected="selected"'
     );
@@ -221,13 +221,13 @@ class Immo24TaskFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldPro
 //      <select name="tx_scheduler[deal_cleanupimmo24]" id="' . $fieldID . '" size="1" style="width:30em;">
 //        <option value="nothing"' . $selected[ 'nothing' ] . '>' . $optionNothing . '</option>
 //        <option value="allAll"' . $selected[ 'allAll' ] . '>' . $optionAllAll . '</option>
-//        <option value="allApartmentsRent"' . $selected[ 'allApartmentsRent' ] . '>' . $optionAllApartmentsRent . '</option>
+//        <option value="apartmentsrentAll"' . $selected[ 'apartmentsrentAll' ] . '>' . $optionApartmentsrentAll . '</option>
 //        <option value="allContacts"' . $selected[ 'allContacts' ] . '>' . $optionAllContacts . '</option>
-//        <option value="dealAll"' . $selected[ 'dealAll' ] . '>' . $optionDealAll . '</option>
-//        <option value="dealApartmentsRent"' . $selected[ 'dealApartmentsRent' ] . '>' . $optionDealApartmentsRent . '</option>
-//        <option value="dealContacts"' . $selected[ 'dealContacts' ] . '>' . $optionDealContacts . '</option>
+//        <option value="knownAll"' . $selected[ 'knownAll' ] . '>' . $optionKnownAll . '</option>
+//        <option value="apartmentsrentKnown"' . $selected[ 'apartmentsrentKnown' ] . '>' . $optionApartmentsrentKnown . '</option>
+//        <option value="knownContacts"' . $selected[ 'knownContacts' ] . '>' . $optionKnownContacts . '</option>
 //        <option value="unknownAll"' . $selected[ 'unknownAll' ] . '>' . $optionUnknownAll . '</option>
-//        <option value="unknownApartmentsRent"' . $selected[ 'unknownApartmentsRent' ] . '>' . $optionUnknownApartmentsRent . '</option>
+//        <option value="apartmentsrentUnknown"' . $selected[ 'apartmentsrentUnknown' ] . '>' . $optionApartmentsrentUnknown . '</option>
 //        <option value="unknownContacts"' . $selected[ 'unknownContacts' ] . '>' . $optionUnknownContacts . '</option>
 //      </select>
 //    ';
@@ -235,9 +235,9 @@ class Immo24TaskFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldPro
     $fieldCode = '
       <select name="tx_scheduler[deal_cleanupimmo24]" id="' . $fieldID . '" size="1" style="width:30em;">
         <option value="nothing"' . $selected[ 'nothing' ] . '>' . $optionNothing . '</option>
-        <option value="allAll"' . $selected[ 'allAll' ] . '>' . $optionAllAll . '</option>
-        <option value="dealAll"' . $selected[ 'dealAll' ] . '>' . $optionDealAll . '</option>
-        <option value="unknownAll"' . $selected[ 'unknownAll' ] . '>' . $optionUnknownAll . '</option>
+        <option value="apartmentsrentAll"' . $selected[ 'apartmentsrentAll' ] . '>' . $optionApartmentsrentAll . '</option>
+        <option value="apartmentsrentKnown"' . $selected[ 'apartmentsrentKnown' ] . '>' . $optionApartmentsrentKnown . '</option>
+        <option value="apartmentsrentUnknown"' . $selected[ 'apartmentsrentUnknown' ] . '>' . $optionApartmentsrentUnknown . '</option>
       </select>
     ';
 
@@ -795,14 +795,14 @@ class Immo24TaskFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldPro
     switch ( $submittedData[ 'deal_cleanupimmo24' ] )
     {
       case 'allAll' :
-      case 'allApartmentsRent' :
+      case 'apartmentsrentAll' :
       case 'allContacts' :
-      case 'dealAll' :
-      case 'dealApartmentsRent' :
-      case 'dealContacts' :
+      case 'knownAll' :
+      case 'apartmentsrentKnown' :
+      case 'knownContacts' :
       case 'nothing' :
       case 'unknownAll' :
-      case 'unknownApartmentsRent' :
+      case 'apartmentsrentUnknown' :
       case 'unknownContacts' :
         return TRUE;
       default:

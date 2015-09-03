@@ -143,8 +143,12 @@ class Immocaster_Immobilienscout
 			}
 			if($oToken!=null)
 			{
+        // #t0455, dwildt, 1-/3+
+        //var_dump( __METHOD__, __LINE__, $this->_oConsumer,$oToken,$requestMethod,$this->_sUri.'/'.$sSubPath.$sPath,$aArgs );
 				return OAuthRequest::from_consumer_and_token($this->_oConsumer,$oToken,$requestMethod,$this->_sUri.'/'.$sSubPath.$sPath,$aArgs);
 			}
+      // #t0455, dwildt, 1-/3+
+      //var_dump( __METHOD__, __LINE__, $this->_oConsumer,$oToken,$requestMethod,$this->_sUri.'/'.$sSubPath.$sPath,$aArgs );
 			return OAuthRequest::from_consumer_and_token($this->_oConsumer,NULL,$requestMethod,$this->_sUri.'/'.$sSubPath.$sPath,$aArgs);
 		}
 		return false;
@@ -181,6 +185,8 @@ class Immocaster_Immobilienscout
 					$opts['http']['content'] = $requestBody;
 				}
 				$result = file_get_contents($req->to_url(),false,stream_context_create($opts));
+        // #t0455
+        //var_dump( __METHOD__, __LINE__, $result );
 			}
 			if($this->_sUrlReadingType=='curl')
 			{
@@ -203,6 +209,8 @@ class Immocaster_Immobilienscout
 					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 				}
 				$result = curl_exec($ch);
+        // #t0455
+        //var_dump( __METHOD__, __LINE__, $result );
 				// Return information
 				if($this->_bRequestDebug==true)
 				{

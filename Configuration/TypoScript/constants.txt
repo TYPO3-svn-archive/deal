@@ -10,7 +10,7 @@ plugin.tx_deal {
           properties {
             # cat=deal - immo24 api - properties//101;  type=options[json,none];      label= content result type:json or none (xml). json is recommended.
 	          contentResultType = json
-            # cat=deal - immo24 api - properties//102;  type=options[curl,none];      label= reading type:curl or none. curl is recommended but you need the PHP curl extension.
+            # cat=deal - immo24 api - properties//102;  type=options[curl,none];      label= reading type:curl or none. curl is recommended. If PHP curl extension isn't installed, Deal! will fall back to none automatically.
             readingType = curl
             # cat=deal - immo24 api - properties//103;  type=boolean;                 label= request debug:debug mode for the request. False is recommended for production mode.
             requestDebug = 0

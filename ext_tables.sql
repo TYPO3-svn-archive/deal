@@ -168,6 +168,8 @@ CREATE TABLE tx_deal_immo24certificateSandbox (
 # Table structure for table 'tx_quickshop_products'
 #
 CREATE TABLE tx_quickshop_products (
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
   tx_deal_ebayaction tinytext,
   tx_deal_ebaycategoryid tinytext,
   tx_deal_ebayconditionid tinytext,
@@ -187,6 +189,9 @@ CREATE TABLE tx_quickshop_products (
   tx_deal_ebayshippingserviceadditionalcosts tinytext,
   tx_deal_ebayshippingservicecode tinytext,
   tx_deal_ebayshippingservicecosts tinytext,
+
+  PRIMARY KEY (uid),
+  KEY parent (pid)
 );
 
 #

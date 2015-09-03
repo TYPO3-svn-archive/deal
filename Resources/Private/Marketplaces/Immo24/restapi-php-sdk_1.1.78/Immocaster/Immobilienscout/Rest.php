@@ -1304,13 +1304,21 @@ class Immocaster_Immobilienscout_Rest extends Immocaster_Immobilienscout
      */
 	private function registerRequest($aArgs)
 	{
+    // #t0455
+    //var_dump( __METHOD__, __LINE__, $aArgs );
 		try
 		{
 			if(parent::requiredArgs($aArgs,array('callback_url'),' '.__FUNCTION__))
 			{
 				$req = parent::restRequest('oauth/request_token',$aArgs,true);
 				$req->set_parameter('oauth_callback',$aArgs['callback_url']);
+        // #t0455
+        //var_dump( __METHOD__, __LINE__, parent::getContent($req) );
 				$aResult = Immocaster_Tools_Helper::makeArrayFromString(parent::getContent($req));
+        // #t0455
+        //var_dump( __METHOD__, __LINE__, $aResult );
+        // #t0455
+        //die();
 				// Wenn mit SQL Datenbank authentifiziert werden soll, speichere Reqeust Token und Secret in DB
 				if ($this->_bAuthenticateWithoutDB === false) {
 					Immocaster_Data_Mysql::getInstance()->saveRequestToken($aResult['oauth_token'],$aResult['oauth_token_secret']);
