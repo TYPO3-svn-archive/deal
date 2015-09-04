@@ -8,7 +8,7 @@ $EM_CONF[$_EXTKEY] = array(
   . 'See: http://typo3-deal.de/typo3conf/ext/deal/doc/manual.pdf',
   'category' => 'be',
   'shy' => 0,
-  'version' => '7.1.0',
+  'version' => '7.2.0',
   'dependencies' => 'typo3',
   'conflicts' => '',
   'priority' => '',

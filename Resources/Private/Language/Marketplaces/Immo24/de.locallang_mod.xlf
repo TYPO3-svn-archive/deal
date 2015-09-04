@@ -36,13 +36,21 @@
 				<source>Certification</source>
 				<target state="translated">Zertifizierung</target>
 			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypePhp">
+				<source>[TEST] PHP Requirements</source>
+				<target state="translated">[TEST] PHP Konfiguration</target>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypePhpUrl">
+				<source>URL for testing(recommended: https://example.com)</source>
+				<target state="translated">Test-URL (empfohlen: https://example.com)</target>
+			</trans-unit>
 			<trans-unit id="flexformPi1SheetApplicationTypeLogo">
 				<source>[TEST] Own logo / certificate</source>
-				<target state="translated">[Test] Eigenes Logo / Zertifikat</target>
+				<target state="translated">[TEST] Eigenes Logo / Zertifikat</target>
 			</trans-unit>
 			<trans-unit id="flexformPi1SheetApplicationTypeRegion">
 				<source>[TEST] Region</source>
-				<target state="translated">[Test] Regionen</target>
+				<target state="translated">[TEST] Regionen</target>
 			</trans-unit>
 			<trans-unit id="flexformPi1SheetApplicationTypeRegionSword">
 				<source>Search Word</source>
@@ -79,6 +87,18 @@
 			<trans-unit id="flexformPi1SheetLiveorsandboxKeysSandboxPublic">
 				<source>Public Key</source>
 				<target state="translated">Öffentlicher Schlüssel</target>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxy">
+				<source>Proxy</source>
+				<target state="translated">Proxy</target>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxyName">
+				<source>URL (name or ip)</source>
+				<target state="translated">URL (Name oder IP)</target>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxyPort">
+				<source>Port</source>
+				<target state="translated">Port</target>
 			</trans-unit>
 
       <trans-unit id="frontendApplicationCertification">
@@ -140,8 +160,8 @@
 				<target state="translated">Dieses Plugin sollte in jedem Fall funktionieren. Wenn es Regionen anzeigt, ist alles in Ordnung. Mit dem Plugin wird getestet, ob eine Verbindung mit immobilienscout24 hergestellt werden kann. Ein Suchbergiff ist zwingende Voraussetzung. Wenn nichts angezeigt wird, teste das Plugin mit dem Suchbegriff "Berlin".</target>
 			</trans-unit>
 			<trans-unit id="frontendApplicationRegionWithSword">
-				<source>[Test] Plugin Regions with search word "%sword%"</source>
-				<target state="translated">[Test] Plugin Regionen mit Suchbegriff "%sword%"</target>
+				<source>[TEST] Plugin Regions with search word "%sword%"</source>
+				<target state="translated">[TEST] Plugin Regionen mit Suchbegriff "%sword%"</target>
 			</trans-unit>
 			<trans-unit id="pluginPi1Title">
 				<source>Deal! immobilienscout24 certification</source>

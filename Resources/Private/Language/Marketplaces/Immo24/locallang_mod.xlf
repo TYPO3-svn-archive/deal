@@ -74,6 +74,12 @@
 			<trans-unit id="flexformPi1SheetApplicationTypeCertification">
 				<source>Certification</source>
 			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypePhp">
+				<source>[TEST] PHP Requirements</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetApplicationTypePhpUrl">
+				<source>URL for testing(recommended: https://example.com)</source>
+			</trans-unit>
 			<trans-unit id="flexformPi1SheetApplicationTypeLogo">
 				<source>[TEST] Own logo / certificate</source>
 			</trans-unit>
@@ -107,6 +113,15 @@
 			<trans-unit id="flexformPi1SheetLiveorsandboxKeysSandboxPublic">
 				<source>Public Key</source>
 			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxy">
+				<source>Proxy</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxyName">
+				<source>URL (name or ip)</source>
+			</trans-unit>
+			<trans-unit id="flexformPi1SheetProxyPort">
+				<source>Port</source>
+			</trans-unit>
 
       <trans-unit id="frontendApplicationCertification">
 				<source>Plugin Certification</source>
@@ -131,6 +146,12 @@
           See table %dbtable%</p>
         ]]></source>
 			</trans-unit>
+			<trans-unit id="frontendApplicationCurlHeader">
+				<source>[TEST] PHP Requirements</source>
+			</trans-unit>
+			<trans-unit id="frontendApplicationCurlPrompt">
+				<source>Something went wrong with your PHP cURL extension.</source>
+			</trans-unit>
       <trans-unit id="frontendApplicationFormLegend">
 				<source>Certificate application</source>
 			</trans-unit>
@@ -150,7 +171,7 @@
 				<source>Used certificate</source>
 			</trans-unit>
 			<trans-unit id="frontendApplicationLogoHeader">
-				<source>[Test] Plugin own logo</source>
+				<source>[TEST] Plugin own logo</source>
 			</trans-unit>
 			<trans-unit id="frontendApplicationLogoImage">
 				<source>Your company logo</source>
@@ -173,7 +194,7 @@
 				<source>This plugin should work proper in every case. If is display regions, everything is proper. It is a test, if a connection with immobilienscout24 is possible. A search word is obligate! If there isn't any hit, please test the plugin with the search word "Berlin".</source>
 			</trans-unit>
 			<trans-unit id="frontendApplicationRegionWithSword">
-				<source>[Test] Plugin Regions with search word "%sword%"</source>
+				<source>[TEST] Plugin Regions with search word "%sword%"</source>
 			</trans-unit>
 			<trans-unit id="pluginPi1Title">
 				<source>Deal! immobilienscout24 certification</source>

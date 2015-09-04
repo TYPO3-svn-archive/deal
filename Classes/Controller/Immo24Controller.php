@@ -41,7 +41,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  * @package deal
  * @license http://www.gnu.org/licenses/lgpl.html
  * 			GNU Lesser General Public License, version 3 or later
- * @version 7.0.2
+ * @version 7.2.0
  * @since 7.0.0
  */
 class Immo24Controller extends ActionController
@@ -90,6 +90,11 @@ class Immo24Controller extends ActionController
    * @var string
    */
   private $sImmo24User = NULL;
+
+  /**
+   * @var string
+   */
+  private $sReadingType = NULL;
 
   /**
    * init() :
@@ -254,12 +259,14 @@ class Immo24Controller extends ActionController
    *
    * @return void
    * @access private
-   * @version 7.0.0
+   * @version 7.2.0
    * @since 7.0.0
    */
   private function initImmocaster()
   {
-    require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.78/Immocaster/Sdk.php');
+    // #t0458, 150904, 1-/+
+    //require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.78/Immocaster/Sdk.php');
+    require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.80/Immocaster/Sdk.php');
 
     list ($public, $private) = $this->initImmocasterKeys();
 //    var_dump( __METHOD__, __LINE__, $public, $private );
@@ -308,7 +315,7 @@ class Immo24Controller extends ActionController
    *
    * @return void
    * @access private
-   * @version 7.0.0
+   * @version 7.2.0
    * @since 7.0.0
    */
   private function initProperties()
@@ -324,6 +331,9 @@ class Immo24Controller extends ActionController
 
     // curl or none
     $this->initPropertiesReadingType();
+
+    // #t0458, 150904, dwildt, 1+
+    $this->initPropertiesProxy();
 
     // request debug mode
     if ( $aImmo24TsProperties[ 'requestDebug' ] )
@@ -343,6 +353,34 @@ class Immo24Controller extends ActionController
     $sRequestUrl = strtolower( $aImmo24FfProperties[ 'requestUrl' ] );
     $this->initPropertiesSandbox( $sRequestUrl );
     $this->oImmocaster->setRequestUrl( $sRequestUrl );
+  }
+
+  /**
+   * initPropertiesProxy() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function initPropertiesProxy()
+  {
+    $sProxyName = $this->settings[ 'flexform' ][ 'proxy' ][ 'name' ];
+
+    // RETURN: proxy isn't set
+    if ( empty( $sProxyName ) )
+    {
+      return;
+    }
+
+    $sProxyPort = ( int ) $this->settings[ 'flexform' ][ 'proxy' ][ 'port' ];
+    if ( $sProxyPort <= 0 )
+    {
+      $sProxyPort = NULL;
+    }
+
+    $this->oImmocaster->setProxy( $sProxyName, $sProxyPort );
   }
 
   /**
@@ -381,18 +419,21 @@ class Immo24Controller extends ActionController
    */
   private function initPropertiesReadingTypeCurl()
   {
-    //var_dump( __METHOD__, __LINE__ );
-    switch ( $this->zzCurlCheckBasicFunctions() )
-    {
-      case( TRUE ):
-        //var_dump( __METHOD__, __LINE__ );
+//    //var_dump( __METHOD__, __LINE__ );
+//    //$this->initPropertiesReadingTypeNone();
+//    //return;
+//    switch ( $this->zzPhpCurlVerifier() )
+//    {
+//      case( TRUE ):
+//        //var_dump( __METHOD__, __LINE__ );
         $this->oImmocaster->setReadingType( 'curl' );
-        return;
-      case( FALSE ):
-      default:
-        $this->initPropertiesReadingTypeNone();
-        return;
-    }
+        $this->sReadingType = 'curl';
+//        return;
+//      case( FALSE ):
+//      default:
+//        $this->initPropertiesReadingTypeNone();
+//        return;
+//    }
   }
 
   /**
@@ -406,8 +447,8 @@ class Immo24Controller extends ActionController
    */
   private function initPropertiesReadingTypeNone()
   {
-    //var_dump( __METHOD__, __LINE__ );
     $this->oImmocaster->setReadingType( 'none' );
+    $this->sReadingType = 'none';
   }
 
   /**
@@ -459,6 +500,9 @@ class Immo24Controller extends ActionController
         break;
       case('logo'):
         $this->pluginLogo();
+        break;
+      case('php'):
+        $this->pluginPhp();
         break;
       case('region'):
         $this->pluginRegions();
@@ -684,6 +728,234 @@ class Immo24Controller extends ActionController
     $this->view->assign( 'pluginIsCertification', true );
     $this->view->assign( 'submit', $sSubmit );
     $this->view->assign( 'user', $sUser );
+  }
+
+  /**
+   * pluginPhp() :
+   *
+   * @internal #t0458, #t0459
+   * @return void
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhp()
+  {
+    switch ( TRUE )
+    {
+      case( $this->sReadingType == 'curl'):
+        $this->pluginPhpCurl();
+        break;
+      case( $this->sReadingType == 'none'):
+      default:
+        $this->pluginPhpFilegetcontent();
+        break;
+    }
+  }
+
+  /**
+   * pluginPhpCurl() :
+   *
+   * @internal #t0458, #t0459
+   * @return void
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpCurl()
+  {
+    $this->zzPhpCurlVerifier();
+//    // Do noting. Everything is handled by $this->zzPhpCurlVerifier()
+//    return;
+//    //var_dump( __METHOD__, __LINE__ );
+//    //$this->initPropertiesReadingTypeNone();
+//    //return;
+//    switch ( $this->zzPhpCurlVerifier() )
+//    {
+//      case( TRUE ):
+//        //var_dump( __METHOD__, __LINE__ );
+//        $this->oImmocaster->setReadingType( 'curl' );
+//        $this->sReadingType = 'curl';
+//        return;
+//      case( FALSE ):
+//      default:
+//        $this->initPropertiesReadingTypeNone();
+//        return;
+//    }
+  }
+
+  /**
+   * pluginPhpFilegetcontent() :
+   *
+   * @internal #t0458, #t0459
+   * @return void
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontent()
+  {
+    $aPrompt = array(
+      $this->pluginPhpFilegetcontentFallback(),
+      $this->pluginPhpFilegetcontentProxy(),
+    );
+
+    $this->pluginPhpFilegetcontentPrompt( $aPrompt );
+  }
+
+  /**
+   * pluginPhpFilegetcontentFallback() :
+   *
+   * @internal #t0458, #t0459
+   * @return void
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontentFallback()
+  {
+    $aImmo24TsProperties = $this->settings[ 'marketplaces' ][ 'immo24' ][ 'api' ][ 'properties' ];
+    if ( $aImmo24TsProperties[ 'readingType' ] != 'curl' )
+    {
+      return NULL;
+    }
+
+    $prompt = '
+      <div data-alert class="alert-box alert">
+        Fallback mode: You have selected the reading type "curl".<br />
+        But the PHP extension cURL isn\'t available or doesn\'t run proper..<br />
+        Deal! falls back to "none". PHP will using the method file_get_content().
+      </div>
+      <div data-alert class="alert-box info">
+        Please move the reading type from "curl" to "none". See the Deal! Constant Editor. Look for IMMO24 > reading type.<br />
+      </div>
+      '
+    ;
+    return $prompt;
+  }
+
+  /**
+   * pluginPhpFilegetcontentProxy() :
+   *
+   * @internal #t0458, #t0459
+   * @return void
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontentProxy()
+  {
+    $sProxyName = $this->settings[ 'flexform' ][ 'proxy' ][ 'name' ];
+    if ( empty( $sProxyName ) )
+    {
+      return NULL;
+    }
+
+    $prompt = '
+      <div data-alert class="alert-box alert">
+        You have configured a proxy ("' . $sProxyName . '")<br />
+        But the RESTAPI of immobilienscout24 doesn\'t support a proxy, if you are using the PHP method file_get_content().<br />
+        Please remove the proxy or enable the reading type "curl". See the Deal! Constant Editor. Look for IMMO24 > reading type.<br />
+      </div>
+      <div data-alert class="alert-box info">
+        If the PHP extension cURL isn\'t available, you can\'t use a proxy.
+        <a href="#" class="close">&times;</a>
+      </div>
+      '
+    ;
+    return $prompt;
+  }
+
+  /**
+   * pluginPhpFilegetcontentPrompt() :
+   *
+   * @param array $aPrompt
+   * @return void
+   * @internal #t0458, #t0459
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontentPrompt( $aPrompt )
+  {
+    $prompt = implode( PHP_EOL, ( array ) $aPrompt );
+    //var_dump( __METHOD__, __LINE__, $aPrompt, $prompt );
+
+    switch ( TRUE )
+    {
+      case($prompt == PHP_EOL):
+      case(empty( $prompt )):
+        $this->pluginPhpFilegetcontentPromptUrl();
+        break;
+      default:
+        $this->pluginPhpFilegetcontentPromptError( $prompt );
+        break;
+    }
+  }
+
+  /**
+   * pluginPhpFilegetcontentPromptError() :
+   *
+   * @param string $prompt
+   * @return void
+   * @internal #t0458, #t0459
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontentPromptError( $prompt )
+  {
+    $sApplication = '
+      <h2>
+        ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( $this->locallangPath . 'frontendApplicationCurlHeader', 'deal' ) . '
+      </h2>
+      ' . $prompt
+    ;
+
+    $this->view->assign( 'application', $sApplication );
+  }
+
+  /**
+   * pluginPhpFilegetcontentPromptUrl() :
+   *
+   * @return void
+   * @internal #t0458, #t0459
+   * @access private
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function pluginPhpFilegetcontentPromptUrl()
+  {
+    if ( !isset( $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ] ) )
+    {
+      $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ] = 'https://example.com';
+    }
+    $stypePhpUrl = $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ];
+
+    $content = file_get_contents( $stypePhpUrl );
+
+    if ( $content )
+    {
+      die( $content );
+    }
+
+    $prompt = '
+      <div data-alert class="alert-box alert">
+        file_get_contents( "' . $stypePhpUrl . '" ) returns empty content.
+      </div>
+      <div data-alert class="alert-box info">
+        Please check your configuration.
+        <a href="#" class="close">&times;</a>
+      </div>
+      <div data-alert class="alert-box info">
+        cURL would prompt some more helpful information probably.<br />
+        If you like to use cURL, you have to move the reading type from "none" to "curl".<br />
+        See the Deal! Constant Editor. Look for IMMO24 > reading type.
+        <a href="#" class="close">&times;</a>
+      </div>
+      '
+    ;
+        $this->pluginPhpFilegetcontentPromptError( $prompt );
   }
 
   /**
@@ -1365,15 +1637,170 @@ class Immo24Controller extends ActionController
   }
 
   /**
-   * zzCurlCheckBasicFunctions() :
+   * zzPhpCurlVerifier() :
    *
    * @return void
    * @access private
-   * @internal #t0456
-   * @version 7.1.0
+   * @internal #t0456, #t0457
+   * @version 7.2.0
    * @since 7.1.0
    */
-  private function zzCurlCheckBasicFunctions()
+  private function zzPhpCurlVerifier()
+  {
+
+    // RETUIRN FALSE: a basic curl method is missing
+    if ( !$this->zzPhpCurlVerifierFunctions() )
+    {
+      return FALSE;
+    }
+
+    return $this->zzPhpCurlVerifierExec();
+  }
+
+  /**
+   * zzPhpCurlVerifierErrorPrompt() :
+   *
+   * @param resource $rCurlHandler
+   * @return void
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function zzPhpCurlVerifierErrorPrompt( $rCurlHandler, $sMethod, $iLine )
+  {
+    $sApplication = '
+      <h2>
+        ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( $this->locallangPath . 'frontendApplicationCurlHeader', 'deal' ) . '
+      </h2>
+      <div data-alert class="alert-box alert">
+        ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( $this->locallangPath . 'frontendApplicationCurlPrompt', 'deal' ) . '
+        <a href="#" class="close">&times;</a>
+      </div>
+      <div data-alert class="alert-box info">
+        cURL error prompt: ' . curl_error( $rCurlHandler ) . '<br />
+        cURL error number: #' . curl_errno( $rCurlHandler ) . '
+      </div>
+      <div data-alert class="alert-box info">
+        TYPO3 Deal! Method: ' . $sMethod . ' (line #' . $iLine . ')
+        <a href="#" class="close">&times;</a>
+      </div>
+      '
+    ;
+
+    $this->view->assign( 'application', $sApplication );
+    //die();
+  }
+
+  /**
+   * zzPhpCurlVerifierExec() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function zzPhpCurlVerifierExec()
+  {
+    // Get URL
+    if ( !isset( $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ] ) )
+    {
+      $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ] = 'https://example.com';
+    }
+    $stypePhpUrl = $this->settings[ 'flexform' ][ 'application' ][ 'typePhpUrl' ];
+
+    $rCurlHandler = curl_init();
+    curl_setopt( $rCurlHandler, CURLOPT_URL, $stypePhpUrl );
+    curl_setopt( $rCurlHandler, CURLOPT_RETURNTRANSFER, 1 );
+    $this->zzPhpCurlVerifierExecProxy( $rCurlHandler );
+    $output = curl_exec( $rCurlHandler );
+
+    if ( $output !== FALSE )
+    {
+      curl_close( $rCurlHandler );
+      die( $output );
+    }
+
+    $this->zzPhpCurlVerifierErrorPrompt( $rCurlHandler, __METHOD__, __LINE__ );
+    return true;
+  }
+
+  /**
+   * zzPhpCurlVerifierExecProxy() :
+   *
+   * @param resource $rCurlHandler
+   * @return void
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function zzPhpCurlVerifierExecProxy( $rCurlHandler )
+  {
+    if ( !$this->zzPhpCurlVerifierExecProxyName( $rCurlHandler ) )
+    {
+      return;
+    }
+
+    $this->zzPhpCurlVerifierExecProxyPort( $rCurlHandler );
+  }
+
+  /**
+   * zzPhpCurlVerifierExecProxyName() :
+   *
+   * @param resource $rCurlHandler
+   * @return boolean
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function zzPhpCurlVerifierExecProxyName( $rCurlHandler )
+  {
+    $sProxyName = $this->settings[ 'flexform' ][ 'proxy' ][ 'name' ];
+
+    // RETURN: proxy isn't set
+    if ( empty( $sProxyName ) )
+    {
+      return FALSE;
+    }
+
+    curl_setopt( $rCurlHandler, CURLOPT_PROXY, $sProxyName );
+    return TRUE;
+  }
+
+  /**
+   * zzPhpCurlVerifierExecProxyPort() :
+   *
+   * @param resource $rCurlHandler
+   * @return void
+   * @access private
+   * @internal #t0458
+   * @version 7.2.0
+   * @since 7.2.0
+   */
+  private function zzPhpCurlVerifierExecProxyPort( $rCurlHandler )
+  {
+    $sProxyPort = ( int ) $this->settings[ 'flexform' ][ 'proxy' ][ 'port' ];
+    if ( $sProxyPort <= 0 )
+    {
+      return;
+    }
+
+    curl_setopt( $rCurlHandler, CURLOPT_PROXYPORT, $sProxyPort );
+  }
+
+  /**
+   * zzPhpCurlVerifierFunctions() :
+   *
+   * @return void
+   * @access private
+   * @internal #t0456, #t0457
+   * @version 7.2.0
+   * @since 7.1.0
+   */
+  private function zzPhpCurlVerifierFunctions()
   {
 
     switch ( TRUE )
@@ -1384,18 +1811,8 @@ class Immo24Controller extends ActionController
       case(!function_exists( "curl_setopt" ) ):
         return false;
       default:
-        // follow the workflow
-        break;
+        return true;
     }
-
-    return true;
-//    $ch = curl_init();
-//    curl_setopt( $ch, CURLOPT_URL, "example.com" );
-//    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-//    $output = curl_exec( $ch );
-//    curl_close( $ch );
-//    echo $output;
-//    die();
   }
 
 }

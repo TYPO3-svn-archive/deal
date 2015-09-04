@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package deal
  * @license http://www.gnu.org/licenses/lgpl.html
  * 			GNU Lesser General Public License, version 3 or later
- * @version 7.0.1
+ * @version 7.2.0
  * @since 7.0.0
  */
 class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
@@ -2018,12 +2018,14 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    *
    * @return void
    * @access private
-   * @version 7.0.0
+   * @version 7.2.0
    * @since 7.0.0
    */
   private function _initImmocasterInstance()
   {
-    require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.78/Immocaster/Sdk.php');
+    // #t0458, 150904, 1-/+
+    //require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.78/Immocaster/Sdk.php');
+    require_once(ExtensionManagementUtility::extPath( 'deal' ) . 'Resources/Private/Marketplaces/Immo24/restapi-php-sdk_1.1.80/Immocaster/Sdk.php');
     $this->_oImmocaster = \Immocaster_Sdk::getInstance( 'immo24', $this->_sImmo24KeyPublic, $this->_sImmo24KeyPrivate );
   }
 

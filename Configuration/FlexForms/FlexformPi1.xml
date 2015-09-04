@@ -83,6 +83,38 @@
         </el>
       </ROOT>
     </liveorsandbox>
+    <proxy>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetProxy</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.flexform.proxy.name>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetProxyName</label>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.proxy.name>
+          <settings.flexform.proxy.port>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetProxyPort</label>
+              <config>
+                <type>input</type>
+                <size>5</size>
+                <max>5</max>
+                <eval>trim,integer</eval>
+              </config>
+            </TCEforms>
+          </settings.flexform.proxy.port>
+        </el>
+      </ROOT>
+    </proxy>
     <application>
       <ROOT>
         <TCEforms>
@@ -109,6 +141,10 @@
                     <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypeLogo</numIndex>
                     <numIndex index="1">logo</numIndex>
                   </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypePhp</numIndex>
+                    <numIndex index="1">php</numIndex>
+                  </numIndex>
                 </items>
                 <default>certification</default>
                 <maxitems>1</maxitems>
@@ -129,6 +165,19 @@
               </config>
             </TCEforms>
           </settings.flexform.application.typeRegionSword>
+          <settings.flexform.application.typePhpUrl>
+            <TCEforms>
+              <label>LLL:EXT:deal/Resources/Private/Language/Marketplaces/Immo24/locallang_mod.xlf:flexformPi1SheetApplicationTypePhpUrl</label>
+              <displayCond>FIELD:settings.flexform.application.type:=:php</displayCond>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <max>255</max>
+                <eval>trim,required</eval>
+                <default>https://example.com</default>
+              </config>
+            </TCEforms>
+          </settings.flexform.application.typePhpUrl>
         </el>
       </ROOT>
     </application>

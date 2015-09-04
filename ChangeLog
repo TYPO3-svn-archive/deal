@@ -1,3 +1,12 @@
+7.2.0
+  2015-09-04
+  New Feature
+  * #t0459: Verifying file_get_contents
+  * #t0458: Allow to use a proxy. RESTAPI 1.1.80 is needed.
+            * RESTAPI is moved from 1.1.78 to 1.1.80
+            * Verifying cURL
+  * #t0457: Display the result of PHP curl for a given domain
+
 7.1.0
   2015-09-03
   New Feature
@@ -7,7 +16,7 @@
   2015-09-03
   Improvement
   * #t0455: Debugging: empty oauth_token
-  * #t0454: Default value for serach word region
+  * #t0454: Default value for search word region
 
 7.0.1
   2015-08-28
