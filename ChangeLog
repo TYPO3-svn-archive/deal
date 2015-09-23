@@ -1,3 +1,10 @@
+7.2.1
+  2015-09-23
+  Improvement
+  * #t0470: Prompt for the key in "ERROR message: value for switch is undefined" at
+                * Netzmacher\Deal\Scheduler\Immo24Task::_typo3UpdateRowUrl (#2766)
+                * Case "ERROR_RESOURCE_VALIDATION" added
+
 7.2.0
   2015-09-04
   New Feature

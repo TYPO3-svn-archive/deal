@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package deal
  * @license http://www.gnu.org/licenses/lgpl.html
  * 			GNU Lesser General Public License, version 3 or later
- * @version 7.2.0
+ * @version 7.2.1
  * @since 7.0.0
  */
 class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
@@ -2702,7 +2702,7 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    */
   private function _typo3UpdateRowLogChannel( $table, $sImmo24id )
   {
-    // RETURN: table uisn't the table for apartment rent
+    // RETURN: table isn't the table for apartment rent
     if ( $table != $this->deal_tableappartmentrent )
     {
       return NULL;
@@ -2735,12 +2735,12 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
    * @param  array $field_values
    * @return
    * @access private
-   * @version 7.0.1
+   * @version 7.2.1
    * @since 7.0.0
    */
   private function _typo3UpdateRowUrl( $table, $xImmo24id, $fields_values )
   {
-    // RETURN: table uisn't the table for apartment rent
+    // RETURN: table isn't the table for apartment rent
     if ( $table != $this->deal_tableappartmentrent )
     {
       return $fields_values;
@@ -2758,11 +2758,14 @@ class Immo24Task extends \Netzmacher\Deal\Scheduler\Immo24TaskExecute
         break;
       case(empty( $xImmo24id ) ):
       case( $xImmo24id == 'ERROR_RESOURCE_NOT_FOUND' ):
+      // #t0470, 150923, dwildt, 1+
+      case( $xImmo24id == 'ERROR_RESOURCE_VALIDATION' ):
       case( $xImmo24id == 'MESSAGE_RESOURCE_DELETED' ):
         // no url
         break;
       default:
         $prompt = 'ERROR: value for switch is undefined.<br />'
+                . ' $xImmo24id is "' . $xImmo24id . '"<br />'
                 . __METHOD__ . ' (#' . __LINE__ . ')<br />'
                 . 'Sorry for the trouble.<br />'
                 . 'This is a prompt of the TYPO3 extension Deal!'
