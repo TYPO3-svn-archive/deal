@@ -1318,11 +1318,11 @@ class tx_deal_ebayApiBase
         // follow the workflow
         break;
       default:
-        // #i0037, dwildt, 2+/1-
-        $listIfNoProduct = '    <ListIfNoProduct>true</ListIfNoProduct>';
-        $listIfNoProduct = '    <IncludeeBayProductDetails>0</IncludeeBayProductDetails>';
-        break;
-        //return null;
+//        // #i0037, dwildt, 2+/1-
+//        $listIfNoProduct = '    <ListIfNoProduct>true</ListIfNoProduct>';
+//        $listIfNoProduct = '    <IncludeeBayProductDetails>0</IncludeeBayProductDetails>';
+//        break;
+        return null;
     }
 
     $productListingDetails = '  <ProductListingDetails>
