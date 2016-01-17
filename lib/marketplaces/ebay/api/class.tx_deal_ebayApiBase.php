@@ -75,7 +75,7 @@ class tx_deal_ebayApiBase
    * @param   boolean   $dontPrompt : do not prompt to the backend form (optional)
    * @return	mixed     $status : false, 'isNotOnEbay', 'isOnEbayEnabled', 'isOnEbayDisabled', 'isWoStatus'
    * @access protected
-   * @version  0.0.3
+   * @version  7.2.2
    * @since    0.0.3
    */
   protected function evalResponse( $xmlRequest, $xmlResponse, $xmlAction = null, $dontPrompt = false )
@@ -84,10 +84,21 @@ class tx_deal_ebayApiBase
     $prompt = __METHOD__ . ' #' . __LINE__;
     $this->log( $prompt, -1 );
 
-    if ( $this->evalResponsePromptError( $xmlRequest, $xmlResponse, $xmlAction ) )
+    // #i0037, 160117, dwildt , ~+
+    $SeverityCode = $xmlResponse->Errors->SeverityCode;
+    switch ( TRUE )
     {
-      return false;
+      case( strtolower( $SeverityCode ) == 'warning'):
+        $this->evalResponsePromptError( $xmlRequest, $xmlResponse, $xmlAction );
+        break;
+      default:
+        if ( $this->evalResponsePromptError( $xmlRequest, $xmlResponse, $xmlAction ) )
+        {
+          return false;
+        }
+        break;
     }
+
 
     $status = $this->evalResponsePromptSuccess( $xmlRequest, $xmlResponse, $xmlAction, $dontPrompt );
     return $status;
