@@ -59,8 +59,8 @@
       <label index="ebayHelpStartingPrice">A proper starting price would be 1.00 EUR for example - or more.</label>
       <label index="ebayItemError">Fatal error: The status of your item on ebay can't evaluated.</label>
       <label index="ebayItemIsNotOnEbay">Your item isn't on ebay available.</label>
-      <label index="ebayItemIsOnEbayEnabled"><![CDATA[Your item is on ebay%ebayEnvironment% enabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>Item on ebay</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
-      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Your item is on ebay%ebayEnvironment% disabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>Item on ebay</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
+      <label index="ebayItemIsOnEbayEnabled"><![CDATA[Your item is on ebay%ebayEnvironment% enabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>%ViewItemURL%</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
+      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Your item is on ebay%ebayEnvironment% disabled. See <a href='%ViewItemURL%' target='_blank' title='your item on ebay%ebayEnvironment%'>%ViewItemURL%</a>. #%Quantity% available, #%QuantitySold% sold.]]></label>
       <label index="ebayItemIsWoStatus">Your item isn't on ebay available any longer.</label>
       <label index="ebayItemVerfifyFailed">The evaluation of he ebay configuration failed. The item and the chagings aren't uploaded to the ebay shop.</label>
       <label index="ebayItemWarnNoUpdate">Warning: Your item won't updated on ebay.</label>
@@ -149,8 +149,8 @@
       <label index="ebayHelpStartingPrice">Ein korrekter Startpreis ist zum Beispiel 1.00 EUR oder mehr.</label>
       <label index="ebayItemError">System-Fehler: Der Status Deines Artikels auf ebay kann nicht festgestellt werden.</label>
       <label index="ebayItemIsNotOnEbay">Dein Artikel ist auf ebay nicht vorhanden.</label>
-      <label index="ebayItemIsOnEbayEnabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
-      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% deaktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>Artikel auf ebay</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
+      <label index="ebayItemIsOnEbayEnabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% aktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>%ViewItemURL%</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
+      <label index="ebayItemIsOnEbayDisabled"><![CDATA[Dein Artikel ist auf ebay%ebayEnvironment% deaktiviert. Siehe <a href='%ViewItemURL%' target='_blank' title='Dein Artikel auf ebay%ebayEnvironment%'>%ViewItemURL%</a>. #%Quantity% verfügbar, #%QuantitySold% verkauft.]]></label>
       <label index="ebayItemIsWoStatus">Dein Artikel ist auf ebay nicht mehr vorhanden.</label>
       <label index="ebayItemVerfifyFailed">Die Überprüfung der Einstellungen für ebay ist fehlgeschlagen. Der Artikel und die Änderungen werden in den ebay-Shop nicht hochgeladen.</label>
       <label index="ebayItemWarnNoUpdate">Warnung: Dein Artikel auf ebay wird nicht aktualisiert.</label>
