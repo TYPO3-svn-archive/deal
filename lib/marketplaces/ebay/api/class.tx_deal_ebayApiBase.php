@@ -1320,7 +1320,7 @@ class tx_deal_ebayApiBase
       default:
         // #i0037, dwildt, 2+/1-
         $listIfNoProduct = '    <ListIfNoProduct>true</ListIfNoProduct>';
-        $listIfNoProduct = '    <IncludeeBayProductDetails>false</IncludeeBayProductDetails>';
+        $listIfNoProduct = '    <IncludeeBayProductDetails>0</IncludeeBayProductDetails>';
         break;
         //return null;
     }
