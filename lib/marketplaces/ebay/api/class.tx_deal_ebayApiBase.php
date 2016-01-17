@@ -196,6 +196,7 @@ class tx_deal_ebayApiBase
 
     switch ( $this->ebayErrorCode )
     {
+// dwildt
       case(37): // Unproper ShippingServiceCost
         $this->evalResponsePromptErrorErrors00000037();
         return TRUE;
