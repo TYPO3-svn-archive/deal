@@ -871,7 +871,7 @@ class tx_deal_ebayApiBase
     $PaymentMethods = $this->getRequestContentAddItemXmlPaymentmethods();
     $ReturnPolicy = $this->getRequestContentAddItemXmlReturnpolicy();
     $SiteCodeType = $this->ebayMarketplaceCountry;
-    $VatPercent = $this->getRequestContentAddItemFieldsVatpercent( );
+    $VatPercent = $this->getRequestContentAddItemFieldsVatpercent();
     $ShippingService = $this->getRequestContentAddItemFieldsShippingservicecode();
     $ShippingServiceAdditionalCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingserviceadditionalcosts' );
     $ShippingServiceCosts = $this->pObj->getDatamapRecord( 'tx_deal_ebayshippingservicecosts' );
@@ -1298,16 +1298,18 @@ class tx_deal_ebayApiBase
    *
    * @return	string  $productListingDetails : XML tag with the product listing details
    * @access private
-   * @version  0.0.3
+   * @version  7.2.2
    * @since    0.0.3
    */
   private function getRequestContentAddItemFieldsProductListingDetails()
   {
     $productListingDetails = null;
+    // #i0037, dwildt, 1+
+    $listIfNoProduct = null;
     $ean = $this->getDatamapValueByTcaConfField( 'ean' );
     if ( !empty( $ean ) )
     {
-      $ean = '  <EAN>' . $ean . '</EAN>';
+      $ean = '    <EAN>' . $ean . '</EAN>';
     }
 
     switch ( true )
@@ -1316,11 +1318,15 @@ class tx_deal_ebayApiBase
         // follow the workflow
         break;
       default:
-        return null;
+        // #i0037, dwildt, 2+/1-
+        $listIfNoProduct = '    <ListIfNoProduct>true</ListIfNoProduct>';
+        break;
+        //return null;
     }
 
     $productListingDetails = '  <ProductListingDetails>
 ' . $ean . '
+' . $listIfNoProduct . '
   </ProductListingDetails>';
 
     return $productListingDetails;
