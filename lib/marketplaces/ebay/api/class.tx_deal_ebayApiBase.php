@@ -155,10 +155,13 @@ class tx_deal_ebayApiBase
     $prompt = 'Request: ' . $xmlAction;
     $this->log( $prompt, -1 );
 
+    // #i0039, 160118, dwildt, 2-/5+
+    //$prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
+    //$this->log( $prompt, 4 ); // Workaround: 4, because XML code won't prompt to -1 (log only)
     if ( $this->getLogStatusByRequestSeverityCode() >= 4 )
     {
       $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
-      $this->log( $prompt, 4 ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+      $this->log( $prompt, $this->getLogStatusByRequestSeverityCode() ); // Workaround: 4, because XML code won't prompt to -1 (log only)
     }
 
     $prompt = 'xmlResponse: ' . $xmlResponse->Body;
@@ -242,8 +245,14 @@ class tx_deal_ebayApiBase
     $this->log( $prompt, -1 );
     $prompt = 'TCA configuration: ' . var_export( $this->ebayApiConfFromTCA, TRUE );
     $this->log( $prompt, -1 );
-    $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
-    $this->log( $prompt, $this->getLogStatusByRequestSeverityCode() ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    // #i0039, 160118, dwildt, 2-/5+
+    //$prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
+    //$this->log( $prompt, $this->getLogStatusByRequestSeverityCode() ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    if ( $this->getLogStatusByRequestSeverityCode() >= 4 )
+    {
+      $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
+      $this->log( $prompt, $this->getLogStatusByRequestSeverityCode() ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    }
     $prompt = 'xmlResponse: ' . PHP_EOL . var_export( $xmlResponse, TRUE );
     $this->log( $prompt, -1 );
 
