@@ -155,8 +155,11 @@ class tx_deal_ebayApiBase
     $prompt = 'Request: ' . $xmlAction;
     $this->log( $prompt, -1 );
 
-    $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
-    $this->log( $prompt, $this->getLogStatusByRequestSeverityCode() ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    if ( $this->getLogStatusByRequestSeverityCode() >= 4 )
+    {
+      $prompt = 'xmlRequest: ' . PHP_EOL . $xmlRequest;
+      $this->log( $prompt, 4 ); // Workaround: 4, because XML code won't prompt to -1 (log only)
+    }
 
     $prompt = 'xmlResponse: ' . $xmlResponse->Body;
     $this->log( $prompt, $this->getLogStatusByRequestSeverityCode() );
