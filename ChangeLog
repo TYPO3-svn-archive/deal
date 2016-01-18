@@ -4,6 +4,8 @@
   * #i0039: Don't display xmlRequest in case of warnings
   * #i0038: Proper display of the link to the item on ebay
   * #i0037: Respect ebays SeverityCode
+  Bugfix
+  * #i0040: Proper ebay icon for ebay categories
 
 7.2.1
   2015-09-23

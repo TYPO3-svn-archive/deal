@@ -12,7 +12,7 @@ $dealTca = array(
     'enablecolumns' => array(
       'disabled' => 'hidden',
     ),
-    'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath( 'deal' ) . 'Resources/Public/Images/Marketplaces/Immo24/ext_icon.gif',
+    'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath( 'deal' ) . 'Resources/Public/Images/Marketplaces/ebay/ext_icon.gif',
     'searchFields' => 'title',
     'treeParentField' => 'uid_parent',
   ),
